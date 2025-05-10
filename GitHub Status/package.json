@@ -1,0 +1,17 @@
+{
+  "name": "github-status-app",
+  "version": "1.0.0",
+  "description": "A simple web application that displays the current status of GitHub services",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "github",
+    "status",
+    "api",
+    "web-app"
+  ],
+  "author": "",
+  "license": "MIT"
+} 
