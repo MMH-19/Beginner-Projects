@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Calculator body -->
+  <rect x="15" y="10" width="70" height="80" rx="8" fill="#4338ca" />
+  
+  <!-- Display screen -->
+  <rect x="20" y="15" width="60" height="20" rx="3" fill="#111827" />
+  <rect x="22" y="17" width="56" height="16" rx="2" fill="#374151" />
+  
+  <!-- Calculator buttons -->
+  <!-- Top row -->
+  <circle cx="25" cy="45" r="5" fill="#f59e0b" />
+  <circle cx="40" cy="45" r="5" fill="#f59e0b" />
+  <circle cx="55" cy="45" r="5" fill="#f59e0b" />
+  <circle cx="70" cy="45" r="5" fill="#f59e0b" />
+  
+  <!-- Second row -->
+  <circle cx="25" cy="60" r="5" fill="#ffffff" opacity="0.7" />
+  <circle cx="40" cy="60" r="5" fill="#ffffff" opacity="0.7" />
+  <circle cx="55" cy="60" r="5" fill="#ffffff" opacity="0.7" />
+  <circle cx="70" cy="60" r="5" fill="#f59e0b" />
+  
+  <!-- Third row -->
+  <circle cx="25" cy="75" r="5" fill="#ffffff" opacity="0.7" />
+  <circle cx="40" cy="75" r="5" fill="#ffffff" opacity="0.7" />
+  <circle cx="55" cy="75" r="5" fill="#ffffff" opacity="0.7" />
+  <circle cx="70" cy="75" r="5" fill="#3b82f6" />
+  
+  <!-- Highlight effect -->
+  <path d="M15,18 Q15,10 23,10 L77,10 Q85,10 85,18 L85,25 Q55,35 15,25 Z" fill="#ffffff" opacity="0.2" />
+</svg> 
