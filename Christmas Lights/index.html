@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christmas Lights</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CiAgPGRlZnM+CiAgICA8cmFkaWFsR3JhZGllbnQgaWQ9InJlZEdsb3ciIGN4PSIzMiIgY3k9IjMyIiByPSIyNSIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNmZjk5OTkiIC8+CiAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2ZmMDAwMCIgLz4KICAgIDwvcmFkaWFsR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgZmlsbD0iIzExMSIgcng9IjgiIC8+CiAgPGNpcmNsZSBjeD0iMzIiIGN5PSIzOCIgcj0iMjAiIGZpbGw9InVybCgjcmVkR2xvdykiIC8+CiAgPHJlY3QgeD0iMzAiIHk9IjEwIiB3aWR0aD0iNCIgaGVpZ2h0PSIxMCIgZmlsbD0iIzQ0NCIgcng9IjIiIC8+CiAgPGNpcmNsZSBjeD0iMzIiIGN5PSIzMiIgcj0iNiIgZmlsbD0iI2ZmZiIgZmlsbC1vcGFjaXR5PSIwLjMiIC8+Cjwvc3ZnPg==" type="image/svg+xml">
+</head>
+<body>
+    <div class="container">
+        <h1>Christmas Lights</h1>
+        
+        <div class="controls">
+            <button id="toggleBtn">Start</button>
+            <div class="speed-control">
+                <label for="intervalRange">Speed:</label>
+                <input type="range" id="intervalRange" min="100" max="1000" step="50" value="600">
+                <span id="intervalValue">600ms</span>
+            </div>
+        </div>
+        
+        <div class="lights-container">
+            <div class="lights-row">
+                <div class="light red"></div>
+                <div class="light orange"></div>
+                <div class="light yellow"></div>
+                <div class="light green"></div>
+                <div class="light cyan"></div>
+                <div class="light blue"></div>
+                <div class="light magenta"></div>
+            </div>
+        </div>
+        
+        <div class="bonus-controls">
+            <details>
+                <summary>Bonus Features</summary>
+                <div class="bonus-options">
+                    <div class="color-selector">
+                        <label>Select colors:</label>
+                        <div class="color-inputs">
+                            <input type="color" data-index="0" value="#ff0000">
+                            <input type="color" data-index="1" value="#ffa500">
+                            <input type="color" data-index="2" value="#ffff00">
+                            <input type="color" data-index="3" value="#00ff00">
+                            <input type="color" data-index="4" value="#00ffff">
+                            <input type="color" data-index="5" value="#0000ff">
+                            <input type="color" data-index="6" value="#ff00ff">
+                        </div>
+                    </div>
+                    
+                    <div class="intensity-control">
+                        <label for="intensityRange">Max Intensity:</label>
+                        <input type="range" id="intensityRange" min="0.2" max="1" step="0.1" value="1">
+                        <span id="intensityValue">100%</span>
+                    </div>
+                    
+                    <div class="size-control">
+                        <label>Size:</label>
+                        <input type="range" id="sizeRange" min="20" max="100" value="50">
+                        <span id="sizeValue">50px</span>
+                    </div>
+                    
+                    <div class="rows-control">
+                        <label for="rowsRange">Number of Rows:</label>
+                        <input type="range" id="rowsRange" min="1" max="7" value="1">
+                        <span id="rowsValue">1</span>
+                    </div>
+                </div>
+            </details>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html> 
