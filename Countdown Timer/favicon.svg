@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="gradientFill" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4361ee" />
+      <stop offset="100%" stop-color="#3a0ca3" />
+    </linearGradient>
+  </defs>
+  <circle cx="50" cy="50" r="46" fill="white" />
+  <circle cx="50" cy="50" r="42" fill="url(#gradientFill)" />
+  <circle cx="50" cy="50" r="35" fill="white" opacity="0.2" />
+  
+  <!-- Hourglass Shape -->
+  <path d="M 35 30 L 65 30 L 65 35 Q 65 40 60 45 L 50 55 L 40 45 Q 35 40 35 35 L 35 30 Z" fill="white" />
+  <path d="M 35 70 L 65 70 L 65 65 Q 65 60 60 55 L 50 45 L 40 55 Q 35 60 35 65 L 35 70 Z" fill="white" />
+  
+  <!-- Sand in top half -->
+  <path d="M 40 32 L 60 32 L 60 36 Q 60 40 55 43 L 50 47 L 45 43 Q 40 40 40 36 L 40 32 Z" fill="#f72585" />
+  
+  <!-- Sand in bottom half -->
+  <path d="M 45 54 L 50 50 L 55 54 Q 58 58 58 60 L 58 68 L 42 68 L 42 60 Q 42 58 45 54 Z" fill="#f72585" />
+  
+  <!-- Center point -->
+  <circle cx="50" cy="50" r="2" fill="white" />
+</svg> 
