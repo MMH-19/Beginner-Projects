@@ -1,0 +1,481 @@
+:root {
+    --primary-color: #4e42f5;
+    --dark-primary: #6c63ff;
+    --text-color: #333;
+    --bg-color: #f5f5f5;
+    --card-bg: #fff;
+    --border-color: #ddd;
+    --header-bg: #f9f9f9;
+    --today-bg: rgba(78, 66, 245, 0.15);
+    --hover-bg: rgba(78, 66, 245, 0.05);
+    --modal-bg: #fff;
+    --event-bg: #4e42f5;
+    --event-text: #fff;
+}
+
+.dark-theme {
+    --primary-color: #6c63ff;
+    --text-color: #f0f0f0;
+    --bg-color: #121212;
+    --card-bg: #1e1e1e;
+    --border-color: #333;
+    --header-bg: #252525;
+    --today-bg: rgba(108, 99, 255, 0.2);
+    --hover-bg: rgba(108, 99, 255, 0.1);
+    --modal-bg: #252525;
+    --event-bg: #6c63ff;
+    --event-text: #fff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.month-navigation {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.month-navigation button {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+
+.month-navigation button:hover {
+    background-color: var(--hover-bg);
+}
+
+#month-year {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.header-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.action-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+.action-btn:hover {
+    background-color: #3b31e0;
+}
+
+#theme-toggle {
+    width: 40px;
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 10px;
+    padding: 10px 0;
+    background-color: var(--header-bg);
+    border-radius: 5px;
+}
+
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+}
+
+.day {
+    min-height: 100px;
+    padding: 8px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.day:hover {
+    background-color: var(--hover-bg);
+}
+
+.day-number {
+    font-size: 14px;
+    font-weight: 600;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+.today {
+    background-color: var(--today-bg);
+    border-color: var(--primary-color);
+}
+
+.other-month {
+    opacity: 0.5;
+}
+
+.events-container {
+    margin-top: 25px;
+    overflow-y: auto;
+    max-height: 75px;
+}
+
+.event {
+    margin-bottom: 5px;
+    padding: 5px;
+    border-radius: 3px;
+    background-color: var(--event-bg);
+    color: var(--event-text);
+    font-size: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.modal-content {
+    position: relative;
+    background-color: var(--modal-bg);
+    margin: 15% auto;
+    padding: 20px;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    animation: modal-open 0.3s ease-out;
+}
+
+@keyframes modal-open {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--text-color);
+}
+
+#modal-title {
+    margin-bottom: 20px;
+    color: var(--primary-color);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: var(--card-bg);
+    color: var(--text-color);
+}
+
+.form-group textarea {
+    resize: vertical;
+    height: 80px;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.modal-actions button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+#save-event {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+#delete-event {
+    background-color: #f44336;
+    color: white;
+}
+
+#cancel-event {
+    background-color: #ccc;
+    color: #333;
+}
+
+/* Make the calendar responsive */
+@media screen and (max-width: 768px) {
+    .container {
+        margin: 20px;
+        padding: 15px;
+    }
+    
+    .calendar-header {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .day {
+        min-height: 80px;
+    }
+    
+    .modal-content {
+        width: 90%;
+        margin: 20% auto;
+    }
+}
+
+/* Drag and drop styles */
+.dragging {
+    opacity: 0.7;
+    cursor: grabbing;
+}
+
+.drag-over {
+    background-color: var(--today-bg);
+    border: 2px dashed var(--primary-color);
+}
+
+/* Custom animation keyframes beyond what Tailwind provides */
+@keyframes floatIn {
+    0% {
+        transform: translateY(8px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes pulseLight {
+    0% {
+        box-shadow: 0 0 0 0 rgba(78, 66, 245, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(78, 66, 245, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(78, 66, 245, 0);
+    }
+}
+
+/* Calendar animations */
+.calendar-header h2 {
+    transition: all 0.3s ease;
+}
+
+.day.today {
+    animation: pulseLight 2s infinite;
+}
+
+.event {
+    position: relative;
+    z-index: 10;
+}
+
+/* Custom tippy theme for dark mode */
+.tippy-box[data-theme~='dark'] {
+    background-color: #1e1e1e;
+    color: #f0f0f0;
+}
+
+.tippy-box[data-theme~='dark'] .tippy-arrow {
+    color: #1e1e1e;
+}
+
+/* Color picker customization */
+input[type="color"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+input[type="color"]::-webkit-color-swatch {
+    border: none;
+    border-radius: 5px;
+}
+
+/* Focus states for accessibility */
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.dark button:focus-visible,
+.dark input:focus-visible,
+.dark select:focus-visible,
+.dark textarea:focus-visible {
+    outline-color: var(--dark-primary);
+}
+
+/* Scrollbar customization */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 3px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+    background: #555;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #999;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+    background: #777;
+}
+
+/* Print styles */
+@media print {
+    body {
+        background-color: white !important;
+        color: black !important;
+    }
+    
+    .container {
+        box-shadow: none !important;
+        margin: 0 !important;
+        width: 100% !important;
+        max-width: none !important;
+    }
+    
+    .header-actions, 
+    .day:not(.today) button {
+        display: none !important;
+    }
+    
+    .day {
+        break-inside: avoid;
+    }
+}
+
+/* Custom animations for modal */
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.animate-float {
+    animation: floatIn 0.3s ease-out forwards;
+}
+
+/* Drag and drop animations */
+.dragging {
+    transform: scale(0.95);
+    opacity: 0.7;
+    cursor: grabbing;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.highlight-drop {
+    animation: pulseLight 1s 1;
+} 
