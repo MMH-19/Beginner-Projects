@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favicon Generator</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        h1 {
+            color: #4361ee;
+        }
+        
+        .preview {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f8f9fa;
+            text-align: center;
+        }
+        
+        canvas {
+            display: block;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            background-color: white;
+        }
+        
+        .sizes {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .size-preview {
+            text-align: center;
+        }
+        
+        button {
+            background-color: #4361ee;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        
+        button:hover {
+            background-color: #3a0ca3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Countdown Timer Favicon Generator</h1>
+    <p>Use this page to generate and download PNG versions of the favicon in different sizes.</p>
+    
+    <div class="preview">
+        <h2>Preview</h2>
+        <canvas id="faviconCanvas" width="256" height="256"></canvas>
+        
+        <div class="sizes">
+            <div class="size-preview">
+                <h3>16x16</h3>
+                <canvas id="favicon16" width="16" height="16"></canvas>
+            </div>
+            <div class="size-preview">
+                <h3>32x32</h3>
+                <canvas id="favicon32" width="32" height="32"></canvas>
+            </div>
+            <div class="size-preview">
+                <h3>48x48</h3>
+                <canvas id="favicon48" width="48" height="48"></canvas>
+            </div>
+            <div class="size-preview">
+                <h3>64x64</h3>
+                <canvas id="favicon64" width="64" height="64"></canvas>
+            </div>
+        </div>
+        
+        <button id="downloadBtn">Download PNG Favicon</button>
+    </div>
+    
+    <h2>How to use:</h2>
+    <ol>
+        <li>Preview the favicon above</li>
+        <li>Click "Download PNG Favicon" to download the 32x32 version</li>
+        <li>Place the downloaded PNG in your project folder</li>
+        <li>Add the following to your HTML's head section:
+            <pre>&lt;link rel="icon" type="image/png" href="favicon.png"&gt;</pre>
+        </li>
+    </ol>
+    
+    <script>
+        function drawFavicon(canvas) {
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width;
+            const height = canvas.height;
+            const center = width / 2;
+            const radius = Math.floor(width * 0.47);
+            
+            // Draw background
+            ctx.fillStyle = 'white';
+            ctx.beginPath();
+            ctx.arc(center, center, radius + 2, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Draw circle background with gradient
+            const gradient = ctx.createLinearGradient(0, 0, width, height);
+            gradient.addColorStop(0, '#4361ee');
+            gradient.addColorStop(1, '#3a0ca3');
+            
+            ctx.fillStyle = gradient;
+            ctx.beginPath();
+            ctx.arc(center, center, radius, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Draw inner circle
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
+            ctx.beginPath();
+            ctx.arc(center, center, Math.floor(width * 0.35), 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Calculate hourglass dimensions
+            const hourglassWidth = Math.floor(width * 0.3);
+            const hourglassHeight = Math.floor(height * 0.4);
+            const hourglassX = center - hourglassWidth / 2;
+            const hourglassY = center - hourglassHeight / 2;
+            
+            // Draw hourglass - top half
+            ctx.fillStyle = 'white';
+            ctx.beginPath();
+            ctx.moveTo(hourglassX, hourglassY);
+            ctx.lineTo(hourglassX + hourglassWidth, hourglassY);
+            ctx.lineTo(hourglassX + hourglassWidth, hourglassY + hourglassHeight * 0.2);
+            ctx.quadraticCurveTo(
+                hourglassX + hourglassWidth, hourglassY + hourglassHeight * 0.4,
+                center, center
+            );
+            ctx.quadraticCurveTo(
+                hourglassX, hourglassY + hourglassHeight * 0.4,
+                hourglassX, hourglassY + hourglassHeight * 0.2
+            );
+            ctx.closePath();
+            ctx.fill();
+            
+            // Draw hourglass - bottom half
+            ctx.beginPath();
+            ctx.moveTo(hourglassX, hourglassY + hourglassHeight);
+            ctx.lineTo(hourglassX + hourglassWidth, hourglassY + hourglassHeight);
+            ctx.lineTo(hourglassX + hourglassWidth, hourglassY + hourglassHeight * 0.8);
+            ctx.quadraticCurveTo(
+                hourglassX + hourglassWidth, hourglassY + hourglassHeight * 0.6,
+                center, center
+            );
+            ctx.quadraticCurveTo(
+                hourglassX, hourglassY + hourglassHeight * 0.6,
+                hourglassX, hourglassY + hourglassHeight * 0.8
+            );
+            ctx.closePath();
+            ctx.fill();
+            
+            // Draw sand - top portion
+            ctx.fillStyle = '#f72585';
+            ctx.beginPath();
+            ctx.moveTo(hourglassX + hourglassWidth * 0.2, hourglassY + hourglassHeight * 0.1);
+            ctx.lineTo(hourglassX + hourglassWidth * 0.8, hourglassY + hourglassHeight * 0.1);
+            ctx.lineTo(hourglassX + hourglassWidth * 0.7, hourglassY + hourglassHeight * 0.3);
+            ctx.lineTo(hourglassX + hourglassWidth * 0.3, hourglassY + hourglassHeight * 0.3);
+            ctx.closePath();
+            ctx.fill();
+            
+            // Draw sand - bottom portion
+            ctx.beginPath();
+            ctx.moveTo(hourglassX + hourglassWidth * 0.3, hourglassY + hourglassHeight * 0.6);
+            ctx.lineTo(hourglassX + hourglassWidth * 0.7, hourglassY + hourglassHeight * 0.6);
+            ctx.lineTo(hourglassX + hourglassWidth * 0.8, hourglassY + hourglassHeight * 0.9);
+            ctx.lineTo(hourglassX + hourglassWidth * 0.2, hourglassY + hourglassHeight * 0.9);
+            ctx.closePath();
+            ctx.fill();
+            
+            // Draw center dot
+            ctx.fillStyle = 'white';
+            ctx.beginPath();
+            ctx.arc(center, center, Math.max(1, width * 0.03), 0, Math.PI * 2);
+            ctx.fill();
+        }
+        
+        // Draw the favicon on all canvases
+        document.addEventListener('DOMContentLoaded', () => {
+            const canvases = [
+                document.getElementById('faviconCanvas'),
+                document.getElementById('favicon16'),
+                document.getElementById('favicon32'),
+                document.getElementById('favicon48'),
+                document.getElementById('favicon64')
+            ];
+            
+            canvases.forEach(canvas => {
+                drawFavicon(canvas);
+            });
+            
+            // Download functionality
+            document.getElementById('downloadBtn').addEventListener('click', () => {
+                const canvas = document.getElementById('favicon32');
+                const link = document.createElement('a');
+                link.download = 'favicon.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            });
+        });
+    </script>
+</body>
+</html> 
