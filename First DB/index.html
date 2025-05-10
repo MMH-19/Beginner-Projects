@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IndexedDB Manager | Your First DB App</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <!-- Fallback for browsers that don't support SVG favicons -->
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAABILAAASCwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMwAAAGYAAACZAAAAzAAAAOUAAADyAAAA8gAAAOUAAADMAAAAmQAAAGYAAAAzAAAAAAAAAAAAAAAAAAAAAAAAADMAAACSAAAA8QAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA8QAAAJIAAAAzAAAAAAAAAAAAAAAAAAAAAAAAAJkAAADxAAAA7gAAANIAAAC1AAAAnAAAAJwAAAC1AAAA0gAAAO4AAADxAAAAmQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8gAAAO4AAACLAAAAMwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMwAAAIsAAADuAAAA8gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/wAAANIAAAAzAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADMAAADSAAAA/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/wAAALUAAAAAAAAAAAAAAF0AAACuAAAArgAAAF0AAAAAAAAAAAAAALUAAADyAAAAAAAAAAAAAAAAAAAAAAAAAKsAAADuAAAAnAAAAAAAAAAAAAAArwAAAP8AAAD/AAAArwAAAAAAAAAAAAAAewAAAO4AAACrAAAAAAAAAAAAAAAAAAAAAAAAAMgAAADuAAAAnAAAAAAAAAAAAAAArwAAAP8AAAD/AAAArwAAAAAAAAAAAAAAewAAAO4AAADIAAAAAAAAAAAAAAAAAAAAAAAAAMgAAADuAAAAnAAAAAAAAAAAAAAArwAAAP8AAAD/AAAArwAAAAAAAAAAAAAAewAAAO4AAADIAAAAAAAAAAAAAAAAAAAAAAAAAKsAAADuAAAAnAAAAAAAAAAAAAAArwAAAP8AAAD/AAAArwAAAAAAAAAAAAAAewAAAO4AAACrAAAAAAAAAAAAAAAAAAAAAAAAADMAAAD/AAAAtQAAAAAAAAAAAAAAXQAAAK4AAACuAAAAXQAAAAAAAAAAAAAAtQAAAP8AAAAzAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACZAAAA8QAAANIAAAAzAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMwAAANIAAADxAAAAmQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAzAAAAkgAAAPEAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA8QAAAJIAAAAzAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABmAAAAmQAAAMwAAADlAAAA5QAAAMwAAACZAAAAZgAAAAAAAAAAAAAAAAAAAAA8cn/4PGAH+DwAA/g8AAP4PAAD+DwAA/g8AAP4PAAD+DwAA/g8AAP4PAAD+DwAA/g8AAP4PGAH+Dxwf/g8+H/4">
+    <meta name="description" content="A simple IndexedDB application for beginners">
+    <meta name="theme-color" content="#4361ee">
+</head>
+<body>
+    <div class="container">
+        <h1>Your First DB App</h1>
+        
+        <div class="control-panel">
+            <button id="loadDB">Load DB</button>
+            <button id="queryDB">Query DB</button>
+            <button id="clearDB" disabled>Clear DB</button>
+        </div>
+        
+        <div class="panels">
+            <div class="panel">
+                <h2>Notification Panel</h2>
+                <div id="notificationPanel" class="panel-content"></div>
+            </div>
+            
+            <div class="panel">
+                <h2>Log Panel</h2>
+                <div id="logPanel" class="panel-content"></div>
+            </div>
+        </div>
+        
+        <div class="panel results-panel">
+            <h2>Query Results</h2>
+            <div id="queryResults" class="panel-content"></div>
+        </div>
+        
+        <footer>
+            <p>Powered by MMH - Built with ❤️</p>
+        </footer>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html> 
