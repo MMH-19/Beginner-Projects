@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#4338ca">
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="alternate icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAQRJREFUWEftl0EOgjAQRV/DwrDRE+gJ9KTeQE+gJ9CT6A08gZ5AcKEnMO5caAINCRo6pQ2LdtGm7fD/mdcZGDjzGc6sjwL8r4LVahHbtlPG8aaoeZeLuRsGQRAY9YxGo7WjsixnwzA4aZrukiRZVQZoipIrYIJaJICIZN/ggvJxKgxr8LJ83llABLcCvyygQQSNGrApoAteKaALzODCYrGK+55n1JPqG1WT2tY1iiJJ09gVVGtTdQW64LUC+jSgcEHzoF0Xmk1oAk9TtfY/yzLXCFR9oK+EdiBCjZZxKgp1AYaCdpXeaCkduwFRUt8zL8KjATVPwGRKVQVs9sEUxFXA1TtzfW8KfAC/5TchlpNw4wAAAABJRU5ErkJggg==">
+    <link rel="apple-touch-icon" href="data:image/png;base64,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">
+    <link rel="manifest" href="manifest.json">
+    
+    <title>Modern Calculator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 min-h-screen flex items-center justify-center overflow-hidden">
+    <!-- Animated background shapes -->
+    <div class="shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
+    </div>
+
+    <div class="calculator-container backdrop-blur-lg bg-white/10 p-6 rounded-3xl shadow-2xl border border-white/20 w-80 z-10">
+        <div class="display-container">
+            <div id="previous-operand" class="text-right text-gray-300 h-6 overflow-hidden"></div>
+            <div id="current-operand" class="text-right text-white text-4xl font-medium h-12 overflow-hidden">0</div>
+        </div>
+        
+        <div class="grid grid-cols-4 gap-3">
+            <!-- First row -->
+            <button class="special-btn relative" data-action="clear-all">AC</button>
+            <button class="special-btn relative" data-action="clear">C</button>
+            <button class="special-btn relative" data-action="toggle-sign">+/-</button>
+            <button class="operation-btn relative" data-operation="/">÷</button>
+            
+            <!-- Second row -->
+            <button class="number-btn relative" data-number="7">7</button>
+            <button class="number-btn relative" data-number="8">8</button>
+            <button class="number-btn relative" data-number="9">9</button>
+            <button class="operation-btn relative" data-operation="*">×</button>
+            
+            <!-- Third row -->
+            <button class="number-btn relative" data-number="4">4</button>
+            <button class="number-btn relative" data-number="5">5</button>
+            <button class="number-btn relative" data-number="6">6</button>
+            <button class="operation-btn relative" data-operation="-">−</button>
+            
+            <!-- Fourth row -->
+            <button class="number-btn relative" data-number="1">1</button>
+            <button class="number-btn relative" data-number="2">2</button>
+            <button class="number-btn relative" data-number="3">3</button>
+            <button class="operation-btn relative" data-operation="+">+</button>
+            
+            <!-- Fifth row -->
+            <button class="number-btn relative col-span-2" data-number="0">0</button>
+            <button class="number-btn relative" data-number=".">.</button>
+            <button class="equals-btn relative" data-action="calculate">=</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
