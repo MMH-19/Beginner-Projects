@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ColorCycle</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="A tool to help developers understand RGB colors by making small changes over time">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9InJhaW5ib3ciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgogICAgICA8YW5pbWF0ZVRyYW5zZm9ybSBhdHRyaWJ1dGVOYW1lPSJncmFkaWVudFRyYW5zZm9ybSIgdHlwZT0icm90YXRlIiBmcm9tPSIwIiBkZWc9IjM2MCIgZHVyPSI4cyIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmMDAwMCIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjE1JSIgc3RvcC1jb2xvcj0iI2ZmYTUwMCIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjMwJSIgc3RvcC1jb2xvcj0iI2ZmZmYwMCIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjQ1JSIgc3RvcC1jb2xvcj0iIzAwZmYwMCIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjYwJSIgc3RvcC1jb2xvcj0iIzAwZmZmZiIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjczJSIgc3RvcC1jb2xvcj0iIzAwMDBmZiIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjkwJSIgc3RvcC1jb2xvcj0iI2ZmMDBmZiIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZjAwMDAiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxjaXJjbGUgY3g9IjMyIiBjeT0iMzIiIHI9IjMwIiBmaWxsPSJ1cmwoI3JhaW5ib3cpIiBzdHJva2U9IiMzMzMiIHN0cm9rZS13aWR0aD0iMiI+CiAgICA8YW5pbWF0ZVRyYW5zZm9ybSBhdHRyaWJ1dGVOYW1lPSJ0cmFuc2Zvcm0iIHR5cGU9InJvdGF0ZSIgZnJvbT0iMCAzMiAzMiIgdG89IjM2MCAzMiAzMiIgZHVyPSI0cyIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiLz4KICA8L2NpcmNsZT4KPC9zdmc+">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='rainbow' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23ff0000'/%3E%3Cstop offset='16.6%25' stop-color='%23ffa500'/%3E%3Cstop offset='33.3%25' stop-color='%23ffff00'/%3E%3Cstop offset='50%25' stop-color='%2300ff00'/%3E%3Cstop offset='66.6%25' stop-color='%2300ffff'/%3E%3Cstop offset='83.3%25' stop-color='%230000ff'/%3E%3Cstop offset='100%25' stop-color='%23ff00ff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='32' cy='32' r='28' fill='url(%23rainbow)' stroke='%23333' stroke-width='2'/%3E%3C/svg%3E">
+</head>
+<body>
+    <div class="container">
+        <h1>ColorCycle</h1>
+        <p>Experience how RGB colors change over time</p>
+        
+        <div class="color-display" id="colorBox" aria-live="polite" aria-label="Color display area"></div>
+        
+        <div class="control-panel">
+            <div class="section">
+                <h2>Starting Color</h2>
+                <div class="input-group">
+                    <label for="redColor">Red (00-FF):</label>
+                    <input type="text" id="redColor" class="hex-input" maxlength="2" placeholder="00" value="00" 
+                           aria-label="Red color component in hexadecimal" data-tooltip="Hexadecimal value from 00 to FF">
+                </div>
+                <div class="input-group">
+                    <label for="greenColor">Green (00-FF):</label>
+                    <input type="text" id="greenColor" class="hex-input" maxlength="2" placeholder="00" value="00"
+                           aria-label="Green color component in hexadecimal" data-tooltip="Hexadecimal value from 00 to FF">
+                </div>
+                <div class="input-group">
+                    <label for="blueColor">Blue (00-FF):</label>
+                    <input type="text" id="blueColor" class="hex-input" maxlength="2" placeholder="00" value="00"
+                           aria-label="Blue color component in hexadecimal" data-tooltip="Hexadecimal value from 00 to FF">
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>Increment Values</h2>
+                <div class="input-group">
+                    <label for="redIncrement">Red Increment:</label>
+                    <input type="number" id="redIncrement" class="increment-input" min="0" max="255" value="1"
+                           aria-label="Red increment value" data-tooltip="Value added to red every interval">
+                </div>
+                <div class="input-group">
+                    <label for="greenIncrement">Green Increment:</label>
+                    <input type="number" id="greenIncrement" class="increment-input" min="0" max="255" value="1"
+                           aria-label="Green increment value" data-tooltip="Value added to green every interval">
+                </div>
+                <div class="input-group">
+                    <label for="blueIncrement">Blue Increment:</label>
+                    <input type="number" id="blueIncrement" class="increment-input" min="0" max="255" value="1"
+                           aria-label="Blue increment value" data-tooltip="Value added to blue every interval">
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>Advanced Options</h2>
+                <div class="input-group">
+                    <label for="interval">Update Interval (ms):</label>
+                    <input type="number" id="interval" min="100" max="5000" value="250"
+                           aria-label="Update interval in milliseconds" data-tooltip="Time between color updates (milliseconds)">
+                </div>
+                <div class="input-group">
+                    <label for="colorFormat">Color Format:</label>
+                    <select id="colorFormat" aria-label="Color format selection">
+                        <option value="rgb">RGB</option>
+                        <option value="hsl">HSL</option>
+                    </select>
+                </div>
+                <div class="tip">
+                    <p><small>Tip: Press <kbd>Space</kbd> to Start/Stop</small></p>
+                </div>
+            </div>
+            
+            <div class="controls">
+                <button id="toggleButton" class="toggle-btn" aria-pressed="false">Start</button>
+                <div id="errorMsg" class="error" aria-live="assertive" role="alert"></div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
