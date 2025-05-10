@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dollars To Cents Converter</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
+</head>
+<body>
+    <div class="theme-toggle">
+        <button id="themeToggle">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+    
+    <div class="container">
+        <h1>Dollars To Cents Converter</h1>
+        <div class="converter">
+            <label for="dollarAmount">Enter dollar amount:</label>
+            <div class="input-wrapper">
+                <span class="dollar-sign">$</span>
+                <input type="number" id="dollarAmount" step="0.01" placeholder="e.g., 2.75">
+            </div>
+            <button id="convertBtn"><i class="fas fa-exchange-alt"></i> Convert</button>
+        </div>
+        
+        <div class="results">
+            <div class="total-cents">
+                <h2>Total Cents: <span id="totalCents">0</span><i class="fas fa-coins cents-icon"></i></h2>
+            </div>
+            
+            <div class="coins">
+                <h2>Coins Breakdown:</h2>
+                <div class="coin-breakdown">
+                    <div class="coin">
+                        <div class="coin-info">
+                            <i class="fas fa-coins coin-icon quarter"></i>
+                            <p>Quarters:</p>
+                        </div>
+                        <span id="quarters">0</span>
+                    </div>
+                    <div class="coin">
+                        <div class="coin-info">
+                            <i class="fas fa-coins coin-icon dime"></i>
+                            <p>Dimes:</p>
+                        </div>
+                        <span id="dimes">0</span>
+                    </div>
+                    <div class="coin">
+                        <div class="coin-info">
+                            <i class="fas fa-coins coin-icon nickel"></i>
+                            <p>Nickels:</p>
+                        </div>
+                        <span id="nickels">0</span>
+                    </div>
+                    <div class="coin">
+                        <div class="coin-info">
+                            <i class="fas fa-coins coin-icon penny"></i>
+                            <p>Pennies:</p>
+                        </div>
+                        <span id="pennies">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html> 
