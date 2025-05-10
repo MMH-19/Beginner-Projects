@@ -1,0 +1,206 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+input:focus {
+    outline: none;
+    border-color: #4d90fe;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+}
+
+input.invalid {
+    border-color: #d9534f;
+    background-color: rgba(217, 83, 79, 0.05);
+}
+
+.error-message {
+    display: block;
+    color: #d9534f;
+    margin-top: 5px;
+    font-size: 14px;
+    min-height: 20px;
+}
+
+.hint {
+    display: block;
+    color: #777;
+    margin-top: 5px;
+    font-size: 12px;
+    font-style: italic;
+}
+
+button {
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    padding: 12px;
+    width: 100%;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #4cae4c;
+}
+
+button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+/* Custom styles to complement Tailwind CSS */
+
+/* Custom animation for success indicator */
+@keyframes checkmark {
+    0% {
+        stroke-dashoffset: 100;
+    }
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+.checkmark {
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    animation: checkmark 0.8s ease forwards;
+}
+
+/* Custom shake animation for invalid fields */
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-5px);
+    }
+    20%, 40%, 60%, 80% {
+        transform: translateX(5px);
+    }
+}
+
+.shake {
+    animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+/* Custom floating labels */
+.form-group {
+    position: relative;
+}
+
+/* Input validation styles */
+.input-invalid {
+    @apply border-red-500 bg-red-50 !important;
+}
+
+.input-valid {
+    @apply border-green-500 !important;
+}
+
+/* Password strength indicator */
+.password-strength {
+    height: 5px;
+    transition: width 0.3s ease-in-out;
+    border-radius: 2px;
+}
+
+.strength-weak {
+    background-color: #ef4444;
+    width: 25%;
+}
+
+.strength-medium {
+    background-color: #f59e0b;
+    width: 50%;
+}
+
+.strength-strong {
+    background-color: #10b981;
+    width: 100%;
+}
+
+/* Custom tooltip styles */
+.tooltip {
+    position: relative;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 200px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -100px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Prevent Tailwind conflicts */
+.form-group .text-xs.italic {
+    line-height: 1.25;
+}
+
+/* Override default focus styles to match our theme */
+*:focus {
+    outline: none !important;
+} 
