@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlipImage App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>FlipImage</h1>
+        
+        <div class="main-layout">
+            <!-- Demo images sidebar on the left -->
+            <div class="demo-sidebar">
+                <h4>Choose an Image</h4>
+                <div id="demo-images" class="demo-thumbnails"></div>
+            </div>
+            
+            <!-- Main content area -->
+            <div class="main-content">
+                <!-- Upload and URL controls above the image -->
+                <div class="top-controls">
+                    <div class="source-controls">
+                        <div class="upload-container">
+                            <input type="file" id="file-upload" accept="image/*" class="file-input">
+                            <label for="file-upload" class="file-label">Upload Image</label>
+                            <span id="file-name" class="file-name">No file chosen</span>
+                        </div>
+                        
+                        <div class="image-input">
+                            <input type="text" id="image-url" placeholder="Enter image URL">
+                            <button id="display-btn">Display</button>
+                        </div>
+                    </div>
+                    <p id="error-message" class="error"></p>
+                </div>
+                
+                <!-- Image container at the top -->
+                <div class="image-section">
+                    <div class="image-wrapper" id="image-0">
+                        <img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Image" class="flip-image">
+                    </div>
+                </div>
+                
+                <!-- All features below the image -->
+                <div class="features-section">
+                    <div class="feature-tabs">
+                        <button class="tab-btn active" data-tab="controls">Image Controls</button>
+                        <button class="tab-btn" data-tab="filters">Filters</button>
+                        <button class="tab-btn" data-tab="actions">Actions</button>
+                    </div>
+                    
+                    <div class="tab-content">
+                        <!-- Image Controls Tab -->
+                        <div class="tab-pane active" id="controls-tab">
+                            <div class="controls-section">
+                                <h4>Flip Image</h4>
+                                <div class="controls-row">
+                                    <button class="flip-btn" data-index="0" data-direction="horizontal-left">Flip Horizontal</button>
+                                    <button class="flip-btn" data-index="0" data-direction="vertical-up">Flip Vertical</button>
+                                </div>
+                            </div>
+                            
+                            <div class="controls-section">
+                                <h4>Rotate Image</h4>
+                                <div class="controls-row">
+                                    <button class="rotate-btn" data-index="0" data-direction="counterclockwise">↺ Counter-Clockwise</button>
+                                    <button class="rotate-btn" data-index="0" data-direction="clockwise">Clockwise ↻</button>
+                                </div>
+                            </div>
+                            
+                            <div class="controls-section">
+                                <button class="reset-btn" data-index="0">Reset Image</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Filters Tab -->
+                        <div class="tab-pane" id="filters-tab">
+                            <div class="filters-container">
+                                <h4>Apply Filters</h4>
+                                <div class="filter-options">
+                                    <button class="filter-btn" data-filter="normal">Normal</button>
+                                    <button class="filter-btn" data-filter="grayscale">Grayscale</button>
+                                    <button class="filter-btn" data-filter="sepia">Sepia</button>
+                                    <button class="filter-btn" data-filter="invert">Invert</button>
+                                    <button class="filter-btn" data-filter="blur">Blur</button>
+                                    <button class="filter-btn" data-filter="brightness">Bright</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Actions Tab -->
+                        <div class="tab-pane" id="actions-tab">
+                            <div class="global-actions">
+                                <h4>Image Actions</h4>
+                                <div class="action-buttons">
+                                    <button id="reset-all-btn">Reset All</button>
+                                    <button id="download-btn">Download Image</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
