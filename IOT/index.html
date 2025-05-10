@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IOT Mailbox Simulator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#3B82F6',
+                            dark: '#1D4ED8',
+                        },
+                        secondary: {
+                            DEFAULT: '#10B981',
+                            dark: '#059669',
+                        },
+                        danger: {
+                            DEFAULT: '#EF4444',
+                            dark: '#B91C1C',
+                        },
+                        dark: {
+                            DEFAULT: '#1F2937',
+                            lighter: '#374151',
+                        },
+                    },
+                    keyframes: {
+                        wiggle: {
+                            '0%, 100%': { transform: 'rotate(-3deg)' },
+                            '50%': { transform: 'rotate(3deg)' },
+                        },
+                        bounce: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        doorOpen: {
+                            '0%': { transform: 'rotateY(0deg)' },
+                            '100%': { transform: 'rotateY(-80deg)' },
+                        },
+                        flagUp: {
+                            '0%': { transform: 'rotateZ(0deg)' },
+                            '100%': { transform: 'rotateZ(-90deg)' },
+                        }
+                    },
+                    animation: {
+                        wiggle: 'wiggle 1s ease-in-out infinite',
+                        bounce: 'bounce 1s ease-in-out infinite',
+                        fadeIn: 'fadeIn 0.5s ease-in-out',
+                        doorOpen: 'doorOpen 0.5s ease-in-out forwards',
+                        doorClose: 'doorOpen 0.5s ease-in-out reverse forwards',
+                        flagUp: 'flagUp 0.3s ease-in-out forwards',
+                        flagDown: 'flagUp 0.3s ease-in-out reverse forwards',
+                    },
+                },
+            },
+        }
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Custom styles for 3D elements */
+        .mailbox-body {
+            background: var(--mailbox-color);
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            transform-style: preserve-3d;
+            perspective: 500px;
+        }
+        
+        .mailbox-door {
+            position: absolute;
+            width: 100%;
+            height: 80%;
+            top: 20%;
+            left: 0;
+            background: var(--mailbox-color);
+            border-radius: 0 0 8px 8px;
+            transform-origin: top;
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease;
+            border-top: 3px solid rgba(0, 0, 0, 0.2);
+        }
+        
+        .mailbox-door.closed {
+            transform: rotateX(0);
+        }
+        
+        .mailbox-door.open {
+            animation: doorOpen 0.5s ease-in-out forwards;
+        }
+        
+        .mailbox-flag {
+            position: absolute;
+            width: 15px;
+            height: 40px;
+            background: var(--flag-color);
+            top: 30%;
+            right: -15px;
+            transform-origin: bottom left;
+            transition: transform 0.3s ease;
+        }
+        
+        .mailbox-flag.down {
+            transform: rotateZ(0);
+        }
+        
+        .mailbox-flag.up {
+            animation: flagUp 0.3s ease-in-out forwards;
+        }
+        
+        /* Dark mode colors */
+        :root {
+            --mailbox-color: #3B82F6;
+            --flag-color: #EF4444;
+        }
+        
+        .dark {
+            --mailbox-color: #1D4ED8;
+            --flag-color: #B91C1C;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-dark-DEFAULT text-gray-800 dark:text-gray-200 min-h-screen transition-colors duration-300">
+    <div class="container mx-auto max-w-6xl p-4 md:p-6">
+        <div class="bg-white dark:bg-dark-lighter rounded-xl shadow-lg overflow-hidden transition-all duration-300 p-6 animate-fadeIn">
+            <div class="flex justify-between items-center mb-6 border-b dark:border-gray-700 pb-4">
+                <h1 class="text-3xl font-bold text-primary dark:text-primary-dark transition-colors">
+                    <span class="transform inline-block hover:scale-105 transition-transform duration-300">IOT Mailbox Simulator</span>
+                </h1>
+                <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                    <svg class="sun-icon hidden dark:block w-6 h-6 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
+                    </svg>
+                    <svg class="moon-icon block dark:hidden w-6 h-6 text-gray-700" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="mailbox-visual flex justify-center items-center my-8 h-64 transition-transform hover:scale-105 duration-300">
+                <div class="mailbox relative w-56 h-40 perspective-500 transform-gpu">
+                    <div class="mailbox-body rounded-lg shadow-lg"></div>
+                    <div class="mailbox-door closed"></div>
+                    <div class="mailbox-flag down"></div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="space-y-6">
+                    <div class="bg-gray-50 dark:bg-dark-DEFAULT rounded-lg p-5 shadow-md transition-transform hover:shadow-lg duration-300">
+                        <h2 class="text-xl font-semibold text-primary dark:text-primary-dark mb-4 border-b dark:border-gray-700 pb-2">Control Panel</h2>
+                        <div class="space-y-4">
+                            <div class="flex flex-col sm:flex-row sm:items-center gap-3">
+                                <label for="interval" class="font-medium text-gray-700 dark:text-gray-300">Monitoring Interval (ms):</label>
+                                <input type="number" id="interval" value="500" min="100" 
+                                       class="rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 focus:ring-2 focus:ring-primary focus:border-transparent transition-colors">
+                            </div>
+                            <div class="flex flex-col sm:flex-row sm:items-center gap-3">
+                                <label for="sound-select" class="font-medium text-gray-700 dark:text-gray-300">Alert Sound:</label>
+                                <div class="flex items-center flex-grow gap-2">
+                                    <select id="sound-select" 
+                                            class="rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 focus:ring-2 focus:ring-primary focus:border-transparent flex-grow transition-colors">
+                                        <option value="default">Default</option>
+                                        <option value="bell">Bell</option>
+                                        <option value="chime">Chime</option>
+                                        <option value="notification">Notification</option>
+                                    </select>
+                                    <button id="test-sound" title="Test sound" 
+                                            class="bg-primary hover:bg-primary-dark text-white p-2 rounded transition-colors">
+                                        🔊
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-3 pt-2">
+                                <button id="start-btn" 
+                                        class="bg-primary hover:bg-primary-dark text-white font-medium py-2 px-4 rounded hover:shadow-md transition-all transform hover:scale-105 active:scale-95 flex-grow md:flex-grow-0">
+                                    Start Monitoring
+                                </button>
+                                <button id="stop-btn" disabled 
+                                        class="bg-gray-400 dark:bg-gray-600 text-white font-medium py-2 px-4 rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex-grow md:flex-grow-0">
+                                    Stop Monitoring
+                                </button>
+                                <button id="reset-btn" 
+                                        class="bg-danger hover:bg-danger-dark text-white font-medium py-2 px-4 rounded hover:shadow-md transition-all transform hover:scale-105 active:scale-95 flex-grow md:flex-grow-0">
+                                    Reset
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-dark-DEFAULT rounded-lg p-5 shadow-md transition-transform hover:shadow-lg duration-300">
+                        <h2 class="text-xl font-semibold text-primary dark:text-primary-dark mb-4 border-b dark:border-gray-700 pb-2">Notifications</h2>
+                        <div id="notifications" class="h-48 overflow-y-auto p-3 bg-white dark:bg-gray-700 rounded border border-gray-200 dark:border-gray-600 transition-colors"></div>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="bg-gray-50 dark:bg-dark-DEFAULT rounded-lg p-5 shadow-md transition-transform hover:shadow-lg duration-300">
+                        <h2 class="text-xl font-semibold text-primary dark:text-primary-dark mb-4 border-b dark:border-gray-700 pb-2">Statistics</h2>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded-lg shadow-sm border border-gray-200 dark:border-gray-600 transition-colors">
+                                <div class="text-gray-500 dark:text-gray-400 text-sm">Door Opens:</div>
+                                <div id="door-opens" class="text-2xl font-bold text-primary dark:text-primary-dark">0</div>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded-lg shadow-sm border border-gray-200 dark:border-gray-600 transition-colors">
+                                <div class="text-gray-500 dark:text-gray-400 text-sm">Door Closes:</div>
+                                <div id="door-closes" class="text-2xl font-bold text-primary dark:text-primary-dark">0</div>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded-lg shadow-sm border border-gray-200 dark:border-gray-600 transition-colors">
+                                <div class="text-gray-500 dark:text-gray-400 text-sm">Average Open Time:</div>
+                                <div id="avg-open-time" class="text-2xl font-bold text-primary dark:text-primary-dark">0.0s</div>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded-lg shadow-sm border border-gray-200 dark:border-gray-600 transition-colors">
+                                <div class="text-gray-500 dark:text-gray-400 text-sm">Last Activity:</div>
+                                <div id="last-activity" class="text-lg font-bold text-primary dark:text-primary-dark">-</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-dark-DEFAULT rounded-lg p-5 shadow-md transition-transform hover:shadow-lg duration-300">
+                        <div class="flex justify-between items-center mb-4 border-b dark:border-gray-700 pb-2">
+                            <h2 class="text-xl font-semibold text-primary dark:text-primary-dark">Log</h2>
+                            <button id="export-log" title="Export logs" 
+                                    class="bg-primary hover:bg-primary-dark text-white p-2 rounded transition-colors transform hover:scale-105 active:scale-95">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" />
+                                </svg>
+                            </button>
+                        </div>
+                        <div id="log" class="h-48 overflow-y-auto p-3 bg-white dark:bg-gray-700 rounded border border-gray-200 dark:border-gray-600 transition-colors"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html> 
