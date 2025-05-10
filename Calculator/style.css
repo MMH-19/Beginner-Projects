@@ -1,0 +1,231 @@
+/* Custom button styling */
+button {
+    @apply py-3 px-4 rounded-2xl text-xl font-medium transition-all duration-200 outline-none;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 
+                inset 1px 1px 1px rgba(255, 255, 255, 0.2),
+                inset -1px -1px 1px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15), 
+                inset 1px 1px 1px rgba(255, 255, 255, 0.2),
+                inset -1px -1px 1px rgba(0, 0, 0, 0.1);
+}
+
+button:active {
+    transform: translateY(1px) scale(0.98);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1),
+                inset 1px 1px 1px rgba(0, 0, 0, 0.1),
+                inset -1px -1px 1px rgba(255, 255, 255, 0.1);
+}
+
+.number-btn {
+    @apply bg-white/15 text-white hover:bg-white/25;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.2));
+}
+
+.operation-btn {
+    @apply text-white;
+    background: linear-gradient(145deg, #fbbf24, #f59e0b);
+    box-shadow: 0 4px 8px rgba(245, 158, 11, 0.3),
+                inset 1px 1px 1px rgba(255, 255, 255, 0.3),
+                inset -1px -1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.operation-btn:hover {
+    background: linear-gradient(145deg, #f59e0b, #fbbf24);
+    box-shadow: 0 6px 12px rgba(245, 158, 11, 0.4),
+                inset 1px 1px 1px rgba(255, 255, 255, 0.3),
+                inset -1px -1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.special-btn {
+    @apply text-white;
+    background: linear-gradient(145deg, rgba(156, 163, 175, 0.3), rgba(156, 163, 175, 0.4));
+}
+
+.equals-btn {
+    @apply text-white;
+    background: linear-gradient(145deg, #3b82f6, #2563eb);
+    box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3),
+                inset 1px 1px 1px rgba(255, 255, 255, 0.3),
+                inset -1px -1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.equals-btn:hover {
+    background: linear-gradient(145deg, #2563eb, #3b82f6);
+    box-shadow: 0 6px 12px rgba(59, 130, 246, 0.4),
+                inset 1px 1px 1px rgba(255, 255, 255, 0.3),
+                inset -1px -1px 1px rgba(0, 0, 0, 0.1);
+}
+
+/* Glass morphism effect */
+.calculator-container {
+    backdrop-filter: blur(16px);
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2),
+                0 10px 20px rgba(0, 0, 0, 0.1),
+                inset 1px 1px 1px rgba(255, 255, 255, 0.2),
+                inset -1px -1px 1px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.calculator-container::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+        circle at top left,
+        rgba(255, 255, 255, 0.1),
+        transparent 40%
+    );
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Display styling */
+.display-container {
+    border-radius: 1rem;
+    margin-bottom: 1.5rem;
+    padding: 0.75rem 1rem;
+    background: rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2),
+                inset 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#current-operand {
+    font-weight: 500;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Button press animation */
+@keyframes buttonPress {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.95); }
+    100% { transform: scale(1); }
+}
+
+.animate-press {
+    animation: buttonPress 0.2s ease-out;
+}
+
+/* Error shake animation */
+@keyframes errorShake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-5px); }
+    40%, 80% { transform: translateX(5px); }
+}
+
+.animate-error {
+    animation: errorShake 0.5s ease-in-out;
+    color: #ef4444;
+    text-shadow: 0 0 8px rgba(239, 68, 68, 0.6);
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+    .calculator-container {
+        width: 90%;
+        max-width: 320px;
+    }
+}
+
+/* Glow effect on hover */
+button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    box-shadow: 0 0 15px 3px rgba(255, 255, 255, 0.2);
+    pointer-events: none;
+}
+
+button:hover::after {
+    opacity: 1;
+}
+
+/* Animated background shapes */
+.shapes {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.shape {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(40px);
+    opacity: 0.5;
+}
+
+.shape-1 {
+    background: linear-gradient(to right, #4f46e5, #7c3aed);
+    width: 500px;
+    height: 500px;
+    top: -10%;
+    left: -10%;
+    animation: float1 25s ease-in-out infinite alternate;
+}
+
+.shape-2 {
+    background: linear-gradient(to right, #6366f1, #a855f7);
+    width: 400px;
+    height: 400px;
+    bottom: -10%;
+    right: -5%;
+    animation: float2 18s ease-in-out infinite alternate;
+}
+
+.shape-3 {
+    background: linear-gradient(to right, #ec4899, #db2777);
+    width: 300px;
+    height: 300px;
+    bottom: 20%;
+    left: 20%;
+    animation: float3 20s ease-in-out infinite alternate;
+}
+
+.shape-4 {
+    background: linear-gradient(to right, #3b82f6, #2563eb);
+    width: 250px;
+    height: 250px;
+    top: 20%;
+    right: 20%;
+    animation: float4 22s ease-in-out infinite alternate;
+}
+
+@keyframes float1 {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    100% { transform: translate(100px, 100px) rotate(180deg); }
+}
+
+@keyframes float2 {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    100% { transform: translate(-100px, -100px) rotate(-180deg); }
+}
+
+@keyframes float3 {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    100% { transform: translate(80px, -80px) rotate(90deg); }
+}
+
+@keyframes float4 {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    100% { transform: translate(-80px, 80px) rotate(-90deg); }
+} 
