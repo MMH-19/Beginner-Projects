@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roman to Decimal Converter</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Roman to Decimal Converter</h1>
+        
+        <div class="converter-container">
+            <div class="converter" id="roman-to-decimal">
+                <h2>Roman → Decimal</h2>
+                <div class="input-group">
+                    <label for="roman-input">Roman Numeral:</label>
+                    <input type="text" id="roman-input" placeholder="Enter Roman numeral (e.g., XIV)" autocomplete="off">
+                </div>
+                <button id="convert-to-decimal">Convert</button>
+                <div class="result-container">
+                    <div class="result" id="decimal-result">Result: </div>
+                    <div class="error" id="roman-error"></div>
+                </div>
+            </div>
+
+            <div class="converter" id="decimal-to-roman">
+                <h2>Decimal → Roman</h2>
+                <div class="input-group">
+                    <label for="decimal-input">Decimal Number:</label>
+                    <input type="number" id="decimal-input" min="1" max="3999" placeholder="Enter decimal number (1-3999)" autocomplete="off">
+                </div>
+                <button id="convert-to-roman">Convert</button>
+                <div class="result-container">
+                    <div class="result" id="roman-result">Result: </div>
+                    <div class="error" id="decimal-error"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html> 

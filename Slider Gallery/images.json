@@ -1,0 +1,191 @@
+[
+  {
+    "id": 1,
+    "title": "Beautiful Nature",
+    "description": "Explore the wonders of our planet",
+    "url": "https://wallpapers.com/images/featured/4k-nature-ztbad1qj8vdjqe0p.jpg",
+    "alt": "Nature image 1"
+  },
+  {
+    "id": 2,
+    "title": "Wild Mountains",
+    "description": "Majestic peaks touching the sky",
+    "url": "https://i.ytimg.com/vi/e__7B1t8ATE/maxresdefault.jpg",
+    "alt": "Nature image 2"
+  },
+  {
+    "id": 3,
+    "title": "Crystal Clear Waters",
+    "description": "Pristine beaches and ocean views",
+    "url": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1053&q=80",
+    "alt": "Nature image 3"
+  },
+  {
+    "id": 4,
+    "title": "Autumn Colors",
+    "description": "The magical transformation of seasons",
+    "url": "https://wallpapercat.com/w/full/8/2/f/18775-1920x1080-desktop-1080p-autumn-wallpaper-image.jpg",
+    "alt": "Nature image 4"
+  },
+  {
+    "id": 5,
+    "title": "Mountain Lake",
+    "description": "Serene waters reflecting nature's beauty",
+    "url": "https://images.pexels.com/photos/147411/italy-mountains-dawn-daybreak-147411.jpeg?cs=srgb&dl=pexels-pixabay-147411.jpg&fm=jpg",
+    "alt": "Nature image 5"
+  },
+  {
+    "id": 6,
+    "title": "Desert Landscape",
+    "description": "The stunning beauty of arid wilderness",
+    "url": "https://images8.alphacoders.com/790/790910.jpg",
+    "alt": "Nature image 6"
+  },
+  {
+    "id": 7,
+    "title": "Northern Lights",
+    "description": "Dancing colors illuminating the night sky",
+    "url": "https://www.hdwallpapers.in/download/northern_lights_aurora_borealis_4k_hd_nature-3840x2160.jpg",
+    "alt": "Northern lights image"
+  },
+  {
+    "id": 8,
+    "title": "Tropical Paradise",
+    "description": "Lush greenery and exotic flora",
+    "url": "https://images7.alphacoders.com/546/546435.jpg",
+    "alt": "Tropical jungle image"
+  },
+  {
+    "id": 9,
+    "title": "Enchanted Forest",
+    "description": "Mystical woodland shrouded in morning mist",
+    "url": "https://c4.wallpaperflare.com/wallpaper/745/155/712/green-forest-green-nature-forest-path-pathway-wallpaper-preview.jpg",
+    "alt": "Misty forest image"
+  },
+  {
+    "id": 10,
+    "title": "Underwater World",
+    "description": "Vibrant coral reefs teeming with life",
+    "url": "https://wallpapersok.com/images/hd/underwater-world-tree-u9zaz3ug09ugsgvq.jpg",
+    "alt": "Underwater coral reef"
+  },
+  {
+    "id": 11,
+    "title": "Cascading Waterfalls",
+    "description": "Powerful streams pouring through rocky cliffs",
+    "url": "https://wallpapercat.com/w/full/7/a/2/174772-3840x2160-desktop-4k-waterfall-background.jpg",
+    "alt": "Waterfall image"
+  },
+  {
+    "id": 12,
+    "title": "Starry Night Sky",
+    "description": "Breathtaking galaxy viewed from Earth",
+    "url": "https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+    "alt": "Night sky with stars"
+  },
+  {
+    "id": 13,
+    "title": "Sunrise & Sunset",
+    "description": "The magical moments when day meets night",
+    "url": "https://i.pinimg.com/736x/11/c9/78/11c97870bc4b657d63d51908e59ea88c.jpg",
+    "alt": "Beautiful sunset over desert"
+  },
+  {
+    "id": 14,
+    "title": "Rainy Weather",
+    "description": "The soothing ambiance of rainfall and stormy skies",
+    "url": "https://images.pexels.com/photos/1529360/pexels-photo-1529360.jpeg?cs=srgb&dl=pexels-chetanvlad-1529360.jpg&fm=jpg",
+    "alt": "Raindrops on window with stormy background"
+  },
+  {
+    "id": 15,
+    "title": "Snowy Mountains",
+    "description": "Majestic peaks covered in pristine white snow",
+    "url": "https://images.pexels.com/photos/414459/pexels-photo-414459.jpeg",
+    "alt": "Snow-covered mountain peaks"
+  },
+  {
+    "id": 16,
+    "title": "Wildlife",
+    "description": "Amazing creatures in their natural habitats",
+    "url": "https://t4.ftcdn.net/jpg/06/47/86/41/360_F_647864165_o1DfhLiHm2c3IseqF2qbYiQnevwi4NTb.jpg",
+    "alt": "Wildlife in natural habitat"
+  },
+  {
+    "id": 17,
+    "title": "Flower Fields",
+    "description": "Vibrant blooms stretching as far as the eye can see",
+    "url": "https://c4.wallpaperflare.com/wallpaper/396/930/515/landscape-sky-summer-clouds-wallpaper-preview.jpg",
+    "alt": "Colorful field of flowers"
+  },
+  {
+    "id": 18,
+    "title": "Cityscapes at Night",
+    "description": "Urban skylines illuminated after dark",
+    "url": "https://wallpapers.com/images/hd/4k-desktop-pc-background-6kp0p8k4mdk9mizx.jpg",
+    "alt": "City skyline illuminated at night"
+  },
+  {
+    "id": 19,
+    "title": "Ancient Ruins",
+    "description": "Historical structures telling stories of the past",
+    "url": "https://images3.alphacoders.com/878/878052.jpg",
+    "alt": "Ancient temple ruins at sunset"
+  },
+  {
+    "id": 20,
+    "title": "Countryside",
+    "description": "Peaceful rural landscapes and rolling hills",
+    "url": "https://images.pexels.com/photos/186985/pexels-photo-186985.jpeg?cs=srgb&dl=pexels-tahir-shaw-50609-186985.jpg&fm=jpg",
+    "alt": "Rural countryside with rolling hills"
+  },
+  {
+    "id": 21,
+    "title": "Boats & Oceans",
+    "description": "Vessels sailing across vast blue waters",
+    "url": "https://images2.alphacoders.com/598/598174.jpg",
+    "alt": "Boat sailing on open ocean"
+  },
+  {
+    "id": 22,
+    "title": "Caves & Rocks",
+    "description": "Dramatic rock formations and mysterious caverns",
+    "url": "https://images8.alphacoders.com/717/717326.jpg",
+    "alt": "Dramatic cave interior with light beams"
+  },
+  {
+    "id": 23,
+    "title": "Sky & Clouds",
+    "description": "Beautiful formations in the vast blue expanse",
+    "url": "https://images4.alphacoders.com/107/1072743.jpg",
+    "alt": "Blue sky with dramatic cloud formations"
+  },
+  {
+    "id": 24,
+    "title": "Space & Planets",
+    "description": "Cosmic wonders beyond our atmosphere",
+    "url": "https://images4.alphacoders.com/135/1355300.jpeg",
+    "alt": "Deep space with stars and planets"
+  },
+  {
+    "id": 25,
+    "title": "Bridges & Roads",
+    "description": "Engineering marvels connecting distant places",
+    "url": "https://c4.wallpaperflare.com/wallpaper/627/496/958/san-francisco-bridge-mist-golden-gate-bridge-wallpaper-preview.jpg",
+    "alt": "Scenic bridge spanning over water"
+  },
+  {
+    "id": 26,
+    "title": "Farms & Barns",
+    "description": "Agricultural landscapes and rustic countryside living",
+    "url": "https://wallpapers.com/images/hd/old-farm-pictures-1920-x-1080-ny3ncub9ynd4qjmy.jpg",
+    "alt": "Rustic red barn in countryside"
+  },
+  {
+    "id": 27,
+    "title": "Lakes & Rivers",
+    "description": "Serene bodies of water winding through landscapes",
+    "url": "https://c4.wallpaperflare.com/wallpaper/324/322/414/landscape-mountain-chain-trees-nature-lake-hd-wallpaper-preview.jpg",
+    "alt": "Calm lake with mountain reflections"
+  }
+] 

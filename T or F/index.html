@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrueOrFalse</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>TrueOrFalse</h1>
+        <p class="description">Test JavaScript conditional expressions and understand truthiness</p>
+        
+        <div class="input-section">
+            <div class="value-container">
+                <label for="value1">Value 1:</label>
+                <input type="text" id="value1" placeholder="Enter a value">
+                <select id="type1">
+                    <option value="asIs">As Is</option>
+                    <option value="string">String</option>
+                    <option value="number">Number</option>
+                    <option value="boolean">Boolean</option>
+                </select>
+            </div>
+            
+            <div class="operator-container">
+                <label for="operator">Operator:</label>
+                <select id="operator">
+                    <option value="===">===</option>
+                    <option value="==">==</option>
+                    <option value="!=">!=</option>
+                    <option value="!==">!==</option>
+                    <option value=">">></option>
+                    <option value="<"><</option>
+                    <option value=">=">>=</option>
+                    <option value="<="><=</option>
+                </select>
+            </div>
+            
+            <div class="value-container">
+                <label for="value2">Value 2:</label>
+                <input type="text" id="value2" placeholder="Enter a value">
+                <select id="type2">
+                    <option value="asIs">As Is</option>
+                    <option value="string">String</option>
+                    <option value="number">Number</option>
+                    <option value="boolean">Boolean</option>
+                </select>
+            </div>
+        </div>
+        
+        <button id="evaluate">Evaluate</button>
+        
+        <div class="result-container">
+            <div id="result" class="hidden">
+                <h2>Result:</h2>
+                <div id="result-value"></div>
+            </div>
+            <div id="warning" class="hidden"></div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html> 

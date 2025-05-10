@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vigenère Cipher</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Vigenère Cipher</h1>
+        
+        <div class="input-group">
+            <label for="plaintext">Message:</label>
+            <textarea id="plaintext" placeholder="Enter your message here..."></textarea>
+        </div>
+        
+        <div class="input-group">
+            <label for="key">Encryption Key:</label>
+            <input type="text" id="key" placeholder="Enter encryption key...">
+        </div>
+        
+        <div class="button-group">
+            <button id="encrypt-btn">Encrypt</button>
+            <button id="decrypt-btn" disabled>Decrypt</button>
+            <button id="compare-btn" disabled>Compare</button>
+        </div>
+        
+        <div class="result-container">
+            <h2>Result:</h2>
+            <div id="result" class="result"></div>
+        </div>
+        
+        <div id="comparison-result" class="comparison-result"></div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html> 

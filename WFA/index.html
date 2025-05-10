@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Frequency Analyzer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Word Frequency Analyzer</h1>
+        
+        <div class="input-section">
+            <textarea id="textInput" placeholder="Enter or paste your text here (max 2048 characters)..." maxlength="2048"></textarea>
+            <div class="button-container">
+                <button id="analyzeBtn">Analyze</button>
+                <button id="clearBtn" class="secondary-btn">Clear</button>
+            </div>
+        </div>
+        
+        <div id="errorMessage" class="error hidden"></div>
+        
+        <div id="resultContainer" class="hidden">
+            <h2>Word Frequency</h2>
+            <div class="table-container">
+                <table id="frequencyTable">
+                    <thead>
+                        <tr>
+                            <th>Word</th>
+                            <th>Frequency</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                    </tbody>
+                </table>
+            </div>
+            
+            <div id="chartContainer" class="hidden">
+                <h2>Frequency Chart</h2>
+                <div id="bubbleChart"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html> 

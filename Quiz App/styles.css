@@ -1,0 +1,170 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    color: #333;
+}
+
+.container {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 600px;
+    overflow: hidden;
+}
+
+.screen {
+    padding: 2rem;
+    text-align: center;
+}
+
+.hide {
+    display: none;
+}
+
+h1 {
+    margin-bottom: 2rem;
+    color: #2c3e50;
+}
+
+.btn {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #2980b9;
+}
+
+.quiz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+#timer {
+    background-color: #f1c40f;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.answer-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.answer-btn {
+    background-color: #ecf0f1;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    padding: 1rem;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #2c3e50;
+}
+
+.answer-btn:hover:not(.selected) {
+    background-color: #dfe6e9;
+}
+
+.answer-btn.selected {
+    background-color: #74b9ff;
+    border-color: #0984e3;
+}
+
+.answer-btn.correct {
+    background-color: #55efc4;
+    border-color: #00b894;
+}
+
+.answer-btn.wrong {
+    background-color: #ff7675;
+    border-color: #d63031;
+}
+
+.results-container {
+    background-color: #f5f6fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.results-container p {
+    margin: 0.8rem 0;
+    font-size: 1.1rem;
+}
+
+#pass-fail {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
+.share-container {
+    margin-top: 1.5rem;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: white;
+    font-size: 1.2rem;
+    transition: transform 0.2s;
+}
+
+.social-icon:hover {
+    transform: scale(1.1);
+}
+
+#share-twitter {
+    background-color: #1da1f2;
+}
+
+#share-facebook {
+    background-color: #1877f2;
+}
+
+@media (max-width: 500px) {
+    .container {
+        width: 95%;
+    }
+    
+    .screen {
+        padding: 1.5rem;
+    }
+    
+    .btn {
+        padding: 0.8rem 1.5rem;
+    }
+} 

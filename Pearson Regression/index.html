@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pearson Regression</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Pearson Regression Calculator</h1>
+        
+        <div class="input-panel">
+            <div class="input-group">
+                <label for="x-value">X Value:</label>
+                <input type="number" id="x-value" step="any">
+            </div>
+            <div class="input-group">
+                <label for="y-value">Y Value:</label>
+                <input type="number" id="y-value" step="any">
+            </div>
+            <div class="button-group">
+                <button id="add-button">Add</button>
+                <button id="calculate-button" disabled>Calculate</button>
+                <button id="clear-button">Clear All</button>
+            </div>
+            <div id="error-message" class="error hidden"></div>
+        </div>
+        
+        <div class="data-table-container">
+            <h2>Observations</h2>
+            <table id="data-table">
+                <thead>
+                    <tr>
+                        <th>X</th>
+                        <th>Y</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="data-body">
+                    <!-- Data will be added here dynamically -->
+                </tbody>
+            </table>
+        </div>
+        
+        <div id="results-container" class="hidden">
+            <h2>Results</h2>
+            <div class="results-grid">
+                <div class="result-item">
+                    <h3>X Mean</h3>
+                    <p id="x-mean">-</p>
+                </div>
+                <div class="result-item">
+                    <h3>Y Mean</h3>
+                    <p id="y-mean">-</p>
+                </div>
+                <div class="result-item">
+                    <h3>X Standard Deviation</h3>
+                    <p id="x-std">-</p>
+                </div>
+                <div class="result-item">
+                    <h3>Y Standard Deviation</h3>
+                    <p id="y-std">-</p>
+                </div>
+                <div class="result-item wide">
+                    <h3>Pearson Correlation Coefficient</h3>
+                    <p id="correlation">-</p>
+                </div>
+                <div class="result-item wide">
+                    <h3>Interpretation</h3>
+                    <p id="interpretation">-</p>
+                </div>
+            </div>
+        </div>
+        
+        <div id="scatter-plot-container" class="hidden">
+            <h2>Scatter Plot</h2>
+            <canvas id="scatter-plot"></canvas>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 

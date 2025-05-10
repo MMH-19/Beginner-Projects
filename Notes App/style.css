@@ -1,0 +1,157 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+    padding: 20px;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.note-actions {
+    margin-bottom: 20px;
+    text-align: right;
+}
+
+#add-note-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#add-note-btn:hover {
+    background-color: #45a049;
+}
+
+#notes-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.note {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    position: relative;
+}
+
+.note-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.note-date {
+    font-size: 12px;
+    color: #888;
+}
+
+.note-controls button {
+    background-color: #f1f1f1;
+    border: none;
+    padding: 5px 10px;
+    margin-left: 5px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.edit-btn:hover {
+    background-color: #ddd;
+}
+
+.delete-btn {
+    color: #e74c3c;
+}
+
+.delete-btn:hover {
+    background-color: #fadbd8;
+}
+
+.note-content {
+    min-height: 100px;
+    word-wrap: break-word;
+}
+
+.note-edit-area {
+    margin-top: 10px;
+}
+
+.note-textarea {
+    width: 100%;
+    min-height: 150px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    resize: vertical;
+    margin-bottom: 10px;
+}
+
+.save-btn, .cancel-btn {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.save-btn {
+    background-color: #4CAF50;
+    color: white;
+    margin-right: 5px;
+}
+
+.cancel-btn {
+    background-color: #f1f1f1;
+}
+
+.save-btn:hover {
+    background-color: #45a049;
+}
+
+.cancel-btn:hover {
+    background-color: #ddd;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Markdown rendered content styling */
+.note-content h1, 
+.note-content h2, 
+.note-content h3 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.note-content ul, 
+.note-content ol {
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+.note-content p {
+    margin-bottom: 10px;
+}
+
+.note-content a {
+    color: #0066cc;
+} 
