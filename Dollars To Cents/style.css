@@ -1,0 +1,400 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+:root {
+    --primary-color: #2c6e49;
+    --secondary-color: #4c956c;
+    --accent-color: #ffc145;
+    --text-color: #2d3748;
+    --light-bg: #f8f9fa;
+    --dark-bg: #2d3748;
+    --body-bg: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+    --card-bg: white;
+    --input-bg: #f8f9fa;
+    --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.05);
+    --transition-speed: 0.3s;
+}
+
+body {
+    background: var(--body-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: var(--text-color);
+    transition: all 0.3s ease;
+}
+
+.dark-theme {
+    --primary-color: #66bb6a;
+    --secondary-color: #81c784;
+    --accent-color: #ffe082;
+    --text-color: #f8f9fa;
+    --light-bg: #3a4450;
+    --dark-bg: #1a202c;
+    --body-bg: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+    --card-bg: #2d3748;
+    --input-bg: #3a4450;
+    --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 6px 6px rgba(0, 0, 0, 0.22);
+}
+
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+}
+
+.theme-toggle button {
+    background-color: transparent;
+    border: none;
+    color: var(--text-color);
+    font-size: 24px;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    background-color: var(--card-bg);
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.theme-toggle button:hover {
+    transform: rotate(30deg);
+}
+
+.theme-toggle button.rotate {
+    animation: rotate-toggle 0.5s ease;
+}
+
+@keyframes rotate-toggle {
+    0% { transform: rotate(0); }
+    100% { transform: rotate(360deg); }
+}
+
+.container {
+    background-color: var(--card-bg);
+    border-radius: 16px;
+    box-shadow: var(--card-shadow);
+    width: 90%;
+    max-width: 550px;
+    padding: 35px;
+    transform: translateY(0);
+    transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out, background-color 0.3s ease;
+    overflow: hidden;
+}
+
+.container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.06);
+}
+
+h1 {
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.2rem;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background-color: var(--accent-color);
+    border-radius: 3px;
+}
+
+.converter {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 35px;
+}
+
+label {
+    font-weight: bold;
+    color: var(--text-color);
+    font-size: 1.1rem;
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.dollar-sign {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: bold;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+}
+
+input {
+    padding: 15px;
+    padding-left: 30px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background-color: var(--input-bg);
+    width: 100%;
+    color: var(--text-color);
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(44, 110, 73, 0.2);
+}
+
+button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all var(--transition-speed);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.7s;
+    z-index: -1;
+}
+
+button:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button:hover::before {
+    left: 100%;
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+button.processing {
+    position: relative;
+    background-image: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 50%, var(--primary-color) 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    pointer-events: none;
+}
+
+.results {
+    margin-top: 25px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.results.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.total-cents {
+    background-color: var(--light-bg);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    text-align: center;
+    border-left: 5px solid var(--accent-color);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.total-cents:hover {
+    transform: scale(1.02);
+}
+
+.total-cents h2 {
+    color: var(--text-color);
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.cents-icon {
+    color: var(--accent-color);
+    animation: bounce 2s infinite;
+}
+
+.total-cents span {
+    color: var(--primary-color);
+    font-weight: bold;
+    font-size: 1.8rem;
+    display: inline-block;
+    animation: countUp 1s ease-out forwards;
+}
+
+.coins h2 {
+    color: var(--text-color);
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.coin-breakdown {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.coin {
+    background-color: var(--light-bg);
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease, background-color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.coin:nth-child(1) { animation: fadeInUp 0.5s ease forwards 0.1s; opacity: 0; }
+.coin:nth-child(2) { animation: fadeInUp 0.5s ease forwards 0.2s; opacity: 0; }
+.coin:nth-child(3) { animation: fadeInUp 0.5s ease forwards 0.3s; opacity: 0; }
+.coin:nth-child(4) { animation: fadeInUp 0.5s ease forwards 0.4s; opacity: 0; }
+
+.coin:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.coin::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    transition: width 0.2s ease;
+}
+
+.coin:nth-child(1)::before { background-color: #ffd700; }  /* Gold for quarters */
+.coin:nth-child(2)::before { background-color: #c0c0c0; }  /* Silver for dimes */
+.coin:nth-child(3)::before { background-color: #cd7f32; }  /* Bronze for nickels */
+.coin:nth-child(4)::before { background-color: #b87333; }  /* Copper for pennies */
+
+.coin:hover::before {
+    width: 10px;
+}
+
+.coin p {
+    font-weight: bold;
+    color: var(--text-color);
+    font-size: 1.1rem;
+}
+
+.coin span {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    display: inline-block;
+    animation: countUp 1s ease-out forwards;
+}
+
+.coin-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.coin-icon {
+    font-size: 1.2rem;
+}
+
+.coin-icon.quarter {
+    color: #ffd700; /* Gold */
+}
+
+.coin-icon.dime {
+    color: #c0c0c0; /* Silver */
+}
+
+.coin-icon.nickel {
+    color: #cd7f32; /* Bronze */
+}
+
+.coin-icon.penny {
+    color: #b87333; /* Copper */
+}
+
+@keyframes fadeInUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes countUp {
+    from {
+        transform: translateY(10px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -100% 0;
+    }
+    100% {
+        background-position: 100% 0;
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-5px);
+    }
+    60% {
+        transform: translateY(-3px);
+    }
+} 
