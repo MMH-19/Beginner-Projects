@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Entity Encoder/Decoder - DevToolkit</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    boxShadow: {
+                        'depth': '0 10px 30px -10px rgba(0, 0, 0, 0.1)',
+                        'depth-dark': '0 10px 30px -10px rgba(0, 0, 0, 0.3)'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 shadow-depth dark:shadow-depth-dark sticky top-0 z-50 transition-all">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="../images/image.png" alt="DevToolkit Logo" class="h-8 w-8 mr-3">
+                <div>
+                    <h1 class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">DevToolkit</h1>
+                </div>
+            </div>
+            
+            <!-- Mobile menu button -->
+            <button id="mobile-menu-button" class="md:hidden flex items-center justify-center p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <div class="hamburger-icon w-6 h-6 relative">
+                    <span class="hamburger-bar absolute h-0.5 w-full bg-gray-600 dark:bg-gray-300 rounded-sm transform transition duration-300"></span>
+                    <span class="hamburger-bar absolute h-0.5 w-full bg-gray-600 dark:bg-gray-300 rounded-sm transform transition duration-300"></span>
+                    <span class="hamburger-bar absolute h-0.5 w-full bg-gray-600 dark:bg-gray-300 rounded-sm transform transition duration-300"></span>
+                </div>
+            </button>
+            
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center space-x-6">
+                <a href="../index.html#home" class="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-home mr-2"></i>Home</a>
+                <a href="../tools.html" class="font-medium text-blue-600 dark:text-blue-400 transition-colors flex items-center"><i class="fas fa-tools mr-2"></i>Tools</a>
+                <a href="../index.html#about" class="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-info-circle mr-2"></i>About</a>
+                <a href="../index.html#faq" class="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-question-circle mr-2"></i>FAQ</a>
+                <a href="../index.html#contact" class="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-envelope mr-2"></i>Contact</a>
+                <!-- Theme toggle button -->
+                <button id="theme-toggle" class="p-2 rounded-full bg-gradient-to-r from-gray-100 to-white dark:from-gray-800 dark:to-gray-700 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
+                    <i class="fas fa-sun text-yellow-500 dark:hidden"></i>
+                    <i class="fas fa-moon text-blue-300 hidden dark:block"></i>
+                </button>
+            </nav>
+        </div>
+        <!-- Mobile Navigation -->
+        <nav id="mobile-menu" class="hidden px-4 py-3 bg-white dark:bg-gray-800 border-t dark:border-gray-700 md:hidden shadow-lg transform transition-all duration-300">
+            <a href="../index.html#home" class="block py-3 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-home mr-2"></i>Home</a>
+            <a href="../tools.html" class="block py-3 text-blue-600 dark:text-blue-400 transition-colors flex items-center"><i class="fas fa-tools mr-2"></i>Tools</a>
+            <a href="../index.html#about" class="block py-3 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-info-circle mr-2"></i>About</a>
+            <a href="../index.html#faq" class="block py-3 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-question-circle mr-2"></i>FAQ</a>
+            <a href="../index.html#contact" class="block py-3 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-envelope mr-2"></i>Contact</a>
+            <!-- Theme toggle in mobile menu -->
+            <div class="flex items-center py-3">
+                <span class="flex-grow font-medium"><i class="fas fa-adjust mr-2"></i>Theme</span>
+                <button id="theme-toggle-mobile" class="p-2 rounded-full bg-gradient-to-r from-gray-100 to-white dark:from-gray-800 dark:to-gray-700 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
+                    <i class="fas fa-sun text-yellow-500 dark:hidden"></i>
+                    <i class="fas fa-moon text-blue-300 hidden dark:block"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Tool Header -->
+    <section class="py-12 bg-gradient-to-br from-purple-600 via-indigo-700 to-blue-800 dark:from-purple-800 dark:via-indigo-900 dark:to-blue-900 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <div class="inline-flex items-center justify-center bg-white/10 backdrop-blur-sm p-3 rounded-full mb-6">
+                <i class="fas fa-code text-3xl text-purple-200"></i>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4">
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-white to-purple-200">HTML Entity Encoder/Decoder</span>
+            </h1>
+            <p class="text-xl text-blue-100 mb-6 max-w-3xl mx-auto">Convert special characters to HTML entities and back for safe usage in web pages.</p>
+            
+            <div class="flex flex-wrap justify-center gap-4 text-sm">
+                <div class="bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 flex items-center">
+                    <i class="fas fa-shield-alt text-green-300 mr-2"></i>
+                    Prevent XSS Attacks
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 flex items-center">
+                    <i class="fas fa-code text-yellow-300 mr-2"></i>
+                    Display Code Properly
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 flex items-center">
+                    <i class="fas fa-font text-red-300 mr-2"></i>
+                    Handle Special Characters
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HTML Entity Encoder/Decoder Tool -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <!-- Main Tool Card -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-depth dark:shadow-depth-dark overflow-hidden mb-12">
+                    <!-- Tabs for switching operation type -->
+                    <div class="grid grid-cols-2 border-b border-gray-200 dark:border-gray-700">
+                        <button id="encode-tab" class="text-center py-4 font-medium transition-colors active-tab bg-gradient-to-r from-purple-50 to-indigo-50 dark:from-purple-900/20 dark:to-indigo-900/20 text-purple-600 dark:text-purple-400">
+                            <i class="fas fa-lock mr-2"></i>Encode HTML Entities
+                        </button>
+                        <button id="decode-tab" class="text-center py-4 font-medium transition-colors text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700/50">
+                            <i class="fas fa-unlock mr-2"></i>Decode HTML Entities
+                        </button>
+                    </div>
+
+                    <!-- HTML Entity Tool Functionality -->
+                    <div class="p-6">
+                        <!-- Input -->
+                        <div class="mb-6">
+                            <label id="input-label" for="input-text" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Enter Text to Encode</label>
+                            <textarea 
+                                id="input-text" 
+                                rows="8"
+                                placeholder="Enter the text with special characters that you want to encode..."
+                                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-colors"
+                            ></textarea>
+                            <p id="input-error" class="text-red-500 text-sm mt-2 hidden">Error: Unable to decode the input.</p>
+                        </div>
+                        
+                        <!-- Options -->
+                        <div class="mb-6 flex flex-col md:flex-row md:items-center gap-4">
+                            <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 flex-grow">
+                                <div id="encode-options">
+                                    <div class="flex items-center mb-2">
+                                        <label class="text-sm font-medium text-gray-700 dark:text-gray-300 mr-4">Encoding Method:</label>
+                                        <label class="inline-flex items-center mr-4">
+                                            <input type="radio" name="encode-method" value="named" checked class="focus:ring-purple-500 h-4 w-4 text-purple-600 border-gray-300 dark:border-gray-500">
+                                            <span class="ml-2 text-sm">Named Entities (&amp;lt; &amp;gt; &amp;amp;)</span>
+                                        </label>
+                                        <label class="inline-flex items-center">
+                                            <input type="radio" name="encode-method" value="numeric" class="focus:ring-purple-500 h-4 w-4 text-purple-600 border-gray-300 dark:border-gray-500">
+                                            <span class="ml-2 text-sm">Numeric Entities (&amp;#60; &amp;#62;)</span>
+                                        </label>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <label class="text-sm font-medium text-gray-700 dark:text-gray-300 mr-4">Characters to Encode:</label>
+                                        <label class="inline-flex items-center mr-4">
+                                            <input type="radio" name="encode-level" value="essential" checked class="focus:ring-purple-500 h-4 w-4 text-purple-600 border-gray-300 dark:border-gray-500">
+                                            <span class="ml-2 text-sm">Essential Only (&lt; &gt; &amp; " ')</span>
+                                        </label>
+                                        <label class="inline-flex items-center">
+                                            <input type="radio" name="encode-level" value="all" class="focus:ring-purple-500 h-4 w-4 text-purple-600 border-gray-300 dark:border-gray-500">
+                                            <span class="ml-2 text-sm">All Non-ASCII Characters</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div id="decode-options" class="hidden">
+                                    <div class="flex items-center">
+                                        <label class="text-sm font-medium text-gray-700 dark:text-gray-300 mr-4">Decode Options:</label>
+                                        <label class="inline-flex items-center mr-4">
+                                            <input type="checkbox" id="handle-all-types" checked class="focus:ring-purple-500 h-4 w-4 text-purple-600 border-gray-300 dark:border-gray-500">
+                                            <span class="ml-2 text-sm">Decode both named and numeric entities</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Convert Button -->
+                            <button 
+                                id="convert-btn"
+                                class="px-6 py-3 bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-purple-600 hover:to-indigo-700 text-white font-medium rounded-lg transition-all transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50 shadow-md min-w-fit"
+                            >
+                                <i class="fas fa-exchange-alt mr-2"></i><span id="action-text">Encode HTML Entities</span>
+                            </button>
+                        </div>
+                        
+                        <!-- Result Box -->
+                        <div class="mb-6">
+                            <div class="flex justify-between items-center mb-2">
+                                <label id="result-label" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Encoded Result</label>
+                                <div class="flex space-x-2">
+                                    <button 
+                                        id="copy-result" 
+                                        class="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded hover:bg-gray-300 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all text-sm"
+                                        title="Copy to clipboard"
+                                    >
+                                        <i class="fas fa-copy mr-1"></i> Copy
+                                    </button>
+                                </div>
+                            </div>
+                            <div id="result-container" class="border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 p-4 overflow-auto max-h-64">
+                                <p id="result-text" class="whitespace-pre-wrap break-all text-gray-800 dark:text-white"></p>
+                            </div>
+                            <p id="copy-message" class="text-green-500 text-sm mt-2 hidden">Copied to clipboard!</p>
+                        </div>
+                        
+                        <!-- Character Count -->
+                        <div class="flex justify-between text-sm text-gray-600 dark:text-gray-400 mb-6">
+                            <div>Input: <span id="input-count">0</span> characters</div>
+                            <div>Output: <span id="output-count">0</span> characters</div>
+                        </div>
+                        
+                        <!-- Info Box -->
+                        <div class="mt-6 p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg border border-purple-100 dark:border-purple-800 text-sm text-gray-600 dark:text-gray-400">
+                            <div class="flex items-start">
+                                <i class="fas fa-info-circle text-purple-500 mt-1 mr-3"></i>
+                                <div>
+                                    <p class="font-medium text-gray-700 dark:text-gray-300 mb-1">About HTML Entities:</p>
+                                    <p>HTML entities are special codes used to display reserved characters and symbols in HTML. For example, the less-than sign (&lt;) is represented as &amp;lt; to prevent it from being interpreted as the start of an HTML tag.</p>
+                                    <p class="mt-2"><strong>When to use HTML entities:</strong></p>
+                                    <ul class="list-disc pl-5 space-y-1">
+                                        <li><strong>Security:</strong> To prevent XSS (Cross-Site Scripting) attacks when displaying user-provided content.</li>
+                                        <li><strong>Display code:</strong> When you need to show HTML syntax as text rather than have it rendered.</li>
+                                        <li><strong>Special characters:</strong> To correctly display characters like copyright (©), trademark (™), or non-ASCII characters.</li>
+                                    </ul>
+                                    <p class="mt-2 text-purple-600 dark:text-purple-400 font-medium">All processing is done in your browser - your data never leaves your device.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Examples Section -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-depth dark:shadow-depth-dark overflow-hidden">
+                    <div class="px-6 py-4 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20">
+                        <h2 class="text-xl font-bold flex items-center">
+                            <i class="fas fa-lightbulb text-yellow-500 mr-3"></i>
+                            HTML Entity Encoding Examples
+                        </h2>
+                    </div>
+                    <div class="p-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <!-- Example 1 -->
+                            <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
+                                <h3 class="font-medium text-lg mb-2">HTML Code Example</h3>
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-sm text-gray-600 dark:text-gray-400">Original:</span>
+                                    <button class="load-text-example text-blue-600 dark:text-blue-400 text-xs hover:underline">Load as Input</button>
+                                </div>
+                                <div class="bg-white dark:bg-gray-800 p-3 rounded border border-gray-200 dark:border-gray-600 text-sm mb-3">&lt;div class="container"&gt;Hello&lt;/div&gt;</div>
+                                
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-sm text-gray-600 dark:text-gray-400">Entity-encoded:</span>
+                                    <button class="load-entity-example text-blue-600 dark:text-blue-400 text-xs hover:underline">Load as Input</button>
+                                </div>
+                                <div class="bg-white dark:bg-gray-800 p-3 rounded border border-gray-200 dark:border-gray-600 text-sm font-mono break-all">&amp;lt;div class=&amp;quot;container&amp;quot;&amp;gt;Hello&amp;lt;/div&amp;gt;</div>
+                            </div>
+                            
+                            <!-- Example 2 -->
+                            <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
+                                <h3 class="font-medium text-lg mb-2">Special Characters Example</h3>
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-sm text-gray-600 dark:text-gray-400">Original:</span>
+                                    <button class="load-text-example text-blue-600 dark:text-blue-400 text-xs hover:underline">Load as Input</button>
+                                </div>
+                                <div class="bg-white dark:bg-gray-800 p-3 rounded border border-gray-200 dark:border-gray-600 text-sm mb-3">5 > 3 && 2 < 4 is "true" in JavaScript</div>
+                                
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-sm text-gray-600 dark:text-gray-400">Entity-encoded:</span>
+                                    <button class="load-entity-example text-blue-600 dark:text-blue-400 text-xs hover:underline">Load as Input</button>
+                                </div>
+                                <div class="bg-white dark:bg-gray-800 p-3 rounded border border-gray-200 dark:border-gray-600 text-sm font-mono break-all">5 &amp;gt; 3 &amp;amp;&amp;amp; 2 &amp;lt; 4 is &amp;quot;true&amp;quot; in JavaScript</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Info -->
+    <div class="bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-gray-600 dark:text-gray-400 mb-4">
+                DevToolkit's HTML Entity Encoder/Decoder helps you safely display HTML code and special characters on web pages.
+            </p>
+            <a href="../tools.html" class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline">
+                <i class="fas fa-arrow-left mr-2"></i> Back to All Tools
+            </a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Theme Toggle
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+            const htmlElement = document.documentElement;
+            
+            // Check for saved theme preference
+            if (localStorage.getItem('theme') === 'dark' || 
+                (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                htmlElement.classList.add('dark');
+            } else {
+                htmlElement.classList.remove('dark');
+            }
+            
+            // Toggle theme function
+            function toggleTheme() {
+                if (htmlElement.classList.contains('dark')) {
+                    htmlElement.classList.remove('dark');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    htmlElement.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                }
+            }
+            
+            themeToggle.addEventListener('click', toggleTheme);
+            themeToggleMobile.addEventListener('click', toggleTheme);
+            
+            // Mobile Menu Toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const hamburgerBars = document.querySelectorAll('.hamburger-bar');
+            
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+                
+                // Animate hamburger icon to X
+                if (mobileMenu.classList.contains('hidden')) {
+                    hamburgerBars[0].style.top = '25%';
+                    hamburgerBars[0].style.transform = 'rotate(0)';
+                    hamburgerBars[1].style.opacity = '1';
+                    hamburgerBars[2].style.top = '75%';
+                    hamburgerBars[2].style.transform = 'rotate(0)';
+                } else {
+                    hamburgerBars[0].style.top = '50%';
+                    hamburgerBars[0].style.transform = 'rotate(45deg)';
+                    hamburgerBars[1].style.opacity = '0';
+                    hamburgerBars[2].style.top = '50%';
+                    hamburgerBars[2].style.transform = 'rotate(-45deg)';
+                }
+            });
+            
+            // Set initial hamburger icon state
+            hamburgerBars[0].style.top = '25%';
+            hamburgerBars[1].style.top = '50%';
+            hamburgerBars[1].style.transform = 'translateY(-50%)';
+            hamburgerBars[2].style.top = '75%';
+            
+            // HTML Entity Tool Functionality
+            const encodeTab = document.getElementById('encode-tab');
+            const decodeTab = document.getElementById('decode-tab');
+            const encodeOptions = document.getElementById('encode-options');
+            const decodeOptions = document.getElementById('decode-options');
+            const actionText = document.getElementById('action-text');
+            const inputLabel = document.getElementById('input-label');
+            const resultLabel = document.getElementById('result-label');
+            const inputText = document.getElementById('input-text');
+            const resultText = document.getElementById('result-text');
+            const inputError = document.getElementById('input-error');
+            const convertBtn = document.getElementById('convert-btn');
+            const copyResult = document.getElementById('copy-result');
+            const copyMessage = document.getElementById('copy-message');
+            const inputCount = document.getElementById('input-count');
+            const outputCount = document.getElementById('output-count');
+            const textExamples = document.querySelectorAll('.load-text-example');
+            const entityExamples = document.querySelectorAll('.load-entity-example');
+            
+            // Examples
+            const examples = [
+                {
+                    text: "<div class=\"container\">Hello</div>",
+                    encoded: "&lt;div class=&quot;container&quot;&gt;Hello&lt;/div&gt;"
+                },
+                {
+                    text: "5 > 3 && 2 < 4 is \"true\" in JavaScript",
+                    encoded: "5 &gt; 3 &amp;&amp; 2 &lt; 4 is &quot;true&quot; in JavaScript"
+                }
+            ];
+            
+            let isEncodeMode = true;
+            
+            // Update character counts
+            function updateCharacterCounts() {
+                inputCount.textContent = inputText.value.length;
+                outputCount.textContent = resultText.textContent.length;
+            }
+            
+            // Tab switching
+            encodeTab.addEventListener('click', function() {
+                // Activate this tab
+                encodeTab.classList.add('active-tab', 'bg-gradient-to-r', 'from-purple-50', 'to-indigo-50', 'dark:from-purple-900/20', 'dark:to-indigo-900/20', 'text-purple-600', 'dark:text-purple-400');
+                decodeTab.classList.remove('active-tab', 'bg-gradient-to-r', 'from-blue-50', 'to-cyan-50', 'dark:from-blue-900/20', 'dark:to-cyan-900/20', 'text-blue-600', 'dark:text-blue-400');
+                decodeTab.classList.add('text-gray-600', 'dark:text-gray-400', 'hover:bg-gray-50', 'dark:hover:bg-gray-700/50');
+                
+                // Show encode options
+                encodeOptions.classList.remove('hidden');
+                decodeOptions.classList.add('hidden');
+                
+                // Update labels
+                inputLabel.textContent = 'Enter Text to Encode';
+                resultLabel.textContent = 'Encoded Result';
+                inputText.placeholder = 'Enter the text with special characters that you want to encode...';
+                
+                // Update button text
+                actionText.textContent = 'Encode HTML Entities';
+                
+                // Clear error if shown
+                inputError.classList.add('hidden');
+                
+                // Set mode
+                isEncodeMode = true;
+            });
+            
+            decodeTab.addEventListener('click', function() {
+                // Activate this tab
+                decodeTab.classList.add('active-tab', 'bg-gradient-to-r', 'from-blue-50', 'to-cyan-50', 'dark:from-blue-900/20', 'dark:to-cyan-900/20', 'text-blue-600', 'dark:text-blue-400');
+                encodeTab.classList.remove('active-tab', 'bg-gradient-to-r', 'from-purple-50', 'to-indigo-50', 'dark:from-purple-900/20', 'dark:to-indigo-900/20', 'text-purple-600', 'dark:text-purple-400');
+                encodeTab.classList.add('text-gray-600', 'dark:text-gray-400', 'hover:bg-gray-50', 'dark:hover:bg-gray-700/50');
+                
+                // Show decode options
+                encodeOptions.classList.add('hidden');
+                decodeOptions.classList.remove('hidden');
+                
+                // Update labels
+                inputLabel.textContent = 'Enter HTML Entity-encoded Text to Decode';
+                resultLabel.textContent = 'Decoded Result';
+                inputText.placeholder = 'Enter the HTML entity-encoded text you want to decode...';
+                
+                // Update button text
+                actionText.textContent = 'Decode HTML Entities';
+                
+                // Clear error if shown
+                inputError.classList.add('hidden');
+                
+                // Set mode
+                isEncodeMode = false;
+            });
+            
+            // Encode HTML entities
+            function encodeHTMLEntities(text) {
+                try {
+                    // Get encoding method
+                    const encodeMethod = document.querySelector('input[name="encode-method"]:checked').value;
+                    // Get encoding level
+                    const encodeLevel = document.querySelector('input[name="encode-level"]:checked').value;
+                    
+                    // Create a temporary element
+                    const tempElement = document.createElement('div');
+                    
+                    // Define the character replacements based on method
+                    const essentialEntities = {
+                        '<': encodeMethod === 'named' ? '&lt;' : '&#60;',
+                        '>': encodeMethod === 'named' ? '&gt;' : '&#62;',
+                        '&': encodeMethod === 'named' ? '&amp;' : '&#38;',
+                        '"': encodeMethod === 'named' ? '&quot;' : '&#34;',
+                        "'": encodeMethod === 'named' ? '&apos;' : '&#39;'
+                    };
+                    
+                    // If essential characters only
+                    if (encodeLevel === 'essential') {
+                        return text.replace(/[<>&"']/g, char => essentialEntities[char]);
+                    } 
+                    // If all non-ASCII characters
+                    else {
+                        // Start with essential replacements
+                        let result = text.replace(/[<>&"']/g, char => essentialEntities[char]);
+                        
+                        // Then handle all other non-ASCII characters
+                        return result.replace(/[^\x00-\x7F]/g, function(char) {
+                            if (encodeMethod === 'named') {
+                                // For named entities, we'll fallback to numeric if no named entity exists
+                                tempElement.innerHTML = `&#${char.charCodeAt(0)};`;
+                                return tempElement.innerHTML;
+                            } else {
+                                // For numeric entities
+                                return `&#${char.charCodeAt(0)};`;
+                            }
+                        });
+                    }
+                } catch (e) {
+                    console.error('Encoding error:', e);
+                    return null;
+                }
+            }
+            
+            // Decode HTML entities
+            function decodeHTMLEntities(encoded) {
+                try {
+                    // Create a temporary element
+                    const tempElement = document.createElement('div');
+                    // Set inner HTML to the encoded string
+                    tempElement.innerHTML = encoded;
+                    // Return the decoded text
+                    return tempElement.textContent;
+                } catch (e) {
+                    console.error('Decoding error:', e);
+                    return null;
+                }
+            }
+            
+            // Convert function
+            function convertEntities() {
+                const input = inputText.value;
+                let output;
+                
+                // Reset error
+                inputError.classList.add('hidden');
+                
+                if (!input) {
+                    resultText.textContent = '';
+                    updateCharacterCounts();
+                    return;
+                }
+                
+                if (isEncodeMode) {
+                    // Encode HTML entities
+                    output = encodeHTMLEntities(input);
+                    
+                    if (output === null) {
+                        inputError.textContent = 'Error encoding the HTML entities. Please check your input.';
+                        inputError.classList.remove('hidden');
+                        resultText.textContent = '';
+                        return;
+                    }
+                } else {
+                    // Decode HTML entities
+                    output = decodeHTMLEntities(input);
+                    
+                    if (output === null) {
+                        inputError.textContent = 'Error decoding the HTML entities. Please check your input.';
+                        inputError.classList.remove('hidden');
+                        resultText.textContent = '';
+                        return;
+                    }
+                }
+                
+                // Display the result
+                resultText.textContent = output;
+                
+                // Add animation to result
+                const resultContainer = document.getElementById('result-container');
+                resultContainer.classList.add('bg-purple-50', 'dark:bg-purple-900/20');
+                setTimeout(() => {
+                    resultContainer.classList.remove('bg-purple-50', 'dark:bg-purple-900/20');
+                }, 500);
+                
+                // Update character counts
+                updateCharacterCounts();
+            }
+            
+            // Convert button click handler
+            convertBtn.addEventListener('click', convertEntities);
+            
+            // Input validation and updates
+            inputText.addEventListener('input', function() {
+                // Clear any error when user starts typing
+                inputError.classList.add('hidden');
+                
+                // Update character count
+                updateCharacterCounts();
+            });
+            
+            // Copy result to clipboard
+            copyResult.addEventListener('click', function() {
+                if (!resultText.textContent) return;
+                
+                // Copy text to clipboard
+                navigator.clipboard.writeText(resultText.textContent)
+                    .then(() => {
+                        // Show copied message
+                        copyMessage.classList.remove('hidden');
+                        
+                        // Hide message after 2 seconds
+                        setTimeout(() => {
+                            copyMessage.classList.add('hidden');
+                        }, 2000);
+                    })
+                    .catch(err => {
+                        console.error('Could not copy text: ', err);
+                    });
+            });
+            
+            // Load examples
+            textExamples.forEach((button, index) => {
+                button.addEventListener('click', function() {
+                    if (index < examples.length) {
+                        inputText.value = examples[index].text;
+                        inputError.classList.add('hidden');
+                        updateCharacterCounts();
+                        
+                        // Switch to encode mode
+                        if (!isEncodeMode) {
+                            encodeTab.click();
+                        }
+                    }
+                });
+            });
+            
+            entityExamples.forEach((button, index) => {
+                button.addEventListener('click', function() {
+                    if (index < examples.length) {
+                        inputText.value = examples[index].encoded;
+                        inputError.classList.add('hidden');
+                        updateCharacterCounts();
+                        
+                        // Switch to decode mode
+                        if (isEncodeMode) {
+                            decodeTab.click();
+                        }
+                    }
+                });
+            });
+            
+            // Handle Enter key press
+            inputText.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' && e.ctrlKey) {
+                    convertBtn.click();
+                }
+            });
+            
+            // Initialize character counts
+            updateCharacterCounts();
+        });
+    </script>
+</body>
+</html> 

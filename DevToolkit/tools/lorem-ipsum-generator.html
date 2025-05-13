@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lorem Ipsum Generator - DevToolkit</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    boxShadow: {
+                        'depth': '0 10px 30px -10px rgba(0, 0, 0, 0.1)',
+                        'depth-dark': '0 10px 30px -10px rgba(0, 0, 0, 0.3)'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 shadow-depth dark:shadow-depth-dark sticky top-0 z-50 transition-all">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="../images/image.png" alt="DevToolkit Logo" class="h-8 w-8 mr-3">
+                <div>
+                    <h1 class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">DevToolkit</h1>
+                </div>
+            </div>
+            
+            <!-- Mobile menu button -->
+            <button id="mobile-menu-button" class="md:hidden flex items-center justify-center p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <div class="hamburger-icon w-6 h-6 relative">
+                    <span class="hamburger-bar absolute h-0.5 w-full bg-gray-600 dark:bg-gray-300 rounded-sm transform transition duration-300"></span>
+                    <span class="hamburger-bar absolute h-0.5 w-full bg-gray-600 dark:bg-gray-300 rounded-sm transform transition duration-300"></span>
+                    <span class="hamburger-bar absolute h-0.5 w-full bg-gray-600 dark:bg-gray-300 rounded-sm transform transition duration-300"></span>
+                </div>
+            </button>
+            
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center space-x-6">
+                <a href="../index.html#home" class="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-home mr-2"></i>Home</a>
+                <a href="../tools.html" class="font-medium text-blue-600 dark:text-blue-400 transition-colors flex items-center"><i class="fas fa-tools mr-2"></i>Tools</a>
+                <a href="../index.html#about" class="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-info-circle mr-2"></i>About</a>
+                <a href="../index.html#faq" class="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-question-circle mr-2"></i>FAQ</a>
+                <a href="../index.html#contact" class="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-envelope mr-2"></i>Contact</a>
+                <!-- Theme toggle button -->
+                <button id="theme-toggle" class="p-2 rounded-full bg-gradient-to-r from-gray-100 to-white dark:from-gray-800 dark:to-gray-700 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
+                    <i class="fas fa-sun text-yellow-500 dark:hidden"></i>
+                    <i class="fas fa-moon text-blue-300 hidden dark:block"></i>
+                </button>
+            </nav>
+        </div>
+        <!-- Mobile Navigation -->
+        <nav id="mobile-menu" class="hidden px-4 py-3 bg-white dark:bg-gray-800 border-t dark:border-gray-700 md:hidden shadow-lg transform transition-all duration-300">
+            <a href="../index.html#home" class="block py-3 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-home mr-2"></i>Home</a>
+            <a href="../tools.html" class="block py-3 text-blue-600 dark:text-blue-400 transition-colors flex items-center"><i class="fas fa-tools mr-2"></i>Tools</a>
+            <a href="../index.html#about" class="block py-3 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-info-circle mr-2"></i>About</a>
+            <a href="../index.html#faq" class="block py-3 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-question-circle mr-2"></i>FAQ</a>
+            <a href="../index.html#contact" class="block py-3 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-envelope mr-2"></i>Contact</a>
+            <!-- Theme toggle in mobile menu -->
+            <div class="flex items-center py-3">
+                <span class="flex-grow font-medium"><i class="fas fa-adjust mr-2"></i>Theme</span>
+                <button id="theme-toggle-mobile" class="p-2 rounded-full bg-gradient-to-r from-gray-100 to-white dark:from-gray-800 dark:to-gray-700 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
+                    <i class="fas fa-sun text-yellow-500 dark:hidden"></i>
+                    <i class="fas fa-moon text-blue-300 hidden dark:block"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Tool Header -->
+    <section class="py-12 bg-gradient-to-br from-orange-500 via-amber-600 to-yellow-600 dark:from-orange-700 dark:via-amber-800 dark:to-yellow-800 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <div class="inline-flex items-center justify-center bg-white/10 backdrop-blur-sm p-3 rounded-full mb-6">
+                <i class="fas fa-align-left text-3xl text-yellow-200"></i>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4">
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-white to-yellow-200">Lorem Ipsum Generator</span>
+            </h1>
+            <p class="text-xl text-blue-100 mb-6 max-w-3xl mx-auto">Generate placeholder text for mockups, designs, and layouts.</p>
+            
+            <div class="flex flex-wrap justify-center gap-4 text-sm">
+                <div class="bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 flex items-center">
+                    <i class="fas fa-file-alt text-yellow-300 mr-2"></i>
+                    Placeholder Text
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 flex items-center">
+                    <i class="fas fa-paint-brush text-blue-300 mr-2"></i>
+                    Design Mockups
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 flex items-center">
+                    <i class="fas fa-desktop text-red-300 mr-2"></i>
+                    Website Layouts
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lorem Ipsum Generator Tool -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <!-- Main Tool Card -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-depth dark:shadow-depth-dark overflow-hidden mb-12">
+                    <!-- Tool Functionality -->
+                    <div class="p-6">
+                        <!-- Generator Options -->
+                        <div class="mb-6">
+                            <h2 class="text-xl font-semibold mb-4 text-gray-700 dark:text-gray-300">Generator Options</h2>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <!-- Output Type -->
+                                <div>
+                                    <label for="output-type" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Output Type</label>
+                                    <select id="output-type" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-colors">
+                                        <option value="paragraphs">Paragraphs</option>
+                                        <option value="sentences">Sentences</option>
+                                        <option value="words">Words</option>
+                                    </select>
+                                </div>
+                                
+                                <!-- Count -->
+                                <div>
+                                    <label for="count" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Count</label>
+                                    <div class="flex items-center">
+                                        <input 
+                                            type="number" 
+                                            id="count" 
+                                            min="1" 
+                                            max="50" 
+                                            value="5" 
+                                            class="flex-grow px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-colors"
+                                        >
+                                        <div class="flex ml-2">
+                                            <button id="decrease-count" class="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded-l hover:bg-gray-300 dark:hover:bg-gray-600">
+                                                <i class="fas fa-minus"></i>
+                                            </button>
+                                            <button id="increase-count" class="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded-r hover:bg-gray-300 dark:hover:bg-gray-600">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Advanced Options -->
+                            <div class="mt-4 bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+                                <div class="flex justify-between items-center cursor-pointer" id="advanced-options-toggle">
+                                    <span class="font-medium text-gray-700 dark:text-gray-300">Advanced Options</span>
+                                    <i class="fas fa-chevron-down text-gray-500 dark:text-gray-400"></i>
+                                </div>
+                                
+                                <div id="advanced-options-content" class="hidden mt-3 space-y-3">
+                                    <!-- Start with 'Lorem ipsum dolor sit amet' -->
+                                    <div class="flex items-center">
+                                        <input type="checkbox" id="start-with-lorem" checked class="h-4 w-4 text-amber-600 focus:ring-amber-500 rounded">
+                                        <label for="start-with-lorem" class="ml-2 text-sm text-gray-700 dark:text-gray-300">
+                                            Start with "Lorem ipsum dolor sit amet"
+                                        </label>
+                                    </div>
+                                    
+                                    <!-- HTML Tags -->
+                                    <div>
+                                        <label for="html-tags" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Include HTML Tags</label>
+                                        <select id="html-tags" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-colors">
+                                            <option value="none">None</option>
+                                            <option value="p-tags">Paragraph &lt;p&gt; tags</option>
+                                            <option value="full-html">Full HTML structure</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Generate Button -->
+                            <div class="mt-4">
+                                <button 
+                                    id="generate-btn"
+                                    class="w-full md:w-auto px-6 py-3 bg-gradient-to-r from-amber-500 to-yellow-600 hover:from-amber-600 hover:to-yellow-700 text-white font-medium rounded-lg transition-all transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-opacity-50 shadow-md"
+                                >
+                                    <i class="fas fa-sync-alt mr-2"></i>Generate Lorem Ipsum
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Result Box -->
+                        <div class="mb-6">
+                            <div class="flex justify-between items-center mb-2">
+                                <label for="lorem-text" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Generated Text</label>
+                                <div class="flex space-x-2">
+                                    <button 
+                                        id="copy-result" 
+                                        class="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded hover:bg-gray-300 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-amber-500 transition-all text-sm"
+                                        title="Copy to clipboard"
+                                    >
+                                        <i class="fas fa-copy mr-1"></i> Copy
+                                    </button>
+                                </div>
+                            </div>
+                            <div id="result-container" class="border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 p-4 max-h-80 overflow-y-auto">
+                                <div id="lorem-text" class="whitespace-pre-wrap text-gray-800 dark:text-white"></div>
+                            </div>
+                            <p id="copy-message" class="text-green-500 text-sm mt-2 hidden">Copied to clipboard!</p>
+                        </div>
+                        
+                        <!-- Character Count -->
+                        <div class="flex justify-between text-sm text-gray-600 dark:text-gray-400 mb-6">
+                            <div>Characters: <span id="char-count">0</span></div>
+                            <div>Words: <span id="word-count">0</span></div>
+                        </div>
+                        
+                        <!-- Info Box -->
+                        <div class="mt-6 p-4 bg-amber-50 dark:bg-amber-900/20 rounded-lg border border-amber-100 dark:border-amber-800 text-sm text-gray-600 dark:text-gray-400">
+                            <div class="flex items-start">
+                                <i class="fas fa-info-circle text-amber-500 mt-1 mr-3"></i>
+                                <div>
+                                    <p class="font-medium text-gray-700 dark:text-gray-300 mb-1">About Lorem Ipsum:</p>
+                                    <p>Lorem Ipsum is dummy text used in design, printing, and typesetting to visualize layouts before final content is available. It has been the industry's standard placeholder text since the 1500s.</p>
+                                    <p class="mt-2"><strong>When to use Lorem Ipsum:</strong></p>
+                                    <ul class="list-disc pl-5 space-y-1">
+                                        <li>Web design mockups and wireframes</li>
+                                        <li>Print layouts and typography testing</li>
+                                        <li>UI/UX prototypes before content is ready</li>
+                                        <li>When focusing on design elements without being distracted by readable content</li>
+                                    </ul>
+                                    <p class="mt-2 text-amber-600 dark:text-amber-400 font-medium">All processing is done in your browser - your data never leaves your device.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Examples Section -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-depth dark:shadow-depth-dark overflow-hidden">
+                    <div class="px-6 py-4 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-amber-50 to-yellow-50 dark:from-amber-900/20 dark:to-yellow-900/20">
+                        <h2 class="text-xl font-bold flex items-center">
+                            <i class="fas fa-lightbulb text-yellow-500 mr-3"></i>
+                            Usage Examples
+                        </h2>
+                    </div>
+                    <div class="p-6">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <!-- Example 1 -->
+                            <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
+                                <div class="flex items-center mb-3 text-amber-600 dark:text-amber-400">
+                                    <i class="fas fa-laptop-code text-lg mr-2"></i>
+                                    <h3 class="font-medium">Web Design</h3>
+                                </div>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">
+                                    Use Lorem Ipsum to visualize text content in webpage layouts during the design phase, letting clients focus on design elements rather than content.
+                                </p>
+                            </div>
+                            
+                            <!-- Example 2 -->
+                            <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
+                                <div class="flex items-center mb-3 text-green-600 dark:text-green-400">
+                                    <i class="fas fa-mobile-alt text-lg mr-2"></i>
+                                    <h3 class="font-medium">UI Prototyping</h3>
+                                </div>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">
+                                    Quickly fill app screens with realistic-looking text during prototyping to better visualize layout, typography, and spacing in your user interface.
+                                </p>
+                            </div>
+                            
+                            <!-- Example 3 -->
+                            <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
+                                <div class="flex items-center mb-3 text-blue-600 dark:text-blue-400">
+                                    <i class="fas fa-file-word text-lg mr-2"></i>
+                                    <h3 class="font-medium">Document Templates</h3>
+                                </div>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">
+                                    Create professional document templates with placeholder text to demonstrate formatting, paragraph structure, and overall document flow.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Info -->
+    <div class="bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-gray-600 dark:text-gray-400 mb-4">
+                DevToolkit's Lorem Ipsum Generator helps designers and developers create placeholder text for mockups and layouts.
+            </p>
+            <a href="../tools.html" class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline">
+                <i class="fas fa-arrow-left mr-2"></i> Back to All Tools
+            </a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Theme Toggle
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+            const htmlElement = document.documentElement;
+            
+            // Check for saved theme preference
+            if (localStorage.getItem('theme') === 'dark' || 
+                (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                htmlElement.classList.add('dark');
+            } else {
+                htmlElement.classList.remove('dark');
+            }
+            
+            // Toggle theme function
+            function toggleTheme() {
+                if (htmlElement.classList.contains('dark')) {
+                    htmlElement.classList.remove('dark');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    htmlElement.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                }
+            }
+            
+            themeToggle.addEventListener('click', toggleTheme);
+            themeToggleMobile.addEventListener('click', toggleTheme);
+            
+            // Mobile Menu Toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const hamburgerBars = document.querySelectorAll('.hamburger-bar');
+            
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+                
+                // Animate hamburger icon to X
+                if (mobileMenu.classList.contains('hidden')) {
+                    hamburgerBars[0].style.top = '25%';
+                    hamburgerBars[0].style.transform = 'rotate(0)';
+                    hamburgerBars[1].style.opacity = '1';
+                    hamburgerBars[2].style.top = '75%';
+                    hamburgerBars[2].style.transform = 'rotate(0)';
+                } else {
+                    hamburgerBars[0].style.top = '50%';
+                    hamburgerBars[0].style.transform = 'rotate(45deg)';
+                    hamburgerBars[1].style.opacity = '0';
+                    hamburgerBars[2].style.top = '50%';
+                    hamburgerBars[2].style.transform = 'rotate(-45deg)';
+                }
+            });
+            
+            // Set initial hamburger icon state
+            hamburgerBars[0].style.top = '25%';
+            hamburgerBars[1].style.top = '50%';
+            hamburgerBars[1].style.transform = 'translateY(-50%)';
+            hamburgerBars[2].style.top = '75%';
+            
+            // Advanced Options Toggle
+            const advancedOptionsToggle = document.getElementById('advanced-options-toggle');
+            const advancedOptionsContent = document.getElementById('advanced-options-content');
+            const advancedOptionsIcon = advancedOptionsToggle.querySelector('i');
+            
+            advancedOptionsToggle.addEventListener('click', function() {
+                advancedOptionsContent.classList.toggle('hidden');
+                if (advancedOptionsContent.classList.contains('hidden')) {
+                    advancedOptionsIcon.classList.remove('fa-chevron-up');
+                    advancedOptionsIcon.classList.add('fa-chevron-down');
+                } else {
+                    advancedOptionsIcon.classList.remove('fa-chevron-down');
+                    advancedOptionsIcon.classList.add('fa-chevron-up');
+                }
+            });
+            
+            // Lorem Ipsum Generator Functionality
+            const outputTypeSelect = document.getElementById('output-type');
+            const countInput = document.getElementById('count');
+            const decreaseCountBtn = document.getElementById('decrease-count');
+            const increaseCountBtn = document.getElementById('increase-count');
+            const startWithLoremCheckbox = document.getElementById('start-with-lorem');
+            const htmlTagsSelect = document.getElementById('html-tags');
+            const generateBtn = document.getElementById('generate-btn');
+            const loremText = document.getElementById('lorem-text');
+            const resultContainer = document.getElementById('result-container');
+            const copyBtn = document.getElementById('copy-result');
+            const copyMessage = document.getElementById('copy-message');
+            const charCount = document.getElementById('char-count');
+            const wordCount = document.getElementById('word-count');
+            
+            // Lorem Ipsum Word Bank
+            const loremIpsumWords = [
+                "lorem", "ipsum", "dolor", "sit", "amet", "consectetur", "adipiscing", "elit", 
+                "sed", "do", "eiusmod", "tempor", "incididunt", "ut", "labore", "et", "dolore", 
+                "magna", "aliqua", "enim", "ad", "minim", "veniam", "quis", "nostrud", "exercitation", 
+                "ullamco", "laboris", "nisi", "ut", "aliquip", "ex", "ea", "commodo", "consequat", 
+                "duis", "aute", "irure", "dolor", "in", "reprehenderit", "in", "voluptate", "velit", 
+                "esse", "cillum", "dolore", "eu", "fugiat", "nulla", "pariatur", "excepteur", "sint", 
+                "occaecat", "cupidatat", "non", "proident", "sunt", "in", "culpa", "qui", "officia", 
+                "deserunt", "mollit", "anim", "id", "est", "laborum", "sed", "ut", "perspiciatis", 
+                "unde", "omnis", "iste", "natus", "error", "sit", "voluptatem", "accusantium", 
+                "doloremque", "laudantium", "totam", "rem", "aperiam", "eaque", "ipsa", "quae", "ab", 
+                "illo", "inventore", "veritatis", "et", "quasi", "architecto", "beatae", "vitae", 
+                "dicta", "sunt", "explicabo", "nemo", "enim", "ipsam", "voluptatem", "quia", 
+                "voluptas", "sit", "aspernatur", "aut", "odit", "aut", "fugit", "sed", "quia", 
+                "consequuntur", "magni", "dolores", "eos", "qui", "ratione", "voluptatem", "sequi", 
+                "nesciunt", "neque", "porro", "quisquam", "est", "qui", "dolorem", "ipsum", "quia", 
+                "dolor", "sit", "amet", "consectetur", "adipisci", "velit"
+            ];
+            
+            // First paragraph of traditional Lorem Ipsum text
+            const loremIpsumStart = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+            
+            // Helper functions for generating text
+            function getRandomWord() {
+                return loremIpsumWords[Math.floor(Math.random() * loremIpsumWords.length)];
+            }
+            
+            function capitalizeFirstLetter(string) {
+                return string.charAt(0).toUpperCase() + string.slice(1);
+            }
+            
+            function generateWords(count) {
+                const words = [];
+                for (let i = 0; i < count; i++) {
+                    words.push(getRandomWord());
+                }
+                return words.join(' ');
+            }
+            
+            function generateSentence(minWords = 5, maxWords = 15) {
+                const wordCount = Math.floor(Math.random() * (maxWords - minWords + 1)) + minWords;
+                let sentence = generateWords(wordCount);
+                sentence = capitalizeFirstLetter(sentence);
+                
+                // Add period at the end
+                if (!sentence.endsWith('.')) {
+                    sentence += '.';
+                }
+                
+                return sentence;
+            }
+            
+            function generateParagraph(minSentences = 3, maxSentences = 7) {
+                const sentenceCount = Math.floor(Math.random() * (maxSentences - minSentences + 1)) + minSentences;
+                const sentences = [];
+                
+                for (let i = 0; i < sentenceCount; i++) {
+                    sentences.push(generateSentence());
+                }
+                
+                return sentences.join(' ');
+            }
+            
+            // Main generator function
+            function generateLoremIpsum() {
+                const outputType = outputTypeSelect.value;
+                let count = parseInt(countInput.value);
+                const startWithLorem = startWithLoremCheckbox.checked;
+                const htmlTags = htmlTagsSelect.value;
+                
+                if (isNaN(count) || count < 1) {
+                    count = 1;
+                    countInput.value = 1;
+                } else if (count > 50) {
+                    count = 50;
+                    countInput.value = 50;
+                }
+                
+                let result = '';
+                
+                // Generate based on selected output type
+                switch (outputType) {
+                    case 'paragraphs':
+                        if (startWithLorem && count > 0) {
+                            result += loremIpsumStart;
+                            count--;
+                        }
+                        
+                        for (let i = 0; i < count; i++) {
+                            result += (result ? '\n\n' : '') + generateParagraph();
+                        }
+                        break;
+                        
+                    case 'sentences':
+                        let sentences = [];
+                        
+                        if (startWithLorem) {
+                            // Extract first sentence from the traditional Lorem Ipsum text
+                            sentences.push(loremIpsumStart.split('. ')[0] + '.');
+                            count--;
+                        }
+                        
+                        for (let i = 0; i < count; i++) {
+                            sentences.push(generateSentence());
+                        }
+                        
+                        result = sentences.join(' ');
+                        break;
+                        
+                    case 'words':
+                        if (startWithLorem) {
+                            // Get first N words from traditional Lorem Ipsum
+                            const firstWords = loremIpsumStart.split(' ').slice(0, count);
+                            result = firstWords.join(' ');
+                            
+                            // Add period if the last word doesn't have punctuation
+                            if (!result.match(/[.,;!?]$/)) {
+                                result += '.';
+                            }
+                        } else {
+                            result = capitalizeFirstLetter(generateWords(count));
+                            
+                            // Add period if requested more than 3 words
+                            if (count > 3 && !result.match(/[.,;!?]$/)) {
+                                result += '.';
+                            }
+                        }
+                        break;
+                }
+                
+                // Apply HTML tags if requested
+                if (htmlTags === 'p-tags') {
+                    result = result.split('\n\n').map(p => `<p>${p}</p>`).join('\n');
+                } else if (htmlTags === 'full-html') {
+                    const paragraphs = result.split('\n\n').map(p => `  <p>${p}</p>`).join('\n');
+                    result = `<!DOCTYPE html>\n<html>\n<head>\n  <title>Lorem Ipsum</title>\n</head>\n<body>\n${paragraphs}\n</body>\n</html>`;
+                }
+                
+                // Display result
+                loremText.textContent = result;
+                
+                // Highlight animation
+                resultContainer.classList.add('bg-amber-50', 'dark:bg-amber-900/20');
+                setTimeout(() => {
+                    resultContainer.classList.remove('bg-amber-50', 'dark:bg-amber-900/20');
+                }, 500);
+                
+                // Update counts
+                updateCounts(result);
+            }
+            
+            // Update character and word counts
+            function updateCounts(text) {
+                charCount.textContent = text.length;
+                
+                // Count words
+                const words = text.trim().split(/\s+/).filter(word => word.length > 0);
+                wordCount.textContent = words.length;
+            }
+            
+            // Count Input Controls
+            decreaseCountBtn.addEventListener('click', function() {
+                let count = parseInt(countInput.value);
+                if (count > 1) {
+                    countInput.value = count - 1;
+                }
+            });
+            
+            increaseCountBtn.addEventListener('click', function() {
+                let count = parseInt(countInput.value);
+                if (count < 50) {
+                    countInput.value = count + 1;
+                }
+            });
+            
+            // Generate button click handler
+            generateBtn.addEventListener('click', generateLoremIpsum);
+            
+            // Copy result to clipboard
+            copyBtn.addEventListener('click', function() {
+                if (!loremText.textContent) return;
+                
+                // Copy text to clipboard
+                navigator.clipboard.writeText(loremText.textContent)
+                    .then(() => {
+                        // Show copied message
+                        copyMessage.classList.remove('hidden');
+                        
+                        // Hide message after 2 seconds
+                        setTimeout(() => {
+                            copyMessage.classList.add('hidden');
+                        }, 2000);
+                    })
+                    .catch(err => {
+                        console.error('Could not copy text: ', err);
+                    });
+            });
+            
+            // Generate default lorem ipsum on page load
+            generateLoremIpsum();
+        });
+    </script>
+</body>
+</html> 

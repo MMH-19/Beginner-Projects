@@ -27,8 +27,11 @@
     <header class="bg-gradient-to-r from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 shadow-depth dark:shadow-depth-dark sticky top-0 z-50 transition-all">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <div class="flex items-center">
-                <img src="image.png" alt="DevToolkit Logo" class="h-8 w-8 mr-3">
-                <h1 class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">DevToolkit</h1>
+                <img src="images/image.png" alt="DevToolkit Logo" class="h-8 w-8 mr-3">
+                <div>
+                    <h1 class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">DevToolkit</h1>
+                   
+                </div>
             </div>
             
             <!-- Mobile menu button -->
@@ -43,7 +46,7 @@
             <!-- Desktop Navigation -->
             <nav class="hidden md:flex items-center space-x-6">
                 <a href="#home" class="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-home mr-2"></i>Home</a>
-                <a href="#tools" class="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-tools mr-2"></i>Tools</a>
+                <a href="tools.html" class="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-tools mr-2"></i>Tools</a>
                 <a href="#about" class="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-info-circle mr-2"></i>About</a>
                 <a href="#faq" class="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-question-circle mr-2"></i>FAQ</a>
                 <a href="#contact" class="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-envelope mr-2"></i>Contact</a>
@@ -56,7 +59,7 @@
         <!-- Mobile Navigation -->
         <nav id="mobile-menu" class="hidden px-4 py-3 bg-white dark:bg-gray-800 border-t dark:border-gray-700 md:hidden shadow-lg transform transition-all duration-300">
             <a href="#home" class="block py-3 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-home mr-2"></i>Home</a>
-            <a href="#tools" class="block py-3 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-tools mr-2"></i>Tools</a>
+            <a href="tools.html" class="block py-3 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-tools mr-2"></i>Tools</a>
             <a href="#about" class="block py-3 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-info-circle mr-2"></i>About</a>
             <a href="#faq" class="block py-3 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-question-circle mr-2"></i>FAQ</a>
             <a href="#contact" class="block py-3 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-envelope mr-2"></i>Contact</a>
@@ -208,25 +211,12 @@
             <h2 class="text-3xl font-bold text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">Developer Toolkit</h2>
             <p class="text-center text-gray-600 dark:text-gray-400 max-w-3xl mx-auto mb-12">A comprehensive collection of essential developer utilities designed to streamline your workflow and boost productivity.</p>
             
-            <!-- Tools Categories Navigation -->
-            <div class="flex flex-wrap justify-center gap-4 mb-10">
-                <button class="tool-category-btn active px-4 py-2 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 font-medium hover:bg-blue-200 dark:hover:bg-blue-800 transition-all" data-category="all">All Tools</button>
-                <button class="tool-category-btn px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-medium hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-600 dark:hover:text-blue-300 transition-all" data-category="converters">Converters</button>
-                <button class="tool-category-btn px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-medium hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-600 dark:hover:text-blue-300 transition-all" data-category="formatters">Formatters</button>
-                <button class="tool-category-btn px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-medium hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-600 dark:hover:text-blue-300 transition-all" data-category="generators">Generators</button>
-                <button class="tool-category-btn px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-medium hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-600 dark:hover:text-blue-300 transition-all" data-category="encoders">Encoders & Decoders</button>
-            </div>
-            
-            <!-- Search Bar -->
-            <div class="max-w-md mx-auto mb-10">
-                <div class="relative">
-                    <input type="text" id="tools-search" placeholder="Search for tools..." class="w-full px-4 py-3 pl-10 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm">
-                    <div class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
-                        <i class="fas fa-search"></i>
-                    </div>
-                </div>
-            </div>
-            
+            <!-- Tools Description -->
+            <div class="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 p-6 rounded-xl shadow-sm max-w-4xl mx-auto mb-10">
+                <p class="text-center text-gray-700 dark:text-gray-300">
+                    DevToolkit provides free, browser-based utilities that help developers with everyday tasks. From encoding and formatting to conversion and generation, our tools work instantly without installation or signup. Built by developers, for developers, to make coding faster and more efficient.
+                </p>
+            </div> 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Binary to Decimal Converter -->
                 <div class="tool-card bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-lg shadow-depth dark:shadow-depth-dark overflow-hidden transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group hover:ring-2 hover:ring-blue-300 dark:hover:ring-blue-700" data-category="converters">
@@ -237,17 +227,12 @@
                             </div>
                             <h3 class="text-xl font-bold group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">Binary to Decimal Converter</h3>
                         </div>
-                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300">Convert binary numbers (base-2) to decimal (base-10) with ease.</p>
-                        <div class="mb-4">
-                            <label for="binary-input" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Enter binary number (0s and 1s only):</label>
-                            <input type="text" id="binary-input" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm" placeholder="Enter binary digits">
-                            <p id="error-message" class="text-red-600 dark:text-red-400 text-sm mt-1 h-5"></p>
-                        </div>
-                        <button id="convert-btn" class="w-full bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-600 dark:to-indigo-700 text-white py-2 rounded-md hover:shadow-lg shadow-md transition-all hover:from-blue-400 hover:to-indigo-500 dark:hover:from-blue-500 dark:hover:to-indigo-600 transform hover:scale-[1.02]">Convert</button>
-                        <div class="mt-4">
-                            <h4 class="font-medium text-gray-700 dark:text-gray-300">Decimal Result:</h4>
-                            <div id="decimal-result" class="bg-gradient-to-r from-gray-100 to-gray-50 dark:from-gray-700 dark:to-gray-800 p-3 rounded-md text-lg font-medium mt-1 shadow-inner">0</div>
-                        </div>
+                        <p class="text-xs text-blue-600 dark:text-blue-400 font-medium mb-2">Convert binary code (0s and 1s) to decimal numbers</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-6 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300">Convert binary numbers (base-2) to decimal (base-10) with ease.</p>
+                        
+                        <a href="tools/binary-to-decimal.html" class="w-full bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-600 dark:to-indigo-700 text-white py-3 rounded-md hover:shadow-lg shadow-md transition-all hover:from-blue-400 hover:to-indigo-500 dark:hover:from-blue-500 dark:hover:to-indigo-600 transform hover:scale-[1.02] flex items-center justify-center font-medium">
+                            <i class="fas fa-external-link-alt mr-2"></i> Use this Tool
+                        </a>
                     </div>
                 </div>
 
@@ -260,15 +245,12 @@
                             </div>
                             <h3 class="text-xl font-bold group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300">Hex Color Generator</h3>
                         </div>
-                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300">Generate and save random hex color codes for your projects.</p>
-                        <div id="color-preview" class="h-32 rounded-md mb-4 bg-gray-200 flex items-center justify-center shadow-inner group-hover:shadow-md transition-shadow duration-300">
-                            <span id="color-hex" class="font-medium">#RRGGBB</span>
-                        </div>
-                        <button id="generate-color-btn" class="w-full bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-600 dark:to-indigo-700 text-white py-2 rounded-md hover:shadow-lg shadow-md transition-all hover:from-blue-400 hover:to-indigo-500 dark:hover:from-blue-500 dark:hover:to-indigo-600 transform hover:scale-[1.02]">Generate Random Color</button>
-                        <div class="mt-4 grid grid-cols-2 gap-4">
-                            <button id="copy-hex-btn" class="bg-gradient-to-r from-gray-200 to-gray-100 dark:from-gray-700 dark:to-gray-800 py-2 rounded-md hover:shadow-md transition-all shadow-sm hover:from-gray-100 hover:to-white dark:hover:from-gray-600 dark:hover:to-gray-700 transform hover:scale-[1.02]">Copy Hex</button>
-                            <button id="save-color-btn" class="bg-gradient-to-r from-gray-200 to-gray-100 dark:from-gray-700 dark:to-gray-800 py-2 rounded-md hover:shadow-md transition-all shadow-sm hover:from-gray-100 hover:to-white dark:hover:from-gray-600 dark:hover:to-gray-700 transform hover:scale-[1.02]">Save Color</button>
-                        </div>
+                        <p class="text-xs text-purple-600 dark:text-purple-400 font-medium mb-2">Create, preview and save color codes for web design</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-6 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300">Generate and save random hex color codes for your projects.</p>
+                        
+                        <a href="tools/hex-color-generator.html" class="w-full bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-600 dark:to-indigo-700 text-white py-3 rounded-md hover:shadow-lg shadow-md transition-all hover:from-blue-400 hover:to-indigo-500 dark:hover:from-blue-500 dark:hover:to-indigo-600 transform hover:scale-[1.02] flex items-center justify-center font-medium">
+                            <i class="fas fa-external-link-alt mr-2"></i> Use this Tool
+                        </a>
                     </div>
                 </div>
 
@@ -281,16 +263,12 @@
                             </div>
                             <h3 class="text-xl font-bold group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors duration-300">JSON Formatter</h3>
                         </div>
-                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300">Format and minify JSON data with syntax highlighting.</p>
-                        <div class="mb-4">
-                            <label for="json-input" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Enter JSON:</label>
-                            <textarea id="json-input" rows="6" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm" placeholder='{"example": "Paste your JSON here"}'></textarea>
-                            <p id="json-error" class="text-red-600 dark:text-red-400 text-sm mt-1 h-5"></p>
-                        </div>
-                        <div class="grid grid-cols-2 gap-4">
-                            <button id="format-json-btn" class="bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-600 dark:to-indigo-700 text-white py-2 rounded-md hover:shadow-lg shadow-md transition-all hover:from-blue-400 hover:to-indigo-500 dark:hover:from-blue-500 dark:hover:to-indigo-600 transform hover:scale-[1.02]">Format JSON</button>
-                            <button id="minify-json-btn" class="bg-gradient-to-r from-gray-200 to-gray-100 dark:from-gray-700 dark:to-gray-800 py-2 rounded-md hover:shadow-md transition-all shadow-sm hover:from-gray-100 hover:to-white dark:hover:from-gray-600 dark:hover:to-gray-700 transform hover:scale-[1.02]">Minify JSON</button>
-                        </div>
+                        <p class="text-xs text-green-600 dark:text-green-400 font-medium mb-2">Beautify, validate and minify JSON data</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-6 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300">Format and minify JSON data with syntax highlighting.</p>
+                        
+                        <a href="tools/json-formatter.html" class="w-full bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-600 dark:to-indigo-700 text-white py-3 rounded-md hover:shadow-lg shadow-md transition-all hover:from-blue-400 hover:to-indigo-500 dark:hover:from-blue-500 dark:hover:to-indigo-600 transform hover:scale-[1.02] flex items-center justify-center font-medium">
+                            <i class="fas fa-external-link-alt mr-2"></i> Use this Tool
+                        </a>
                     </div>
                 </div>
                 
@@ -303,19 +281,12 @@
                             </div>
                             <h3 class="text-xl font-bold group-hover:text-yellow-600 dark:group-hover:text-yellow-400 transition-colors duration-300">Base64 Encoder/Decoder</h3>
                         </div>
-                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300">Encode or decode text to and from Base64 format.</p>
-                        <div class="mb-4">
-                            <label for="base64-input" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Enter text:</label>
-                            <textarea id="base64-input" rows="3" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm" placeholder="Enter text to encode or Base64 to decode"></textarea>
-                        </div>
-                        <div class="grid grid-cols-2 gap-4 mb-4">
-                            <button id="encode-base64-btn" class="bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-600 dark:to-indigo-700 text-white py-2 rounded-md hover:shadow-lg shadow-md transition-all hover:from-blue-400 hover:to-indigo-500 dark:hover:from-blue-500 dark:hover:to-indigo-600 transform hover:scale-[1.02]">Encode</button>
-                            <button id="decode-base64-btn" class="bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-600 dark:to-indigo-700 text-white py-2 rounded-md hover:shadow-lg shadow-md transition-all hover:from-blue-400 hover:to-indigo-500 dark:hover:from-blue-500 dark:hover:to-indigo-600 transform hover:scale-[1.02]">Decode</button>
-                        </div>
-                        <div>
-                            <label for="base64-result" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Result:</label>
-                            <div id="base64-result" class="bg-gradient-to-r from-gray-100 to-gray-50 dark:from-gray-700 dark:to-gray-800 p-3 rounded-md text-sm font-medium break-all min-h-[50px] shadow-inner"></div>
-                        </div>
+                        <p class="text-xs text-yellow-600 dark:text-yellow-400 font-medium mb-2">Convert between plain text and Base64 encoding</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-6 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300">Encode or decode text to and from Base64 format.</p>
+                        
+                        <a href="tools/base64-encoder-decoder.html" class="w-full bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-600 dark:to-indigo-700 text-white py-3 rounded-md hover:shadow-lg shadow-md transition-all hover:from-blue-400 hover:to-indigo-500 dark:hover:from-blue-500 dark:hover:to-indigo-600 transform hover:scale-[1.02] flex items-center justify-center font-medium">
+                            <i class="fas fa-external-link-alt mr-2"></i> Use this Tool
+                        </a>
                     </div>
                 </div>
                 
@@ -328,19 +299,12 @@
                             </div>
                             <h3 class="text-xl font-bold group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors duration-300">URL Encoder/Decoder</h3>
                         </div>
-                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300">Encode or decode URLs and query parameters.</p>
-                        <div class="mb-4">
-                            <label for="url-input" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Enter URL or text:</label>
-                            <textarea id="url-input" rows="3" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm" placeholder="Enter URL to encode or encoded URL to decode"></textarea>
-                        </div>
-                        <div class="grid grid-cols-2 gap-4 mb-4">
-                            <button id="encode-url-btn" class="bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-600 dark:to-indigo-700 text-white py-2 rounded-md hover:shadow-lg shadow-md transition-all hover:from-blue-400 hover:to-indigo-500 dark:hover:from-blue-500 dark:hover:to-indigo-600 transform hover:scale-[1.02]">Encode URL</button>
-                            <button id="decode-url-btn" class="bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-600 dark:to-indigo-700 text-white py-2 rounded-md hover:shadow-lg shadow-md transition-all hover:from-blue-400 hover:to-indigo-500 dark:hover:from-blue-500 dark:hover:to-indigo-600 transform hover:scale-[1.02]">Decode URL</button>
-                        </div>
-                        <div>
-                            <label for="url-result" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Result:</label>
-                            <div id="url-result" class="bg-gradient-to-r from-gray-100 to-gray-50 dark:from-gray-700 dark:to-gray-800 p-3 rounded-md text-sm font-medium break-all min-h-[50px] shadow-inner"></div>
-                        </div>
+                        <p class="text-xs text-red-600 dark:text-red-400 font-medium mb-2">Handle special characters in URLs and query strings</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-6 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300">Encode or decode URLs and query parameters.</p>
+                        
+                        <a href="tools/url-encoder-decoder.html" class="w-full bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-600 dark:to-indigo-700 text-white py-3 rounded-md hover:shadow-lg shadow-md transition-all hover:from-blue-400 hover:to-indigo-500 dark:hover:from-blue-500 dark:hover:to-indigo-600 transform hover:scale-[1.02] flex items-center justify-center font-medium">
+                            <i class="fas fa-external-link-alt mr-2"></i> Use this Tool
+                        </a>
                     </div>
                 </div>
                 
@@ -353,19 +317,24 @@
                             </div>
                             <h3 class="text-xl font-bold group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">Decimal to Binary Converter</h3>
                         </div>
-                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300">Convert decimal numbers (base-10) to binary (base-2).</p>
-                        <div class="mb-4">
-                            <label for="decimal-input" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Enter decimal number:</label>
-                            <input type="number" id="decimal-input" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm" placeholder="Enter a decimal number">
-                            <p id="decimal-error" class="text-red-600 dark:text-red-400 text-sm mt-1 h-5"></p>
-                        </div>
-                        <button id="convert-to-binary-btn" class="w-full bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-600 dark:to-indigo-700 text-white py-2 rounded-md hover:shadow-lg shadow-md transition-all hover:from-blue-400 hover:to-indigo-500 dark:hover:from-blue-500 dark:hover:to-indigo-600 transform hover:scale-[1.02]">Convert</button>
-                        <div class="mt-4">
-                            <h4 class="font-medium text-gray-700 dark:text-gray-300">Binary Result:</h4>
-                            <div id="binary-result" class="bg-gradient-to-r from-gray-100 to-gray-50 dark:from-gray-700 dark:to-gray-800 p-3 rounded-md text-lg font-medium mt-1 shadow-inner">0</div>
-                        </div>
+                        <p class="text-xs text-blue-600 dark:text-blue-400 font-medium mb-2">Transform decimal numbers into binary format</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-6 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300">Convert decimal numbers (base-10) to binary (base-2).</p>
+                        
+                        <a href="tools/decimal-to-binary.html" class="w-full bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-600 dark:to-indigo-700 text-white py-3 rounded-md hover:shadow-lg shadow-md transition-all hover:from-blue-400 hover:to-indigo-500 dark:hover:from-blue-500 dark:hover:to-indigo-600 transform hover:scale-[1.02] flex items-center justify-center font-medium">
+                            <i class="fas fa-external-link-alt mr-2"></i> Use this Tool
+                        </a>
                     </div>
                 </div>
+            </div>
+
+            <!-- Explore Tools Button -->
+            <div class="text-center mt-12 mb-10">
+                <a href="tools.html" class="inline-block bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-bold px-10 py-4 rounded-xl hover:from-blue-400 hover:to-indigo-500 transform hover:-translate-y-2 hover:shadow-xl transition-all duration-300 shadow-lg">
+                    <span class="flex items-center justify-center text-xl">
+                        <i class="fas fa-toolbox mr-2"></i> Explore All Tools
+                        <i class="fas fa-chevron-right ml-2"></i>
+                    </span>
+                </a>
             </div>
 
             <!-- Coming Soon Section -->
@@ -1206,6 +1175,6 @@
             </div>
         </div>
     </footer>
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>

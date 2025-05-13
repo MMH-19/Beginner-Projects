@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Case Converter - DevToolkit</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    boxShadow: {
+                        'depth': '0 10px 30px -10px rgba(0, 0, 0, 0.1)',
+                        'depth-dark': '0 10px 30px -10px rgba(0, 0, 0, 0.3)'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 shadow-depth dark:shadow-depth-dark sticky top-0 z-50 transition-all">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="../images/image.png" alt="DevToolkit Logo" class="h-8 w-8 mr-3">
+                <div>
+                    <h1 class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">DevToolkit</h1>
+                </div>
+            </div>
+            
+            <!-- Mobile menu button -->
+            <button id="mobile-menu-button" class="md:hidden flex items-center justify-center p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <div class="hamburger-icon w-6 h-6 relative">
+                    <span class="hamburger-bar absolute h-0.5 w-full bg-gray-600 dark:bg-gray-300 rounded-sm transform transition duration-300"></span>
+                    <span class="hamburger-bar absolute h-0.5 w-full bg-gray-600 dark:bg-gray-300 rounded-sm transform transition duration-300"></span>
+                    <span class="hamburger-bar absolute h-0.5 w-full bg-gray-600 dark:bg-gray-300 rounded-sm transform transition duration-300"></span>
+                </div>
+            </button>
+            
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center space-x-6">
+                <a href="../index.html#home" class="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-home mr-2"></i>Home</a>
+                <a href="../tools.html" class="font-medium text-blue-600 dark:text-blue-400 transition-colors flex items-center"><i class="fas fa-tools mr-2"></i>Tools</a>
+                <a href="../index.html#about" class="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-info-circle mr-2"></i>About</a>
+                <a href="../index.html#faq" class="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-question-circle mr-2"></i>FAQ</a>
+                <a href="../index.html#contact" class="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-envelope mr-2"></i>Contact</a>
+                <!-- Theme toggle button -->
+                <button id="theme-toggle" class="p-2 rounded-full bg-gradient-to-r from-gray-100 to-white dark:from-gray-800 dark:to-gray-700 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
+                    <i class="fas fa-sun text-yellow-500 dark:hidden"></i>
+                    <i class="fas fa-moon text-blue-300 hidden dark:block"></i>
+                </button>
+            </nav>
+        </div>
+        <!-- Mobile Navigation -->
+        <nav id="mobile-menu" class="hidden px-4 py-3 bg-white dark:bg-gray-800 border-t dark:border-gray-700 md:hidden shadow-lg transform transition-all duration-300">
+            <a href="../index.html#home" class="block py-3 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-home mr-2"></i>Home</a>
+            <a href="../tools.html" class="block py-3 text-blue-600 dark:text-blue-400 transition-colors flex items-center"><i class="fas fa-tools mr-2"></i>Tools</a>
+            <a href="../index.html#about" class="block py-3 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-info-circle mr-2"></i>About</a>
+            <a href="../index.html#faq" class="block py-3 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-question-circle mr-2"></i>FAQ</a>
+            <a href="../index.html#contact" class="block py-3 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-envelope mr-2"></i>Contact</a>
+            <!-- Theme toggle in mobile menu -->
+            <div class="flex items-center py-3">
+                <span class="flex-grow font-medium"><i class="fas fa-adjust mr-2"></i>Theme</span>
+                <button id="theme-toggle-mobile" class="p-2 rounded-full bg-gradient-to-r from-gray-100 to-white dark:from-gray-800 dark:to-gray-700 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
+                    <i class="fas fa-sun text-yellow-500 dark:hidden"></i>
+                    <i class="fas fa-moon text-blue-300 hidden dark:block"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Tool Header -->
+    <section class="py-12 bg-gradient-to-br from-green-600 via-teal-600 to-blue-700 dark:from-green-800 dark:via-teal-800 dark:to-blue-800 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <div class="inline-flex items-center justify-center bg-white/10 backdrop-blur-sm p-3 rounded-full mb-6">
+                <i class="fas fa-font text-3xl text-green-200"></i>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4">
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-white to-green-200">Text Case Converter</span>
+            </h1>
+            <p class="text-xl text-blue-100 mb-6 max-w-3xl mx-auto">Transform text between different case formats with a single click.</p>
+            
+            <div class="flex flex-wrap justify-center gap-4 text-sm">
+                <div class="bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 flex items-center">
+                    <i class="fas fa-exchange-alt text-yellow-300 mr-2"></i>
+                    Multiple Case Formats
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 flex items-center">
+                    <i class="fas fa-code text-blue-300 mr-2"></i>
+                    Programming Naming Conventions
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 flex items-center">
+                    <i class="fas fa-pencil-alt text-pink-300 mr-2"></i>
+                    Format Text Instantly
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Text Case Converter Tool -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <!-- Main Tool Card -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-depth dark:shadow-depth-dark overflow-hidden mb-12">
+                    <!-- Tool Functionality -->
+                    <div class="p-6">
+                        <!-- Input -->
+                        <div class="mb-6">
+                            <label for="input-text" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Enter Text to Convert</label>
+                            <textarea 
+                                id="input-text" 
+                                rows="6"
+                                placeholder="Type or paste your text here to convert between different cases..."
+                                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors"
+                            ></textarea>
+                        </div>
+                        
+                        <!-- Conversion Options -->
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">Select Case Format</label>
+                            <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+                                <button data-case="uppercase" class="case-btn px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-green-50 dark:hover:bg-green-900/20 focus:outline-none focus:ring-2 focus:ring-green-500 transition-all text-left">
+                                    <div class="font-medium">UPPERCASE</div>
+                                    <div class="text-xs text-gray-500 dark:text-gray-400">ALL CAPITAL LETTERS</div>
+                                </button>
+                                <button data-case="lowercase" class="case-btn px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-green-50 dark:hover:bg-green-900/20 focus:outline-none focus:ring-2 focus:ring-green-500 transition-all text-left">
+                                    <div class="font-medium">lowercase</div>
+                                    <div class="text-xs text-gray-500 dark:text-gray-400">all small letters</div>
+                                </button>
+                                <button data-case="titlecase" class="case-btn px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-green-50 dark:hover:bg-green-900/20 focus:outline-none focus:ring-2 focus:ring-green-500 transition-all text-left">
+                                    <div class="font-medium">Title Case</div>
+                                    <div class="text-xs text-gray-500 dark:text-gray-400">First Letter Of Each Word</div>
+                                </button>
+                                <button data-case="sentencecase" class="case-btn px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-green-50 dark:hover:bg-green-900/20 focus:outline-none focus:ring-2 focus:ring-green-500 transition-all text-left">
+                                    <div class="font-medium">Sentence case</div>
+                                    <div class="text-xs text-gray-500 dark:text-gray-400">First letter of sentence</div>
+                                </button>
+                                <button data-case="camelcase" class="case-btn px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-green-50 dark:hover:bg-green-900/20 focus:outline-none focus:ring-2 focus:ring-green-500 transition-all text-left">
+                                    <div class="font-medium">camelCase</div>
+                                    <div class="text-xs text-gray-500 dark:text-gray-400">noSpacesWithCapitals</div>
+                                </button>
+                                <button data-case="pascalcase" class="case-btn px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-green-50 dark:hover:bg-green-900/20 focus:outline-none focus:ring-2 focus:ring-green-500 transition-all text-left">
+                                    <div class="font-medium">PascalCase</div>
+                                    <div class="text-xs text-gray-500 dark:text-gray-400">CapitalizedNoSpaces</div>
+                                </button>
+                                <button data-case="snakecase" class="case-btn px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-green-50 dark:hover:bg-green-900/20 focus:outline-none focus:ring-2 focus:ring-green-500 transition-all text-left">
+                                    <div class="font-medium">snake_case</div>
+                                    <div class="text-xs text-gray-500 dark:text-gray-400">lowercase_with_underscores</div>
+                                </button>
+                                <button data-case="kebabcase" class="case-btn px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-green-50 dark:hover:bg-green-900/20 focus:outline-none focus:ring-2 focus:ring-green-500 transition-all text-left">
+                                    <div class="font-medium">kebab-case</div>
+                                    <div class="text-xs text-gray-500 dark:text-gray-400">lowercase-with-hyphens</div>
+                                </button>
+                                <button data-case="constantcase" class="case-btn px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-green-50 dark:hover:bg-green-900/20 focus:outline-none focus:ring-2 focus:ring-green-500 transition-all text-left">
+                                    <div class="font-medium">CONSTANT_CASE</div>
+                                    <div class="text-xs text-gray-500 dark:text-gray-400">UPPERCASE_WITH_UNDERSCORES</div>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Result Box -->
+                        <div class="mb-6">
+                            <div class="flex justify-between items-center mb-2">
+                                <label for="result-text" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Converted Result</label>
+                                <div class="flex space-x-2">
+                                    <button 
+                                        id="copy-result" 
+                                        class="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded hover:bg-gray-300 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-green-500 transition-all text-sm"
+                                        title="Copy to clipboard"
+                                    >
+                                        <i class="fas fa-copy mr-1"></i> Copy
+                                    </button>
+                                </div>
+                            </div>
+                            <div id="result-container" class="border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 p-4 min-h-[100px]">
+                                <p id="result-text" class="whitespace-pre-wrap break-all text-gray-800 dark:text-white"></p>
+                            </div>
+                            <p id="copy-message" class="text-green-500 text-sm mt-2 hidden">Copied to clipboard!</p>
+                        </div>
+                        
+                        <!-- Character Count -->
+                        <div class="flex justify-between text-sm text-gray-600 dark:text-gray-400 mb-6">
+                            <div>Characters: <span id="char-count">0</span></div>
+                            <div>Words: <span id="word-count">0</span></div>
+                        </div>
+                        
+                        <!-- Info Box -->
+                        <div class="mt-6 p-4 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-100 dark:border-green-800 text-sm text-gray-600 dark:text-gray-400">
+                            <div class="flex items-start">
+                                <i class="fas fa-info-circle text-green-500 mt-1 mr-3"></i>
+                                <div>
+                                    <p class="font-medium text-gray-700 dark:text-gray-300 mb-1">About Text Case Formats:</p>
+                                    <p>Different text case formats are used for various purposes in programming, writing, and design:</p>
+                                    <ul class="mt-2 grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-1 list-disc pl-5">
+                                        <li><strong>camelCase:</strong> Used in JavaScript, Java, etc.</li>
+                                        <li><strong>PascalCase:</strong> Used in C#, TypeScript classes</li>
+                                        <li><strong>snake_case:</strong> Common in Python, Ruby</li>
+                                        <li><strong>kebab-case:</strong> Used in URLs, CSS classes</li>
+                                        <li><strong>CONSTANT_CASE:</strong> For constants in many languages</li>
+                                        <li><strong>Title Case:</strong> For headings and titles</li>
+                                        <li><strong>Sentence case:</strong> For normal text paragraphs</li>
+                                    </ul>
+                                    <p class="mt-3 text-green-600 dark:text-green-400 font-medium">All processing is done in your browser - your data never leaves your device.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Examples Section -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-depth dark:shadow-depth-dark overflow-hidden">
+                    <div class="px-6 py-4 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-blue-50 to-green-50 dark:from-blue-900/20 dark:to-green-900/20">
+                        <h2 class="text-xl font-bold flex items-center">
+                            <i class="fas fa-lightbulb text-yellow-500 mr-3"></i>
+                            Case Conversion Examples
+                        </h2>
+                    </div>
+                    <div class="p-6">
+                        <div class="grid grid-cols-1 gap-4">
+                            <!-- Example -->
+                            <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
+                                <h3 class="font-medium text-lg mb-3">Example Text Across Different Cases</h3>
+                                
+                                <div class="space-y-3">
+                                    <div>
+                                        <span class="inline-block w-32 font-semibold text-gray-700 dark:text-gray-300">Original:</span>
+                                        <span class="text-gray-600 dark:text-gray-400">The quick brown fox jumps over the lazy dog</span>
+                                        <button class="load-example ml-2 text-blue-600 dark:text-blue-400 text-xs hover:underline">Load</button>
+                                    </div>
+                                    <div>
+                                        <span class="inline-block w-32 font-semibold text-gray-700 dark:text-gray-300">camelCase:</span>
+                                        <span class="text-gray-600 dark:text-gray-400 font-mono">theQuickBrownFoxJumpsOverTheLazyDog</span>
+                                    </div>
+                                    <div>
+                                        <span class="inline-block w-32 font-semibold text-gray-700 dark:text-gray-300">PascalCase:</span>
+                                        <span class="text-gray-600 dark:text-gray-400 font-mono">TheQuickBrownFoxJumpsOverTheLazyDog</span>
+                                    </div>
+                                    <div>
+                                        <span class="inline-block w-32 font-semibold text-gray-700 dark:text-gray-300">snake_case:</span>
+                                        <span class="text-gray-600 dark:text-gray-400 font-mono">the_quick_brown_fox_jumps_over_the_lazy_dog</span>
+                                    </div>
+                                    <div>
+                                        <span class="inline-block w-32 font-semibold text-gray-700 dark:text-gray-300">kebab-case:</span>
+                                        <span class="text-gray-600 dark:text-gray-400 font-mono">the-quick-brown-fox-jumps-over-the-lazy-dog</span>
+                                    </div>
+                                    <div>
+                                        <span class="inline-block w-32 font-semibold text-gray-700 dark:text-gray-300">CONSTANT_CASE:</span>
+                                        <span class="text-gray-600 dark:text-gray-400 font-mono">THE_QUICK_BROWN_FOX_JUMPS_OVER_THE_LAZY_DOG</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Try These -->
+                            <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 mt-2">
+                                <h3 class="font-medium text-lg mb-3">Try These Examples</h3>
+                                <div class="flex flex-wrap gap-2">
+                                    <button class="load-example px-3 py-1 text-sm bg-green-100 dark:bg-green-800/50 text-green-800 dark:text-green-200 rounded-full hover:bg-green-200 dark:hover:bg-green-700/50 transition-colors">
+                                        Simple variable name
+                                    </button>
+                                    <button class="load-example px-3 py-1 text-sm bg-blue-100 dark:bg-blue-800/50 text-blue-800 dark:text-blue-200 rounded-full hover:bg-blue-200 dark:hover:bg-blue-700/50 transition-colors">
+                                        Convert this text to different cases
+                                    </button>
+                                    <button class="load-example px-3 py-1 text-sm bg-purple-100 dark:bg-purple-800/50 text-purple-800 dark:text-purple-200 rounded-full hover:bg-purple-200 dark:hover:bg-purple-700/50 transition-colors">
+                                        user_profile_settings
+                                    </button>
+                                    <button class="load-example px-3 py-1 text-sm bg-yellow-100 dark:bg-yellow-800/50 text-yellow-800 dark:text-yellow-200 rounded-full hover:bg-yellow-200 dark:hover:bg-yellow-700/50 transition-colors">
+                                        api-endpoint-url-format
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Info -->
+    <div class="bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-gray-600 dark:text-gray-400 mb-4">
+                DevToolkit's Text Case Converter helps developers and writers quickly format text in different case styles.
+            </p>
+            <a href="../tools.html" class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline">
+                <i class="fas fa-arrow-left mr-2"></i> Back to All Tools
+            </a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Theme Toggle
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+            const htmlElement = document.documentElement;
+            
+            // Check for saved theme preference
+            if (localStorage.getItem('theme') === 'dark' || 
+                (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                htmlElement.classList.add('dark');
+            } else {
+                htmlElement.classList.remove('dark');
+            }
+            
+            // Toggle theme function
+            function toggleTheme() {
+                if (htmlElement.classList.contains('dark')) {
+                    htmlElement.classList.remove('dark');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    htmlElement.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                }
+            }
+            
+            themeToggle.addEventListener('click', toggleTheme);
+            themeToggleMobile.addEventListener('click', toggleTheme);
+            
+            // Mobile Menu Toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const hamburgerBars = document.querySelectorAll('.hamburger-bar');
+            
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+                
+                // Animate hamburger icon to X
+                if (mobileMenu.classList.contains('hidden')) {
+                    hamburgerBars[0].style.top = '25%';
+                    hamburgerBars[0].style.transform = 'rotate(0)';
+                    hamburgerBars[1].style.opacity = '1';
+                    hamburgerBars[2].style.top = '75%';
+                    hamburgerBars[2].style.transform = 'rotate(0)';
+                } else {
+                    hamburgerBars[0].style.top = '50%';
+                    hamburgerBars[0].style.transform = 'rotate(45deg)';
+                    hamburgerBars[1].style.opacity = '0';
+                    hamburgerBars[2].style.top = '50%';
+                    hamburgerBars[2].style.transform = 'rotate(-45deg)';
+                }
+            });
+            
+            // Set initial hamburger icon state
+            hamburgerBars[0].style.top = '25%';
+            hamburgerBars[1].style.top = '50%';
+            hamburgerBars[1].style.transform = 'translateY(-50%)';
+            hamburgerBars[2].style.top = '75%';
+            
+            // Text Case Converter Functionality
+            const inputText = document.getElementById('input-text');
+            const resultText = document.getElementById('result-text');
+            const resultContainer = document.getElementById('result-container');
+            const caseButtons = document.querySelectorAll('.case-btn');
+            const copyButton = document.getElementById('copy-result');
+            const copyMessage = document.getElementById('copy-message');
+            const charCount = document.getElementById('char-count');
+            const wordCount = document.getElementById('word-count');
+            const exampleButtons = document.querySelectorAll('.load-example');
+            
+            const examples = [
+                "The quick brown fox jumps over the lazy dog",
+                "Simple variable name",
+                "Convert this text to different cases",
+                "user_profile_settings",
+                "api-endpoint-url-format"
+            ];
+            
+            // Update character and word counts
+            function updateCounts() {
+                const text = inputText.value;
+                charCount.textContent = text.length;
+                
+                // Count words (split by whitespace and filter out empty strings)
+                const words = text.trim().split(/\s+/).filter(word => word.length > 0);
+                wordCount.textContent = words.length > 0 ? words.length : 0;
+            }
+            
+            // Case conversion functions
+            const caseConverters = {
+                // UPPERCASE: all letters uppercase
+                uppercase: function(text) {
+                    return text.toUpperCase();
+                },
+                
+                // lowercase: all letters lowercase
+                lowercase: function(text) {
+                    return text.toLowerCase();
+                },
+                
+                // Title Case: First Letter Of Each Word Capitalized
+                titlecase: function(text) {
+                    return text.replace(/\w\S*/g, function(word) {
+                        return word.charAt(0).toUpperCase() + word.substr(1).toLowerCase();
+                    });
+                },
+                
+                // Sentence case: First letter of each sentence capitalized
+                sentencecase: function(text) {
+                    // Split by sentence-ending punctuation followed by a space or newline
+                    return text.toLowerCase().replace(/(^\s*\w|[.!?]\s*\w)/g, function(match) {
+                        return match.toUpperCase();
+                    });
+                },
+                
+                // camelCase: first word lowercase, subsequent words capitalized, no spaces
+                camelcase: function(text) {
+                    // First normalize the text by removing extra spaces and special characters
+                    const normalized = text.trim().replace(/[^\w\s-_]/g, '');
+                    
+                    // Split by spaces, dashes, or underscores
+                    const words = normalized.split(/[\s-_]+/);
+                    
+                    // First word lowercase, rest capitalized
+                    return words.map((word, index) => {
+                        if (index === 0) {
+                            return word.toLowerCase();
+                        }
+                        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+                    }).join('');
+                },
+                
+                // PascalCase: Each Word Capitalized, No Spaces
+                pascalcase: function(text) {
+                    // Normalize the text
+                    const normalized = text.trim().replace(/[^\w\s-_]/g, '');
+                    
+                    // Split by spaces, dashes, or underscores
+                    const words = normalized.split(/[\s-_]+/);
+                    
+                    // All words capitalized
+                    return words.map(word => {
+                        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+                    }).join('');
+                },
+                
+                // snake_case: all lowercase with underscores between words
+                snakecase: function(text) {
+                    // Normalize the text
+                    const normalized = text.trim().replace(/[^\w\s-_]/g, '');
+                    
+                    // Split by spaces, dashes
+                    const words = normalized.split(/[\s-]+/);
+                    
+                    // Join with underscores
+                    return words.map(word => word.toLowerCase()).join('_');
+                },
+                
+                // kebab-case: all lowercase with hyphens between words
+                kebabcase: function(text) {
+                    // Normalize the text
+                    const normalized = text.trim().replace(/[^\w\s-_]/g, '');
+                    
+                    // Split by spaces or underscores
+                    const words = normalized.split(/[\s_]+/);
+                    
+                    // Join with hyphens
+                    return words.map(word => word.toLowerCase()).join('-');
+                },
+                
+                // CONSTANT_CASE: ALL UPPERCASE WITH UNDERSCORES
+                constantcase: function(text) {
+                    // Normalize the text
+                    const normalized = text.trim().replace(/[^\w\s-_]/g, '');
+                    
+                    // Split by spaces or dashes
+                    const words = normalized.split(/[\s-]+/);
+                    
+                    // Join with underscores and uppercase
+                    return words.map(word => word.toUpperCase()).join('_');
+                }
+            };
+            
+            // Handle case conversion button clicks
+            caseButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const caseType = this.getAttribute('data-case');
+                    const input = inputText.value.trim();
+                    
+                    if (!input) {
+                        return; // No text to convert
+                    }
+                    
+                    // Convert and display the result
+                    if (caseConverters[caseType]) {
+                        const result = caseConverters[caseType](input);
+                        resultText.textContent = result;
+                        
+                        // Add highlight animation
+                        resultContainer.classList.add('bg-green-50', 'dark:bg-green-900/20');
+                        setTimeout(() => {
+                            resultContainer.classList.remove('bg-green-50', 'dark:bg-green-900/20');
+                        }, 500);
+                        
+                        // Add active state to the selected button
+                        caseButtons.forEach(btn => {
+                            btn.classList.remove('ring-2', 'ring-green-500', 'bg-green-50', 'dark:bg-green-900/20');
+                        });
+                        this.classList.add('ring-2', 'ring-green-500', 'bg-green-50', 'dark:bg-green-900/20');
+                    }
+                });
+            });
+            
+            // Input change handler
+            inputText.addEventListener('input', updateCounts);
+            
+            // Copy result to clipboard
+            copyButton.addEventListener('click', function() {
+                if (!resultText.textContent) return;
+                
+                // Copy text to clipboard
+                navigator.clipboard.writeText(resultText.textContent)
+                    .then(() => {
+                        // Show copied message
+                        copyMessage.classList.remove('hidden');
+                        
+                        // Hide message after 2 seconds
+                        setTimeout(() => {
+                            copyMessage.classList.add('hidden');
+                        }, 2000);
+                    })
+                    .catch(err => {
+                        console.error('Could not copy text: ', err);
+                    });
+            });
+            
+            // Load example text
+            exampleButtons.forEach((button, index) => {
+                button.addEventListener('click', function() {
+                    const exampleIndex = index < examples.length ? index : 0;
+                    inputText.value = examples[exampleIndex];
+                    updateCounts();
+                    
+                    // Clear active case button highlights
+                    caseButtons.forEach(btn => {
+                        btn.classList.remove('ring-2', 'ring-green-500', 'bg-green-50', 'dark:bg-green-900/20');
+                    });
+                    
+                    // Clear result
+                    resultText.textContent = '';
+                });
+            });
+            
+            // Initialize counts
+            updateCounts();
+        });
+    </script>
+</body>
+</html> 

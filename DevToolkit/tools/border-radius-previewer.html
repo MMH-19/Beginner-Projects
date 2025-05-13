@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Border-radius Previewer - DevToolkit</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    boxShadow: {
+                        'depth': '0 10px 30px -10px rgba(0, 0, 0, 0.1)',
+                        'depth-dark': '0 10px 30px -10px rgba(0, 0, 0, 0.3)'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 shadow-depth dark:shadow-depth-dark sticky top-0 z-50 transition-all">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="../images/image.png" alt="DevToolkit Logo" class="h-8 w-8 mr-3">
+                <div>
+                    <h1 class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">DevToolkit</h1>
+                </div>
+            </div>
+            
+            <!-- Mobile menu button -->
+            <button id="mobile-menu-button" class="md:hidden flex items-center justify-center p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <div class="hamburger-icon w-6 h-6 relative">
+                    <span class="hamburger-bar absolute h-0.5 w-full bg-gray-600 dark:bg-gray-300 rounded-sm transform transition duration-300"></span>
+                    <span class="hamburger-bar absolute h-0.5 w-full bg-gray-600 dark:bg-gray-300 rounded-sm transform transition duration-300"></span>
+                    <span class="hamburger-bar absolute h-0.5 w-full bg-gray-600 dark:bg-gray-300 rounded-sm transform transition duration-300"></span>
+                </div>
+            </button>
+            
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center space-x-6">
+                <a href="../index.html#home" class="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-home mr-2"></i>Home</a>
+                <a href="../tools.html" class="font-medium text-blue-600 dark:text-blue-400 transition-colors flex items-center"><i class="fas fa-tools mr-2"></i>Tools</a>
+                <a href="../index.html#about" class="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-info-circle mr-2"></i>About</a>
+                <a href="../index.html#faq" class="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-question-circle mr-2"></i>FAQ</a>
+                <a href="../index.html#contact" class="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-envelope mr-2"></i>Contact</a>
+                <!-- Theme toggle button -->
+                <button id="theme-toggle" class="p-2 rounded-full bg-gradient-to-r from-gray-100 to-white dark:from-gray-800 dark:to-gray-700 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
+                    <i class="fas fa-sun text-yellow-500 dark:hidden"></i>
+                    <i class="fas fa-moon text-blue-300 hidden dark:block"></i>
+                </button>
+            </nav>
+        </div>
+        <!-- Mobile Navigation -->
+        <nav id="mobile-menu" class="hidden px-4 py-3 bg-white dark:bg-gray-800 border-t dark:border-gray-700 md:hidden shadow-lg transform transition-all duration-300">
+            <a href="../index.html#home" class="block py-3 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-home mr-2"></i>Home</a>
+            <a href="../tools.html" class="block py-3 text-blue-600 dark:text-blue-400 transition-colors flex items-center"><i class="fas fa-tools mr-2"></i>Tools</a>
+            <a href="../index.html#about" class="block py-3 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-info-circle mr-2"></i>About</a>
+            <a href="../index.html#faq" class="block py-3 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-question-circle mr-2"></i>FAQ</a>
+            <a href="../index.html#contact" class="block py-3 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-envelope mr-2"></i>Contact</a>
+            <!-- Theme toggle in mobile menu -->
+            <div class="flex items-center py-3">
+                <span class="flex-grow font-medium"><i class="fas fa-adjust mr-2"></i>Theme</span>
+                <button id="theme-toggle-mobile" class="p-2 rounded-full bg-gradient-to-r from-gray-100 to-white dark:from-gray-800 dark:to-gray-700 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
+                    <i class="fas fa-sun text-yellow-500 dark:hidden"></i>
+                    <i class="fas fa-moon text-blue-300 hidden dark:block"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Tool Header -->
+    <section class="py-12 bg-gradient-to-br from-purple-500 via-indigo-600 to-blue-600 dark:from-purple-700 dark:via-indigo-800 dark:to-blue-800 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <div class="inline-flex items-center justify-center bg-white/10 backdrop-blur-sm p-3 rounded-full mb-6">
+                <i class="fas fa-border-all text-3xl text-indigo-200"></i>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4">
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-white to-indigo-200">Border-radius Previewer</span>
+            </h1>
+            <p class="text-xl text-blue-100 mb-6 max-w-3xl mx-auto">Visualize and generate CSS border-radius properties with live preview.</p>
+            
+            <div class="flex flex-wrap justify-center gap-4 text-sm">
+                <div class="bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 flex items-center">
+                    <i class="fas fa-eye text-blue-300 mr-2"></i>
+                    Live Preview
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 flex items-center">
+                    <i class="fas fa-sliders-h text-purple-300 mr-2"></i>
+                    Adjustable Controls
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 flex items-center">
+                    <i class="fas fa-code text-red-300 mr-2"></i>
+                    CSS Generator
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Border Radius Previewer Tool -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <!-- Main Tool Card -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-depth dark:shadow-depth-dark overflow-hidden mb-12">
+                    <div class="p-6">
+                        <!-- Preview Box and Controls Flex Container -->
+                        <div class="flex flex-col md:flex-row gap-8 mb-8">
+                            <!-- Preview Box -->
+                            <div class="w-full md:w-1/2">
+                                <h2 class="text-xl font-semibold mb-4 text-gray-700 dark:text-gray-300">Live Preview</h2>
+                                <div class="relative aspect-square">
+                                    <div id="preview-box" class="w-full h-full bg-gradient-to-br from-indigo-500 to-purple-600 dark:from-indigo-600 dark:to-purple-800 shadow-md">
+                                        <!-- Corner Indicators -->
+                                        <div id="tl-indicator" class="absolute top-0 left-0 w-5 h-5 border-t-2 border-l-2 border-white/50 rounded-tl"></div>
+                                        <div id="tr-indicator" class="absolute top-0 right-0 w-5 h-5 border-t-2 border-r-2 border-white/50 rounded-tr"></div>
+                                        <div id="br-indicator" class="absolute bottom-0 right-0 w-5 h-5 border-b-2 border-r-2 border-white/50 rounded-br"></div>
+                                        <div id="bl-indicator" class="absolute bottom-0 left-0 w-5 h-5 border-b-2 border-l-2 border-white/50 rounded-bl"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Controls -->
+                            <div class="w-full md:w-1/2">
+                                <h2 class="text-xl font-semibold mb-4 text-gray-700 dark:text-gray-300">Border Radius Controls</h2>
+                                
+                                <!-- Unit Selector -->
+                                <div class="mb-4">
+                                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Unit</label>
+                                    <div class="flex">
+                                        <button data-unit="px" class="unit-btn px-3 py-2 bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200 font-medium rounded-l-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 active-unit">px</button>
+                                        <button data-unit="%" class="unit-btn px-3 py-2 bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500">%</button>
+                                        <button data-unit="em" class="unit-btn px-3 py-2 bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500">em</button>
+                                        <button data-unit="rem" class="unit-btn px-3 py-2 bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 font-medium rounded-r-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">rem</button>
+                                    </div>
+                                </div>
+                                
+                                <!-- Radius Controls -->
+                                <div class="space-y-4">
+                                    <!-- Top Left -->
+                                    <div>
+                                        <div class="flex justify-between items-center mb-1">
+                                            <label for="top-left" class="text-sm font-medium text-gray-700 dark:text-gray-300">Top Left</label>
+                                            <span id="top-left-value" class="text-xs bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">10px</span>
+                                        </div>
+                                        <input type="range" id="top-left" min="0" max="100" value="10" class="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer">
+                                    </div>
+                                    
+                                    <!-- Top Right -->
+                                    <div>
+                                        <div class="flex justify-between items-center mb-1">
+                                            <label for="top-right" class="text-sm font-medium text-gray-700 dark:text-gray-300">Top Right</label>
+                                            <span id="top-right-value" class="text-xs bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">10px</span>
+                                        </div>
+                                        <input type="range" id="top-right" min="0" max="100" value="10" class="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer">
+                                    </div>
+                                    
+                                    <!-- Bottom Right -->
+                                    <div>
+                                        <div class="flex justify-between items-center mb-1">
+                                            <label for="bottom-right" class="text-sm font-medium text-gray-700 dark:text-gray-300">Bottom Right</label>
+                                            <span id="bottom-right-value" class="text-xs bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">10px</span>
+                                        </div>
+                                        <input type="range" id="bottom-right" min="0" max="100" value="10" class="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer">
+                                    </div>
+                                    
+                                    <!-- Bottom Left -->
+                                    <div>
+                                        <div class="flex justify-between items-center mb-1">
+                                            <label for="bottom-left" class="text-sm font-medium text-gray-700 dark:text-gray-300">Bottom Left</label>
+                                            <span id="bottom-left-value" class="text-xs bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">10px</span>
+                                        </div>
+                                        <input type="range" id="bottom-left" min="0" max="100" value="10" class="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer">
+                                    </div>
+                                </div>
+                                
+                                <!-- Buttons -->
+                                <div class="flex gap-2 mt-6">
+                                    <button id="all-corners-btn" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition duration-200">All Corners</button>
+                                    <button id="reset-btn" class="px-4 py-2 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-lg transition duration-200">Reset</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- CSS Code -->
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <h2 class="text-xl font-semibold text-gray-700 dark:text-gray-300">Generated CSS</h2>
+                                <button id="copy-css" class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-300 rounded hover:bg-indigo-200 dark:hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all text-sm">
+                                    <i class="fas fa-copy mr-1"></i> Copy CSS
+                                </button>
+                            </div>
+                            
+                            <div class="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg p-4 font-mono text-sm overflow-x-auto">
+                                <pre id="css-code" class="text-gray-800 dark:text-gray-200">border-radius: 10px 10px 10px 10px;</pre>
+                            </div>
+                            <p id="copy-message" class="text-green-500 text-sm mt-2 hidden">CSS copied to clipboard!</p>
+                        </div>
+                        
+                        <!-- Info Box -->
+                        <div class="mt-8 p-4 bg-indigo-50 dark:bg-indigo-900/20 rounded-lg border border-indigo-100 dark:border-indigo-800 text-sm text-gray-600 dark:text-gray-400">
+                            <div class="flex items-start">
+                                <i class="fas fa-info-circle text-indigo-500 mt-1 mr-3"></i>
+                                <div>
+                                    <p class="font-medium text-gray-700 dark:text-gray-300 mb-1">About Border Radius:</p>
+                                    <p>The CSS border-radius property defines how rounded the corners of an element should be. You can set different values for each corner to create unique shapes.</p>
+                                    <p class="mt-2"><strong>Browser Support:</strong></p>
+                                    <p>The border-radius property is supported in all modern browsers (Chrome, Firefox, Safari, Edge).</p>
+                                    <p class="mt-2 text-indigo-600 dark:text-indigo-400 font-medium">All processing is done in your browser - your data never leaves your device.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Presets and Examples Section -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-depth dark:shadow-depth-dark overflow-hidden">
+                    <div class="px-6 py-4 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20">
+                        <h2 class="text-xl font-bold flex items-center">
+                            <i class="fas fa-magic text-indigo-500 mr-3"></i>
+                            Border Radius Presets
+                        </h2>
+                    </div>
+                    <div class="p-6">
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            <!-- Preset 1: Rounded -->
+                            <div data-preset="10,10,10,10" class="border-radius-preset cursor-pointer bg-gray-50 dark:bg-gray-700 rounded-lg p-3 transition hover:scale-105 hover:shadow-md">
+                                <div class="aspect-square w-full bg-indigo-500 dark:bg-indigo-600 rounded-lg mb-2"></div>
+                                <p class="text-sm text-center font-medium text-gray-700 dark:text-gray-300">Rounded</p>
+                                <p class="text-xs text-center text-gray-500 dark:text-gray-400">border-radius: 10px;</p>
+                            </div>
+                            
+                            <!-- Preset 2: Rounded Pill -->
+                            <div data-preset="50,50,50,50" class="border-radius-preset cursor-pointer bg-gray-50 dark:bg-gray-700 rounded-lg p-3 transition hover:scale-105 hover:shadow-md">
+                                <div class="aspect-square w-full bg-indigo-500 dark:bg-indigo-600 rounded-full mb-2"></div>
+                                <p class="text-sm text-center font-medium text-gray-700 dark:text-gray-300">Circle</p>
+                                <p class="text-xs text-center text-gray-500 dark:text-gray-400">border-radius: 50%;</p>
+                            </div>
+                            
+                            <!-- Preset 3: Top Rounded -->
+                            <div data-preset="10,10,0,0" class="border-radius-preset cursor-pointer bg-gray-50 dark:bg-gray-700 rounded-lg p-3 transition hover:scale-105 hover:shadow-md">
+                                <div class="aspect-square w-full bg-indigo-500 dark:bg-indigo-600 rounded-t-lg mb-2"></div>
+                                <p class="text-sm text-center font-medium text-gray-700 dark:text-gray-300">Top Rounded</p>
+                                <p class="text-xs text-center text-gray-500 dark:text-gray-400">border-radius: 10px 10px 0 0;</p>
+                            </div>
+                            
+                            <!-- Preset 4: Message Bubble -->
+                            <div data-preset="20,20,20,0" class="border-radius-preset cursor-pointer bg-gray-50 dark:bg-gray-700 rounded-lg p-3 transition hover:scale-105 hover:shadow-md">
+                                <div class="aspect-square w-full bg-indigo-500 dark:bg-indigo-600 mb-2" style="border-radius: 20px 20px 20px 0;"></div>
+                                <p class="text-sm text-center font-medium text-gray-700 dark:text-gray-300">Message Bubble</p>
+                                <p class="text-xs text-center text-gray-500 dark:text-gray-400">border-radius: 20px 20px 20px 0;</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Info -->
+    <div class="bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-gray-600 dark:text-gray-400 mb-4">
+                DevToolkit's Border-radius Previewer helps designers and developers visualize and generate CSS border-radius properties.
+            </p>
+            <a href="../tools.html" class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline">
+                <i class="fas fa-arrow-left mr-2"></i> Back to All Tools
+            </a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Theme Toggle
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+            const htmlElement = document.documentElement;
+            
+            // Check for saved theme preference
+            if (localStorage.getItem('theme') === 'dark' || 
+                (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                htmlElement.classList.add('dark');
+            } else {
+                htmlElement.classList.remove('dark');
+            }
+            
+            // Toggle theme function
+            function toggleTheme() {
+                if (htmlElement.classList.contains('dark')) {
+                    htmlElement.classList.remove('dark');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    htmlElement.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                }
+            }
+            
+            themeToggle.addEventListener('click', toggleTheme);
+            themeToggleMobile.addEventListener('click', toggleTheme);
+            
+            // Mobile Menu Toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const hamburgerBars = document.querySelectorAll('.hamburger-bar');
+            
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+                
+                // Animate hamburger icon to X
+                if (mobileMenu.classList.contains('hidden')) {
+                    hamburgerBars[0].style.top = '25%';
+                    hamburgerBars[0].style.transform = 'rotate(0)';
+                    hamburgerBars[1].style.opacity = '1';
+                    hamburgerBars[2].style.top = '75%';
+                    hamburgerBars[2].style.transform = 'rotate(0)';
+                } else {
+                    hamburgerBars[0].style.top = '50%';
+                    hamburgerBars[0].style.transform = 'rotate(45deg)';
+                    hamburgerBars[1].style.opacity = '0';
+                    hamburgerBars[2].style.top = '50%';
+                    hamburgerBars[2].style.transform = 'rotate(-45deg)';
+                }
+            });
+            
+            // Set initial hamburger icon state
+            hamburgerBars[0].style.top = '25%';
+            hamburgerBars[1].style.top = '50%';
+            hamburgerBars[1].style.transform = 'translateY(-50%)';
+            hamburgerBars[2].style.top = '75%';
+            
+            // ===== Border Radius Previewer Functionality =====
+            
+            // Elements
+            const previewBox = document.getElementById('preview-box');
+            const topLeftSlider = document.getElementById('top-left');
+            const topRightSlider = document.getElementById('top-right');
+            const bottomRightSlider = document.getElementById('bottom-right');
+            const bottomLeftSlider = document.getElementById('bottom-left');
+            const topLeftValue = document.getElementById('top-left-value');
+            const topRightValue = document.getElementById('top-right-value');
+            const bottomRightValue = document.getElementById('bottom-right-value');
+            const bottomLeftValue = document.getElementById('bottom-left-value');
+            const cssCode = document.getElementById('css-code');
+            const copyBtn = document.getElementById('copy-css');
+            const copyMessage = document.getElementById('copy-message');
+            const allCornersBtn = document.getElementById('all-corners-btn');
+            const resetBtn = document.getElementById('reset-btn');
+            const unitBtns = document.querySelectorAll('.unit-btn');
+            const presets = document.querySelectorAll('.border-radius-preset');
+            
+            // State
+            let currentUnit = 'px';
+            let currentValues = {
+                topLeft: 10,
+                topRight: 10,
+                bottomRight: 10,
+                bottomLeft: 10
+            };
+            
+            // Functions
+            function updatePreview() {
+                const tl = `${currentValues.topLeft}${currentUnit}`;
+                const tr = `${currentValues.topRight}${currentUnit}`;
+                const br = `${currentValues.bottomRight}${currentUnit}`;
+                const bl = `${currentValues.bottomLeft}${currentUnit}`;
+                
+                // Update preview box
+                previewBox.style.borderRadius = `${tl} ${tr} ${br} ${bl}`;
+                
+                // Update value displays
+                topLeftValue.textContent = tl;
+                topRightValue.textContent = tr;
+                bottomRightValue.textContent = br;
+                bottomLeftValue.textContent = bl;
+                
+                // Generate CSS code
+                let cssText = '';
+                
+                // If all values are the same, use the shorthand
+                if (tl === tr && tr === br && br === bl) {
+                    cssText = `border-radius: ${tl};`;
+                }
+                // If opposite corners are equal, use the 2-value shorthand
+                else if (tl === br && tr === bl) {
+                    cssText = `border-radius: ${tl} ${tr};`;
+                }
+                // Otherwise use the 4-value syntax
+                else {
+                    cssText = `border-radius: ${tl} ${tr} ${br} ${bl};`;
+                }
+                
+                cssCode.textContent = cssText;
+                
+                // Add animation to show value change
+                cssCode.classList.add('bg-indigo-50', 'dark:bg-indigo-900/20');
+                setTimeout(() => {
+                    cssCode.classList.remove('bg-indigo-50', 'dark:bg-indigo-900/20');
+                }, 300);
+            }
+            
+            function setAllCorners(value) {
+                currentValues = {
+                    topLeft: value,
+                    topRight: value,
+                    bottomRight: value,
+                    bottomLeft: value
+                };
+                
+                // Update sliders
+                topLeftSlider.value = value;
+                topRightSlider.value = value;
+                bottomRightSlider.value = value;
+                bottomLeftSlider.value = value;
+                
+                updatePreview();
+            }
+            
+            function resetToDefault() {
+                setAllCorners(10);
+            }
+            
+            function changeUnit(unit) {
+                currentUnit = unit;
+                
+                // Update active unit button
+                unitBtns.forEach(btn => {
+                    if (btn.dataset.unit === unit) {
+                        btn.classList.add('bg-indigo-100', 'text-indigo-800', 'dark:bg-indigo-900', 'dark:text-indigo-200');
+                        btn.classList.remove('bg-gray-100', 'text-gray-800', 'dark:bg-gray-700', 'dark:text-gray-300');
+                    } else {
+                        btn.classList.remove('bg-indigo-100', 'text-indigo-800', 'dark:bg-indigo-900', 'dark:text-indigo-200');
+                        btn.classList.add('bg-gray-100', 'text-gray-800', 'dark:bg-gray-700', 'dark:text-gray-300');
+                    }
+                });
+                
+                // Update preview with new unit
+                updatePreview();
+            }
+            
+            // Event Listeners
+            topLeftSlider.addEventListener('input', function() {
+                currentValues.topLeft = parseInt(this.value);
+                updatePreview();
+            });
+            
+            topRightSlider.addEventListener('input', function() {
+                currentValues.topRight = parseInt(this.value);
+                updatePreview();
+            });
+            
+            bottomRightSlider.addEventListener('input', function() {
+                currentValues.bottomRight = parseInt(this.value);
+                updatePreview();
+            });
+            
+            bottomLeftSlider.addEventListener('input', function() {
+                currentValues.bottomLeft = parseInt(this.value);
+                updatePreview();
+            });
+            
+            allCornersBtn.addEventListener('click', function() {
+                // Use the top-left value for all corners
+                const value = parseInt(topLeftSlider.value);
+                setAllCorners(value);
+            });
+            
+            resetBtn.addEventListener('click', resetToDefault);
+            
+            // Unit buttons
+            unitBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    changeUnit(this.dataset.unit);
+                });
+            });
+            
+            // Preset clicks
+            presets.forEach(preset => {
+                preset.addEventListener('click', function() {
+                    const values = this.dataset.preset.split(',').map(Number);
+                    currentValues = {
+                        topLeft: values[0],
+                        topRight: values[1],
+                        bottomRight: values[2],
+                        bottomLeft: values[3]
+                    };
+                    
+                    // Update sliders
+                    topLeftSlider.value = values[0];
+                    topRightSlider.value = values[1];
+                    bottomRightSlider.value = values[2];
+                    bottomLeftSlider.value = values[3];
+                    
+                    // Change to percentage if it's the circle preset
+                    if (values[0] === 50 && values[1] === 50 && values[2] === 50 && values[3] === 50) {
+                        changeUnit('%');
+                    } else {
+                        changeUnit('px');
+                    }
+                    
+                    updatePreview();
+                    
+                    // Highlight animation
+                    this.classList.add('bg-indigo-100', 'dark:bg-indigo-900/40');
+                    setTimeout(() => {
+                        this.classList.remove('bg-indigo-100', 'dark:bg-indigo-900/40');
+                    }, 300);
+                });
+            });
+            
+            // Copy CSS button
+            copyBtn.addEventListener('click', function() {
+                navigator.clipboard.writeText(cssCode.textContent)
+                    .then(() => {
+                        copyMessage.classList.remove('hidden');
+                        setTimeout(() => {
+                            copyMessage.classList.add('hidden');
+                        }, 2000);
+                    })
+                    .catch(err => {
+                        console.error('Could not copy text: ', err);
+                    });
+            });
+            
+            // Initialize
+            updatePreview();
+        });
+    </script>
+</body>
+</html> 

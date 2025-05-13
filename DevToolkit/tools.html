@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Developer Tools - DevToolkit</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    boxShadow: {
+                        'depth': '0 10px 30px -10px rgba(0, 0, 0, 0.1)',
+                        'depth-dark': '0 10px 30px -10px rgba(0, 0, 0, 0.3)'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 shadow-depth dark:shadow-depth-dark sticky top-0 z-50 transition-all">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="images/image.png" alt="DevToolkit Logo" class="h-8 w-8 mr-3">
+                <div>
+                    <h1 class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">DevToolkit</h1>
+                </div>
+            </div>
+            
+            <!-- Mobile menu button -->
+            <button id="mobile-menu-button" class="md:hidden flex items-center justify-center p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <div class="hamburger-icon w-6 h-6 relative">
+                    <span class="hamburger-bar absolute h-0.5 w-full bg-gray-600 dark:bg-gray-300 rounded-sm transform transition duration-300"></span>
+                    <span class="hamburger-bar absolute h-0.5 w-full bg-gray-600 dark:bg-gray-300 rounded-sm transform transition duration-300"></span>
+                    <span class="hamburger-bar absolute h-0.5 w-full bg-gray-600 dark:bg-gray-300 rounded-sm transform transition duration-300"></span>
+                </div>
+            </button>
+            
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center space-x-6">
+                <a href="index.html#home" class="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-home mr-2"></i>Home</a>
+                <a href="tools.html" class="font-medium text-blue-600 dark:text-blue-400 transition-colors flex items-center"><i class="fas fa-tools mr-2"></i>Tools</a>
+                <a href="index.html#about" class="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-info-circle mr-2"></i>About</a>
+                <a href="index.html#faq" class="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-question-circle mr-2"></i>FAQ</a>
+                <a href="index.html#contact" class="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-envelope mr-2"></i>Contact</a>
+                <!-- Theme toggle button -->
+                <button id="theme-toggle" class="p-2 rounded-full bg-gradient-to-r from-gray-100 to-white dark:from-gray-800 dark:to-gray-700 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
+                    <i class="fas fa-sun text-yellow-500 dark:hidden"></i>
+                    <i class="fas fa-moon text-blue-300 hidden dark:block"></i>
+                </button>
+            </nav>
+        </div>
+        <!-- Mobile Navigation -->
+        <nav id="mobile-menu" class="hidden px-4 py-3 bg-white dark:bg-gray-800 border-t dark:border-gray-700 md:hidden shadow-lg transform transition-all duration-300">
+            <a href="index.html#home" class="block py-3 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-home mr-2"></i>Home</a>
+            <a href="tools.html" class="block py-3 text-blue-600 dark:text-blue-400 transition-colors flex items-center"><i class="fas fa-tools mr-2"></i>Tools</a>
+            <a href="index.html#about" class="block py-3 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-info-circle mr-2"></i>About</a>
+            <a href="index.html#faq" class="block py-3 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-question-circle mr-2"></i>FAQ</a>
+            <a href="index.html#contact" class="block py-3 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-envelope mr-2"></i>Contact</a>
+            <!-- Theme toggle in mobile menu -->
+            <div class="flex items-center py-3">
+                <span class="flex-grow font-medium"><i class="fas fa-adjust mr-2"></i>Theme</span>
+                <button id="theme-toggle-mobile" class="p-2 rounded-full bg-gradient-to-r from-gray-100 to-white dark:from-gray-800 dark:to-gray-700 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
+                    <i class="fas fa-sun text-yellow-500 dark:hidden"></i>
+                    <i class="fas fa-moon text-blue-300 hidden dark:block"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Tools Page Header -->
+    <section class="py-16 bg-gradient-to-br from-blue-600 via-indigo-700 to-purple-800 dark:from-blue-800 dark:via-indigo-900 dark:to-purple-900 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-6 animate-title">
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-200 animating-gradient">Developer Tools Collection</span>
+            </h1>
+            <p class="text-xl text-blue-100 mb-10 max-w-3xl mx-auto">Browse our complete collection of free developer utilities designed to streamline your workflow and boost productivity.</p>
+            
+            <!-- Search Bar -->
+            <div class="max-w-2xl mx-auto mb-10">
+                <div class="relative">
+                    <input type="text" id="tools-search" placeholder="Search for tools..." class="w-full px-5 py-4 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20 text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-white/50">
+                    <div class="absolute right-4 top-1/2 transform -translate-y-1/2">
+                        <i class="fas fa-search text-blue-200"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Category Filters -->
+    <section class="py-8 bg-white dark:bg-gray-800 shadow-md">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap justify-center gap-4">
+                <button class="category-filter active px-4 py-2 rounded-full bg-blue-600 text-white font-medium hover:bg-blue-700 transition-all" data-category="all">
+                    <i class="fas fa-border-all mr-2"></i>All Tools
+                </button>
+                <button class="category-filter px-4 py-2 rounded-full bg-gray-200 dark:bg-gray-700 font-medium hover:bg-blue-100 dark:hover:bg-blue-900 transition-all" data-category="converters">
+                    <i class="fas fa-exchange-alt mr-2"></i>Converters
+                </button>
+                <button class="category-filter px-4 py-2 rounded-full bg-gray-200 dark:bg-gray-700 font-medium hover:bg-blue-100 dark:hover:bg-blue-900 transition-all" data-category="generators">
+                    <i class="fas fa-magic mr-2"></i>Generators
+                </button>
+                <button class="category-filter px-4 py-2 rounded-full bg-gray-200 dark:bg-gray-700 font-medium hover:bg-blue-100 dark:hover:bg-blue-900 transition-all" data-category="formatters">
+                    <i class="fas fa-code mr-2"></i>Formatters
+                </button>
+                <button class="category-filter px-4 py-2 rounded-full bg-gray-200 dark:bg-gray-700 font-medium hover:bg-blue-100 dark:hover:bg-blue-900 transition-all" data-category="encoders">
+                    <i class="fas fa-lock mr-2"></i>Encoders/Decoders
+                </button>
+                <button class="category-filter px-4 py-2 rounded-full bg-gray-200 dark:bg-gray-700 font-medium hover:bg-blue-100 dark:hover:bg-blue-900 transition-all" data-category="text">
+                    <i class="fas fa-font mr-2"></i>Text Tools
+                </button>
+                <button class="category-filter px-4 py-2 rounded-full bg-gray-200 dark:bg-gray-700 font-medium hover:bg-blue-100 dark:hover:bg-blue-900 transition-all" data-category="development">
+                    <i class="fas fa-code-branch mr-2"></i>Development
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools Collection -->
+    <section class="py-12">
+        <div class="container mx-auto px-4">
+            <!-- No results message (hidden by default) -->
+            <div id="no-results" class="hidden text-center py-16">
+                <i class="fas fa-search text-5xl text-gray-400 dark:text-gray-600 mb-4"></i>
+                <h3 class="text-2xl font-bold mb-2">No matching tools found</h3>
+                <p class="text-gray-600 dark:text-gray-400">Try adjusting your search or filter criteria</p>
+            </div>
+            
+            <div id="tools-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Binary to Decimal Converter -->
+                <div class="tool-card bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-lg shadow-depth dark:shadow-depth-dark overflow-hidden transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group hover:ring-2 hover:ring-blue-300 dark:hover:ring-blue-700" data-category="converters">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-blue-100 dark:bg-blue-900 p-2 rounded-full mr-3 group-hover:bg-blue-200 dark:group-hover:bg-blue-800 transition-all duration-300 group-hover:scale-110">
+                                <i class="fas fa-exchange-alt text-blue-600 dark:text-blue-400 group-hover:rotate-12 transition-transform duration-300"></i>
+                            </div>
+                            <h3 class="text-xl font-bold group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">Binary to Decimal Converter</h3>
+                        </div>
+                        <p class="text-xs text-blue-600 dark:text-blue-400 font-medium mb-2">Convert binary code (0s and 1s) to decimal numbers</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-6 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300">Convert binary numbers (base-2) to decimal (base-10) with ease.</p>
+                        
+                        <a href="tools/binary-to-decimal.html" class="w-full bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-600 dark:to-indigo-700 text-white py-3 rounded-md hover:shadow-lg shadow-md transition-all hover:from-blue-400 hover:to-indigo-500 dark:hover:from-blue-500 dark:hover:to-indigo-600 transform hover:scale-[1.02] flex items-center justify-center font-medium">
+                            <i class="fas fa-external-link-alt mr-2"></i> Use this Tool
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Dollars To Cents Converter -->
+                <div class="tool-card bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-lg shadow-depth dark:shadow-depth-dark overflow-hidden transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group hover:ring-2 hover:ring-green-300 dark:hover:ring-green-700" data-category="converters">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-green-100 dark:bg-green-900 p-2 rounded-full mr-3 group-hover:bg-green-200 dark:group-hover:bg-green-800 transition-all duration-300 group-hover:scale-110">
+                                <i class="fas fa-dollar-sign text-green-600 dark:text-green-400 group-hover:rotate-12 transition-transform duration-300"></i>
+                            </div>
+                            <h3 class="text-xl font-bold group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors duration-300">Dollars To Cents Converter</h3>
+                        </div>
+                        <p class="text-xs text-green-600 dark:text-green-400 font-medium mb-2">Convert dollar amounts to cents instantly</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-6 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300">Simple tool to convert dollar values to their equivalent in cents.</p>
+                        
+                        <a href="tools/dollars-to-cents.html" class="w-full bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-600 dark:to-indigo-700 text-white py-3 rounded-md hover:shadow-lg shadow-md transition-all hover:from-blue-400 hover:to-indigo-500 dark:hover:from-blue-500 dark:hover:to-indigo-600 transform hover:scale-[1.02] flex items-center justify-center font-medium">
+                            <i class="fas fa-external-link-alt mr-2"></i> Use this Tool
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hex Color Generator -->
+                <div class="tool-card bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-lg shadow-depth dark:shadow-depth-dark overflow-hidden transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group hover:ring-2 hover:ring-purple-300 dark:hover:ring-purple-700" data-category="generators">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-purple-100 dark:bg-purple-900 p-2 rounded-full mr-3 group-hover:bg-purple-200 dark:group-hover:bg-purple-800 transition-all duration-300 group-hover:scale-110">
+                                <i class="fas fa-palette text-purple-600 dark:text-purple-400 group-hover:rotate-12 transition-transform duration-300"></i>
+                            </div>
+                            <h3 class="text-xl font-bold group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300">Hex Color Generator</h3>
+                        </div>
+                        <p class="text-xs text-purple-600 dark:text-purple-400 font-medium mb-2">Create, preview and save color codes for web design</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-6 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300">Generate and save random hex color codes for your projects.</p>
+                        
+                        <a href="tools/hex-color-generator.html" class="w-full bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-600 dark:to-indigo-700 text-white py-3 rounded-md hover:shadow-lg shadow-md transition-all hover:from-blue-400 hover:to-indigo-500 dark:hover:from-blue-500 dark:hover:to-indigo-600 transform hover:scale-[1.02] flex items-center justify-center font-medium">
+                            <i class="fas fa-external-link-alt mr-2"></i> Use this Tool
+                        </a>
+                    </div>
+                </div>
+
+                <!-- JSON Formatter -->
+                <div class="tool-card bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-lg shadow-depth dark:shadow-depth-dark overflow-hidden transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group hover:ring-2 hover:ring-green-300 dark:hover:ring-green-700" data-category="formatters">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-green-100 dark:bg-green-900 p-2 rounded-full mr-3 group-hover:bg-green-200 dark:group-hover:bg-green-800 transition-all duration-300 group-hover:scale-110">
+                                <i class="fas fa-code text-green-600 dark:text-green-400 group-hover:rotate-12 transition-transform duration-300"></i>
+                            </div>
+                            <h3 class="text-xl font-bold group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors duration-300">JSON Formatter</h3>
+                        </div>
+                        <p class="text-xs text-green-600 dark:text-green-400 font-medium mb-2">Beautify, validate and minify JSON data</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-6 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300">Format and minify JSON data with syntax highlighting.</p>
+                        
+                        <a href="tools/json-formatter.html" class="w-full bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-600 dark:to-indigo-700 text-white py-3 rounded-md hover:shadow-lg shadow-md transition-all hover:from-blue-400 hover:to-indigo-500 dark:hover:from-blue-500 dark:hover:to-indigo-600 transform hover:scale-[1.02] flex items-center justify-center font-medium">
+                            <i class="fas fa-external-link-alt mr-2"></i> Use this Tool
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Base64 Encoder/Decoder -->
+                <div class="tool-card bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-lg shadow-depth dark:shadow-depth-dark overflow-hidden transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group hover:ring-2 hover:ring-yellow-300 dark:hover:ring-yellow-700" data-category="encoders">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-yellow-100 dark:bg-yellow-900 p-2 rounded-full mr-3 group-hover:bg-yellow-200 dark:group-hover:bg-yellow-800 transition-all duration-300 group-hover:scale-110">
+                                <i class="fas fa-lock text-yellow-600 dark:text-yellow-400 group-hover:rotate-12 transition-transform duration-300"></i>
+                            </div>
+                            <h3 class="text-xl font-bold group-hover:text-yellow-600 dark:group-hover:text-yellow-400 transition-colors duration-300">Base64 Encoder/Decoder</h3>
+                        </div>
+                        <p class="text-xs text-yellow-600 dark:text-yellow-400 font-medium mb-2">Convert between plain text and Base64 encoding</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-6 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300">Encode or decode text to and from Base64 format.</p>
+                        
+                        <a href="tools/base64-encoder-decoder.html" class="w-full bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-600 dark:to-indigo-700 text-white py-3 rounded-md hover:shadow-lg shadow-md transition-all hover:from-blue-400 hover:to-indigo-500 dark:hover:from-blue-500 dark:hover:to-indigo-600 transform hover:scale-[1.02] flex items-center justify-center font-medium">
+                            <i class="fas fa-external-link-alt mr-2"></i> Use this Tool
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- URL Encoder/Decoder -->
+                <div class="tool-card bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-lg shadow-depth dark:shadow-depth-dark overflow-hidden transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group hover:ring-2 hover:ring-red-300 dark:hover:ring-red-700" data-category="encoders">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-red-100 dark:bg-red-900 p-2 rounded-full mr-3 group-hover:bg-red-200 dark:group-hover:bg-red-800 transition-all duration-300 group-hover:scale-110">
+                                <i class="fas fa-link text-red-600 dark:text-red-400 group-hover:rotate-12 transition-transform duration-300"></i>
+                            </div>
+                            <h3 class="text-xl font-bold group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors duration-300">URL Encoder/Decoder</h3>
+                        </div>
+                        <p class="text-xs text-red-600 dark:text-red-400 font-medium mb-2">Handle special characters in URLs and query strings</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-6 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300">Encode or decode URLs and query parameters.</p>
+                        
+                        <a href="tools/url-encoder-decoder.html" class="w-full bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-600 dark:to-indigo-700 text-white py-3 rounded-md hover:shadow-lg shadow-md transition-all hover:from-blue-400 hover:to-indigo-500 dark:hover:from-blue-500 dark:hover:to-indigo-600 transform hover:scale-[1.02] flex items-center justify-center font-medium">
+                            <i class="fas fa-external-link-alt mr-2"></i> Use this Tool
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Decimal to Binary Converter -->
+                <div class="tool-card bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-lg shadow-depth dark:shadow-depth-dark overflow-hidden transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group hover:ring-2 hover:ring-blue-300 dark:hover:ring-blue-700" data-category="converters">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-blue-100 dark:bg-blue-900 p-2 rounded-full mr-3 group-hover:bg-blue-200 dark:group-hover:bg-blue-800 transition-all duration-300 group-hover:scale-110">
+                                <i class="fas fa-exchange-alt text-blue-600 dark:text-blue-400 group-hover:rotate-12 transition-transform duration-300"></i>
+                            </div>
+                            <h3 class="text-xl font-bold group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">Decimal to Binary Converter</h3>
+                        </div>
+                        <p class="text-xs text-blue-600 dark:text-blue-400 font-medium mb-2">Transform decimal numbers into binary format</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-6 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300">Convert decimal numbers (base-10) to binary (base-2).</p>
+                        
+                        <a href="tools/decimal-to-binary.html" class="w-full bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-600 dark:to-indigo-700 text-white py-3 rounded-md hover:shadow-lg shadow-md transition-all hover:from-blue-400 hover:to-indigo-500 dark:hover:from-blue-500 dark:hover:to-indigo-600 transform hover:scale-[1.02] flex items-center justify-center font-medium">
+                            <i class="fas fa-external-link-alt mr-2"></i> Use this Tool
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Border-radius Previewer -->
+                <div class="tool-card bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-lg shadow-depth dark:shadow-depth-dark overflow-hidden transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group hover:ring-2 hover:ring-indigo-300 dark:hover:ring-indigo-700" data-category="development">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-indigo-100 dark:bg-indigo-900 p-2 rounded-full mr-3 group-hover:bg-indigo-200 dark:group-hover:bg-indigo-800 transition-all duration-300 group-hover:scale-110">
+                                <i class="fas fa-border-all text-indigo-600 dark:text-indigo-400 group-hover:rotate-12 transition-transform duration-300"></i>
+                            </div>
+                            <h3 class="text-xl font-bold group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors duration-300">Border-radius Previewer</h3>
+                        </div>
+                        <p class="text-xs text-indigo-600 dark:text-indigo-400 font-medium mb-2">Visualize and generate CSS border-radius properties</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-6 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300">Create and preview rounded corners with live CSS code generation.</p>
+                        
+                        <a href="tools/border-radius-previewer.html" class="w-full bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-600 dark:to-indigo-700 text-white py-3 rounded-md hover:shadow-lg shadow-md transition-all hover:from-blue-400 hover:to-indigo-500 dark:hover:from-blue-500 dark:hover:to-indigo-600 transform hover:scale-[1.02] flex items-center justify-center font-medium">
+                            <i class="fas fa-external-link-alt mr-2"></i> Use this Tool
+                        </a>
+                    </div>
+                </div>
+
+                <!-- CSV to JSON Converter -->
+                <div class="tool-card bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-lg shadow-depth dark:shadow-depth-dark overflow-hidden transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group hover:ring-2 hover:ring-teal-300 dark:hover:ring-teal-700" data-category="converters">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-teal-100 dark:bg-teal-900 p-2 rounded-full mr-3 group-hover:bg-teal-200 dark:group-hover:bg-teal-800 transition-all duration-300 group-hover:scale-110">
+                                <i class="fas fa-exchange-alt text-teal-600 dark:text-teal-400 group-hover:rotate-12 transition-transform duration-300"></i>
+                            </div>
+                            <h3 class="text-xl font-bold group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors duration-300">CSV to JSON Converter</h3>
+                        </div>
+                        <p class="text-xs text-teal-600 dark:text-teal-400 font-medium mb-2">Transform CSV data into structured JSON format</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-6 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300">Convert comma-separated values to JSON with customizable options.</p>
+                        
+                        <a href="tools/csv-to-json.html" class="w-full bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-600 dark:to-indigo-700 text-white py-3 rounded-md hover:shadow-lg shadow-md transition-all hover:from-blue-400 hover:to-indigo-500 dark:hover:from-blue-500 dark:hover:to-indigo-600 transform hover:scale-[1.02] flex items-center justify-center font-medium">
+                            <i class="fas fa-external-link-alt mr-2"></i> Use this Tool
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Password Generator (Coming Soon) -->
+                <div class="tool-card bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-lg shadow-depth dark:shadow-depth-dark overflow-hidden transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group hover:ring-2 hover:ring-purple-300 dark:hover:ring-purple-700" data-category="generators">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-purple-100 dark:bg-purple-900 p-2 rounded-full mr-3 group-hover:bg-purple-200 dark:group-hover:bg-purple-800 transition-all duration-300 group-hover:scale-110">
+                                <i class="fas fa-key text-purple-600 dark:text-purple-400 group-hover:rotate-12 transition-transform duration-300"></i>
+                            </div>
+                            <h3 class="text-xl font-bold group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300">Password Generator</h3>
+                        </div>
+                        <p class="text-xs text-purple-600 dark:text-purple-400 font-medium mb-2">Create strong, secure passwords with custom options</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-6 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300">Generate secure passwords with custom length and character sets.</p>
+                        
+                        <div class="w-full bg-gradient-to-r from-gray-300 to-gray-400 dark:from-gray-600 dark:to-gray-700 text-white py-3 rounded-md flex items-center justify-center font-medium opacity-70 cursor-not-allowed">
+                            <span class="flex items-center">
+                                <i class="fas fa-clock mr-2"></i> Coming Soon
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- CSS Minifier (Coming Soon) -->
+                <div class="tool-card bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-lg shadow-depth dark:shadow-depth-dark overflow-hidden transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group hover:ring-2 hover:ring-green-300 dark:hover:ring-green-700" data-category="formatters">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-green-100 dark:bg-green-900 p-2 rounded-full mr-3 group-hover:bg-green-200 dark:group-hover:bg-green-800 transition-all duration-300 group-hover:scale-110">
+                                <i class="fas fa-file-code text-green-600 dark:text-green-400 group-hover:rotate-12 transition-transform duration-300"></i>
+                            </div>
+                            <h3 class="text-xl font-bold group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors duration-300">CSS Minifier</h3>
+                        </div>
+                        <p class="text-xs text-green-600 dark:text-green-400 font-medium mb-2">Compress your CSS code to reduce file size</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-6 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300">Minimize CSS files to improve web page loading speed.</p>
+                        
+                        <div class="w-full bg-gradient-to-r from-gray-300 to-gray-400 dark:from-gray-600 dark:to-gray-700 text-white py-3 rounded-md flex items-center justify-center font-medium opacity-70 cursor-not-allowed">
+                            <span class="flex items-center">
+                                <i class="fas fa-clock mr-2"></i> Coming Soon
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timestamp Converter (Coming Soon) -->
+                <div class="tool-card bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-lg shadow-depth dark:shadow-depth-dark overflow-hidden transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group hover:ring-2 hover:ring-indigo-300 dark:hover:ring-indigo-700" data-category="converters">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-indigo-100 dark:bg-indigo-900 p-2 rounded-full mr-3 group-hover:bg-indigo-200 dark:group-hover:bg-indigo-800 transition-all duration-300 group-hover:scale-110">
+                                <i class="fas fa-clock text-indigo-600 dark:text-indigo-400 group-hover:rotate-12 transition-transform duration-300"></i>
+                            </div>
+                            <h3 class="text-xl font-bold group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors duration-300">Timestamp Converter</h3>
+                        </div>
+                        <p class="text-xs text-indigo-600 dark:text-indigo-400 font-medium mb-2">Convert between Unix timestamps and human-readable dates</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-6 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300">Convert between Unix timestamps and human-readable date formats.</p>
+                        
+                        <div class="w-full bg-gradient-to-r from-gray-300 to-gray-400 dark:from-gray-600 dark:to-gray-700 text-white py-3 rounded-md flex items-center justify-center font-medium opacity-70 cursor-not-allowed">
+                            <span class="flex items-center">
+                                <i class="fas fa-clock mr-2"></i> Coming Soon
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- UUID Generator (Coming Soon) -->
+                <div class="tool-card bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-lg shadow-depth dark:shadow-depth-dark overflow-hidden transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group hover:ring-2 hover:ring-blue-300 dark:hover:ring-blue-700" data-category="generators">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-blue-100 dark:bg-blue-900 p-2 rounded-full mr-3 group-hover:bg-blue-200 dark:group-hover:bg-blue-800 transition-all duration-300 group-hover:scale-110">
+                                <i class="fas fa-fingerprint text-blue-600 dark:text-blue-400 group-hover:rotate-12 transition-transform duration-300"></i>
+                            </div>
+                            <h3 class="text-xl font-bold group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">UUID Generator</h3>
+                        </div>
+                        <p class="text-xs text-blue-600 dark:text-blue-400 font-medium mb-2">Generate unique identifiers for database records and more</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-6 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300">Create UUID/GUID identifiers for database records, API keys, and more.</p>
+                        
+                        <div class="w-full bg-gradient-to-r from-gray-300 to-gray-400 dark:from-gray-600 dark:to-gray-700 text-white py-3 rounded-md flex items-center justify-center font-medium opacity-70 cursor-not-allowed">
+                            <span class="flex items-center">
+                                <i class="fas fa-clock mr-2"></i> Coming Soon
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Text Diff Tool (Coming Soon) -->
+                <div class="tool-card bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-lg shadow-depth dark:shadow-depth-dark overflow-hidden transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group hover:ring-2 hover:ring-yellow-300 dark:hover:ring-yellow-700" data-category="text">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-yellow-100 dark:bg-yellow-900 p-2 rounded-full mr-3 group-hover:bg-yellow-200 dark:group-hover:bg-yellow-800 transition-all duration-300 group-hover:scale-110">
+                                <i class="fas fa-code-compare text-yellow-600 dark:text-yellow-400 group-hover:rotate-12 transition-transform duration-300"></i>
+                            </div>
+                            <h3 class="text-xl font-bold group-hover:text-yellow-600 dark:group-hover:text-yellow-400 transition-colors duration-300">Text Diff Tool</h3>
+                        </div>
+                        <p class="text-xs text-yellow-600 dark:text-yellow-400 font-medium mb-2">Compare two text fragments and highlight differences</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-6 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300">Visualize differences between text fragments with side-by-side comparison.</p>
+                        
+                        <div class="w-full bg-gradient-to-r from-gray-300 to-gray-400 dark:from-gray-600 dark:to-gray-700 text-white py-3 rounded-md flex items-center justify-center font-medium opacity-70 cursor-not-allowed">
+                            <span class="flex items-center">
+                                <i class="fas fa-clock mr-2"></i> Coming Soon
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Regex Tester (Coming Soon) -->
+                <div class="tool-card bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-lg shadow-depth dark:shadow-depth-dark overflow-hidden transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group hover:ring-2 hover:ring-red-300 dark:hover:ring-red-700" data-category="development">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-red-100 dark:bg-red-900 p-2 rounded-full mr-3 group-hover:bg-red-200 dark:group-hover:bg-red-800 transition-all duration-300 group-hover:scale-110">
+                                <i class="fas fa-magnifying-glass-dollar text-red-600 dark:text-red-400 group-hover:rotate-12 transition-transform duration-300"></i>
+                            </div>
+                            <h3 class="text-xl font-bold group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors duration-300">Regex Tester</h3>
+                        </div>
+                        <p class="text-xs text-red-600 dark:text-red-400 font-medium mb-2">Build, test, and debug regular expressions</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-6 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300">Interactive tool for building and testing regular expression patterns.</p>
+                        
+                        <div class="w-full bg-gradient-to-r from-gray-300 to-gray-400 dark:from-gray-600 dark:to-gray-700 text-white py-3 rounded-md flex items-center justify-center font-medium opacity-70 cursor-not-allowed">
+                            <span class="flex items-center">
+                                <i class="fas fa-clock mr-2"></i> Coming Soon
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HTML Entity Encoder/Decoder -->
+                <div class="tool-card bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-lg shadow-depth dark:shadow-depth-dark overflow-hidden transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group hover:ring-2 hover:ring-orange-300 dark:hover:ring-orange-700" data-category="encoders">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-orange-100 dark:bg-orange-900 p-2 rounded-full mr-3 group-hover:bg-orange-200 dark:group-hover:bg-orange-800 transition-all duration-300 group-hover:scale-110">
+                                <i class="fas fa-code text-orange-600 dark:text-orange-400 group-hover:rotate-12 transition-transform duration-300"></i>
+                            </div>
+                            <h3 class="text-xl font-bold group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors duration-300">HTML Entity Encoder</h3>
+                        </div>
+                        <p class="text-xs text-orange-600 dark:text-orange-400 font-medium mb-2">Convert special characters to HTML entities and vice versa</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-6 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300">Encode special characters for safe HTML display and decode HTML entities.</p>
+                        
+                        <a href="tools/html-entity-encoder.html" class="w-full bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-600 dark:to-indigo-700 text-white py-3 rounded-md hover:shadow-lg shadow-md transition-all hover:from-blue-400 hover:to-indigo-500 dark:hover:from-blue-500 dark:hover:to-indigo-600 transform hover:scale-[1.02] flex items-center justify-center font-medium">
+                            <i class="fas fa-external-link-alt mr-2"></i> Use this Tool
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Text Case Converter -->
+                <div class="tool-card bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-lg shadow-depth dark:shadow-depth-dark overflow-hidden transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group hover:ring-2 hover:ring-teal-300 dark:hover:ring-teal-700" data-category="text">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-teal-100 dark:bg-teal-900 p-2 rounded-full mr-3 group-hover:bg-teal-200 dark:group-hover:bg-teal-800 transition-all duration-300 group-hover:scale-110">
+                                <i class="fas fa-font text-teal-600 dark:text-teal-400 group-hover:rotate-12 transition-transform duration-300"></i>
+                            </div>
+                            <h3 class="text-xl font-bold group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors duration-300">Text Case Converter</h3>
+                        </div>
+                        <p class="text-xs text-teal-600 dark:text-teal-400 font-medium mb-2">Convert text between various case formats</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-6 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300">Transform text between uppercase, lowercase, title case, camel case, and more.</p>
+                        
+                        <a href="tools/text-case-converter.html" class="w-full bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-600 dark:to-indigo-700 text-white py-3 rounded-md hover:shadow-lg shadow-md transition-all hover:from-blue-400 hover:to-indigo-500 dark:hover:from-blue-500 dark:hover:to-indigo-600 transform hover:scale-[1.02] flex items-center justify-center font-medium">
+                            <i class="fas fa-external-link-alt mr-2"></i> Use this Tool
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Lorem Ipsum Generator -->
+                <div class="tool-card bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-lg shadow-depth dark:shadow-depth-dark overflow-hidden transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group hover:ring-2 hover:ring-pink-300 dark:hover:ring-pink-700" data-category="generators text">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-pink-100 dark:bg-pink-900 p-2 rounded-full mr-3 group-hover:bg-pink-200 dark:group-hover:bg-pink-800 transition-all duration-300 group-hover:scale-110">
+                                <i class="fas fa-align-left text-pink-600 dark:text-pink-400 group-hover:rotate-12 transition-transform duration-300"></i>
+                            </div>
+                            <h3 class="text-xl font-bold group-hover:text-pink-600 dark:group-hover:text-pink-400 transition-colors duration-300">Lorem Ipsum Generator</h3>
+                        </div>
+                        <p class="text-xs text-pink-600 dark:text-pink-400 font-medium mb-2">Generate placeholder text for design mockups</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-6 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300">Create customizable placeholder text for design mockups and layouts.</p>
+                        
+                        <a href="tools/lorem-ipsum-generator.html" class="w-full bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-600 dark:to-indigo-700 text-white py-3 rounded-md hover:shadow-lg shadow-md transition-all hover:from-blue-400 hover:to-indigo-500 dark:hover:from-blue-500 dark:hover:to-indigo-600 transform hover:scale-[1.02] flex items-center justify-center font-medium">
+                            <i class="fas fa-external-link-alt mr-2"></i> Use this Tool
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Suggest a Tool Section -->
+    <section class="py-16 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">Can't Find the Tool You Need?</h2>
+            <p class="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-3xl mx-auto">We're constantly adding new developer utilities to make your workflow even more efficient. Let us know what tool you'd like to see next!</p>
+            
+            <a href="index.html#contact" class="inline-block bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-bold px-8 py-4 rounded-xl hover:from-blue-400 hover:to-indigo-500 transform hover:-translate-y-2 hover:shadow-xl transition-all duration-300 shadow-lg">
+                <span class="flex items-center justify-center">
+                    <i class="fas fa-lightbulb mr-2"></i> Suggest a Tool
+                </span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-indigo-900 to-purple-900 dark:from-indigo-950 dark:to-purple-950 text-gray-200 py-8 shadow-depth-dark border-t-4 border-indigo-500">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+                <div class="mb-4 md:mb-0">
+                    <h2 class="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">DevToolkit</h2>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="#" class="hover:text-white transition-colors text-xl"><i class="fab fa-github"></i></a>
+                    <a href="#" class="hover:text-white transition-colors text-xl"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="hover:text-white transition-colors text-xl"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="hover:text-white transition-colors text-xl"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="hover:text-white transition-colors text-xl"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="hover:text-white transition-colors text-xl"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="hover:text-white transition-colors text-xl"><i class="fab fa-discord"></i></a>
+                </div>
+            </div>
+            
+            <!-- Section Links -->
+            <div class="grid grid-cols-2 md:grid-cols-6 gap-4 pt-4 border-t border-gray-700">
+                <a href="index.html#home" class="text-gray-400 hover:text-white transition-colors flex items-center">
+                    <i class="fas fa-home mr-2"></i>Home
+                </a>
+                <a href="tools.html" class="text-gray-400 hover:text-white transition-colors flex items-center">
+                    <i class="fas fa-tools mr-2"></i>Tools
+                </a>
+                <a href="index.html#about" class="text-gray-400 hover:text-white transition-colors flex items-center">
+                    <i class="fas fa-info-circle mr-2"></i>About
+                </a>
+                <a href="index.html#testimonials" class="text-gray-400 hover:text-white transition-colors flex items-center">
+                    <i class="fas fa-quote-right mr-2"></i>Testimonials
+                </a>
+                <a href="index.html#faq" class="text-gray-400 hover:text-white transition-colors flex items-center">
+                    <i class="fas fa-question-circle mr-2"></i>FAQ
+                </a>
+                <a href="index.html#contact" class="text-gray-400 hover:text-white transition-colors flex items-center">
+                    <i class="fas fa-envelope mr-2"></i>Contact
+                </a>
+            </div>
+
+            <!-- Copyright Information -->
+            <div class="mt-8 pt-4 border-t border-gray-700 text-gray-400 text-sm text-center">
+                <p class="mb-2">© 2024-2025 DevToolkit. All rights reserved. All tools and utilities are provided "as is" without warranty of any kind.</p>
+                <div class="flex flex-wrap justify-center gap-4 mt-2">
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">Terms of Service</a>
+                    <span class="hidden md:inline">•</span>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
+                    <span class="hidden md:inline">•</span>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">Cookie Policy</a>
+                    <span class="hidden md:inline">•</span>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">License</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme toggling functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check for saved theme preference or respect OS preference
+            if (localStorage.getItem('theme') === 'dark' || 
+                (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+            
+            // Theme toggle buttons
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+            
+            function toggleTheme() {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                }
+            }
+            
+            themeToggle.addEventListener('click', toggleTheme);
+            themeToggleMobile.addEventListener('click', toggleTheme);
+            
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const hamburgerBars = document.querySelectorAll('.hamburger-bar');
+            
+            mobileMenuButton.addEventListener('click', function() {
+                // Toggle menu visibility
+                mobileMenu.classList.toggle('hidden');
+                
+                // Animate hamburger icon
+                if (mobileMenu.classList.contains('hidden')) {
+                    hamburgerBars[0].style.top = '25%';
+                    hamburgerBars[0].style.transform = 'rotate(0)';
+                    hamburgerBars[1].style.top = '50%';
+                    hamburgerBars[1].style.opacity = '1';
+                    hamburgerBars[2].style.top = '75%';
+                    hamburgerBars[2].style.transform = 'rotate(0)';
+                } else {
+                    hamburgerBars[0].style.top = '50%';
+                    hamburgerBars[0].style.transform = 'rotate(45deg)';
+                    hamburgerBars[1].style.opacity = '0';
+                    hamburgerBars[2].style.top = '50%';
+                    hamburgerBars[2].style.transform = 'rotate(-45deg)';
+                }
+            });
+            
+            // FAQ accordion functionality (if present on page)
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const answer = this.nextElementSibling;
+                    const icon = this.querySelector('i');
+                    
+                    // Toggle visibility
+                    answer.classList.toggle('py-4');
+                    
+                    // Animate height
+                    if (answer.style.maxHeight) {
+                        answer.style.maxHeight = null;
+                        icon.style.transform = 'rotate(0)';
+                    } else {
+                        answer.style.maxHeight = answer.scrollHeight + 'px';
+                        icon.style.transform = 'rotate(180deg)';
+                    }
+                });
+            });
+            
+            // Tool filtering functionality
+            const toolCards = document.querySelectorAll('.tool-card');
+            const categoryFilters = document.querySelectorAll('.category-filter');
+            const searchInput = document.getElementById('tools-search');
+            const noResults = document.getElementById('no-results');
+            
+            // Function to filter tools based on category and search term
+            function filterTools() {
+                const activeCategory = document.querySelector('.category-filter.active').dataset.category;
+                const searchTerm = searchInput.value.toLowerCase();
+                
+                let visibleCount = 0;
+                
+                toolCards.forEach(card => {
+                    const cardCategories = card.dataset.category.split(' ');
+                    const cardTitle = card.querySelector('h3').textContent.toLowerCase();
+                    const cardDesc = card.querySelector('p:nth-of-type(2)').textContent.toLowerCase();
+                    
+                    // Check if card matches both category and search criteria
+                    const matchesCategory = activeCategory === 'all' || cardCategories.includes(activeCategory);
+                    const matchesSearch = searchTerm === '' || 
+                                        cardTitle.includes(searchTerm) || 
+                                        cardDesc.includes(searchTerm);
+                    
+                    if (matchesCategory && matchesSearch) {
+                        card.style.display = 'block';
+                        visibleCount++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                
+                // Show/hide no results message
+                if (visibleCount === 0) {
+                    noResults.classList.remove('hidden');
+                } else {
+                    noResults.classList.add('hidden');
+                }
+            }
+            
+            // Category filter click handlers
+            categoryFilters.forEach(filter => {
+                filter.addEventListener('click', function() {
+                    // Update active state
+                    categoryFilters.forEach(f => {
+                        f.classList.remove('active');
+                        f.classList.remove('bg-blue-600');
+                        f.classList.add('bg-gray-200');
+                        f.classList.add('dark:bg-gray-700');
+                    });
+                    
+                    this.classList.add('active');
+                    this.classList.add('bg-blue-600');
+                    this.classList.remove('bg-gray-200');
+                    this.classList.remove('dark:bg-gray-700');
+                    
+                    // Filter tools
+                    filterTools();
+                });
+            });
+            
+            // Search input handler
+            searchInput.addEventListener('input', filterTools);
+            
+            // Initialize with default filter (all)
+            filterTools();
+        });
+    </script>
+</body>
+</html> 

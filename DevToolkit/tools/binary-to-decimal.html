@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binary to Decimal Converter - DevToolkit</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    boxShadow: {
+                        'depth': '0 10px 30px -10px rgba(0, 0, 0, 0.1)',
+                        'depth-dark': '0 10px 30px -10px rgba(0, 0, 0, 0.3)'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 shadow-depth dark:shadow-depth-dark sticky top-0 z-50 transition-all">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="../images/image.png" alt="DevToolkit Logo" class="h-8 w-8 mr-3">
+                <div>
+                    <h1 class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">DevToolkit</h1>
+                </div>
+            </div>
+            
+            <!-- Mobile menu button -->
+            <button id="mobile-menu-button" class="md:hidden flex items-center justify-center p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <div class="hamburger-icon w-6 h-6 relative">
+                    <span class="hamburger-bar absolute h-0.5 w-full bg-gray-600 dark:bg-gray-300 rounded-sm transform transition duration-300"></span>
+                    <span class="hamburger-bar absolute h-0.5 w-full bg-gray-600 dark:bg-gray-300 rounded-sm transform transition duration-300"></span>
+                    <span class="hamburger-bar absolute h-0.5 w-full bg-gray-600 dark:bg-gray-300 rounded-sm transform transition duration-300"></span>
+                </div>
+            </button>
+            
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center space-x-6">
+                <a href="../index.html#home" class="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-home mr-2"></i>Home</a>
+                <a href="../tools.html" class="font-medium text-blue-600 dark:text-blue-400 transition-colors flex items-center"><i class="fas fa-tools mr-2"></i>Tools</a>
+                <a href="../index.html#about" class="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-info-circle mr-2"></i>About</a>
+                <a href="../index.html#faq" class="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-question-circle mr-2"></i>FAQ</a>
+                <a href="../index.html#contact" class="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-envelope mr-2"></i>Contact</a>
+                <!-- Theme toggle button -->
+                <button id="theme-toggle" class="p-2 rounded-full bg-gradient-to-r from-gray-100 to-white dark:from-gray-800 dark:to-gray-700 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
+                    <i class="fas fa-sun text-yellow-500 dark:hidden"></i>
+                    <i class="fas fa-moon text-blue-300 hidden dark:block"></i>
+                </button>
+            </nav>
+        </div>
+        <!-- Mobile Navigation -->
+        <nav id="mobile-menu" class="hidden px-4 py-3 bg-white dark:bg-gray-800 border-t dark:border-gray-700 md:hidden shadow-lg transform transition-all duration-300">
+            <a href="../index.html#home" class="block py-3 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-home mr-2"></i>Home</a>
+            <a href="../tools.html" class="block py-3 text-blue-600 dark:text-blue-400 transition-colors flex items-center"><i class="fas fa-tools mr-2"></i>Tools</a>
+            <a href="../index.html#about" class="block py-3 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-info-circle mr-2"></i>About</a>
+            <a href="../index.html#faq" class="block py-3 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-question-circle mr-2"></i>FAQ</a>
+            <a href="../index.html#contact" class="block py-3 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-envelope mr-2"></i>Contact</a>
+            <!-- Theme toggle in mobile menu -->
+            <div class="flex items-center py-3">
+                <span class="flex-grow font-medium"><i class="fas fa-adjust mr-2"></i>Theme</span>
+                <button id="theme-toggle-mobile" class="p-2 rounded-full bg-gradient-to-r from-gray-100 to-white dark:from-gray-800 dark:to-gray-700 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
+                    <i class="fas fa-sun text-yellow-500 dark:hidden"></i>
+                    <i class="fas fa-moon text-blue-300 hidden dark:block"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Tool Header -->
+    <section class="py-12 bg-gradient-to-br from-blue-600 via-indigo-700 to-purple-800 dark:from-blue-800 dark:via-indigo-900 dark:to-purple-900 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <div class="inline-flex items-center justify-center bg-white/10 backdrop-blur-sm p-3 rounded-full mb-6">
+                <i class="fas fa-exchange-alt text-3xl text-blue-200"></i>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4">
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-200">Binary ⟷ Decimal Converter</span>
+            </h1>
+            <p class="text-xl text-blue-100 mb-6 max-w-3xl mx-auto">Convert between binary (base-2) and decimal (base-10) numbers instantly with this bidirectional tool.</p>
+            
+            <div class="flex flex-wrap justify-center gap-4 text-sm">
+                <div class="bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 flex items-center">
+                    <i class="fas fa-lightbulb text-yellow-300 mr-2"></i>
+                    Binary uses only 0s and 1s
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 flex items-center">
+                    <i class="fas fa-calculator text-green-300 mr-2"></i>
+                    Decimal uses digits 0-9
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 flex items-center">
+                    <i class="fas fa-exchange-alt text-purple-300 mr-2"></i>
+                    Bidirectional conversion
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Conversion Tool -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <!-- Main Converter Card -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-depth dark:shadow-depth-dark overflow-hidden mb-12">
+                    <!-- Tabs for switching conversion direction -->
+                    <div class="grid grid-cols-2 border-b border-gray-200 dark:border-gray-700">
+                        <button id="bin-to-dec-tab" class="text-center py-4 font-medium transition-colors active-tab bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 text-blue-600 dark:text-blue-400">
+                            <i class="fas fa-arrow-right mr-2"></i>Binary to Decimal
+                        </button>
+                        <button id="dec-to-bin-tab" class="text-center py-4 font-medium transition-colors text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700/50">
+                            <i class="fas fa-arrow-left mr-2"></i>Decimal to Binary
+                        </button>
+                    </div>
+
+                    <!-- Binary to Decimal Converter (initially visible) -->
+                    <div id="bin-to-dec-converter" class="converter-panel">
+                        <div class="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+                            <h2 class="text-xl font-bold flex items-center">
+                                <i class="fas fa-exchange-alt text-blue-600 dark:text-blue-400 mr-3"></i>
+                                Binary to Decimal Converter
+                            </h2>
+                        </div>
+                        
+                        <div class="p-6">
+                            <!-- Binary Input -->
+                            <div class="mb-6">
+                                <label for="binary-input" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Enter Binary Number (0s and 1s only)</label>
+                                <div class="relative">
+                                    <input 
+                                        type="text" 
+                                        id="binary-input" 
+                                        placeholder="e.g. 10101" 
+                                        class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                                    >
+                                    <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+                                        <i class="fas fa-calculator text-gray-400 dark:text-gray-500"></i>
+                                    </div>
+                                </div>
+                                <p id="binary-error" class="text-red-500 text-sm mt-2 hidden">Please enter a valid binary number (only 0s and 1s).</p>
+                            </div>
+                            
+                            <!-- Convert Button -->
+                            <div class="mb-6 flex justify-center">
+                                <button 
+                                    id="bin-to-dec-btn"
+                                    class="px-6 py-3 bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-medium rounded-lg transition-all transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 shadow-md"
+                                >
+                                    <i class="fas fa-arrow-down mr-2"></i> Convert to Decimal
+                                </button>
+                            </div>
+                            
+                            <!-- Result Box -->
+                            <div class="mb-6">
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Decimal Result</label>
+                                <div class="flex">
+                                    <input 
+                                        type="text" 
+                                        id="decimal-result" 
+                                        readonly 
+                                        class="w-full px-4 py-3 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-800 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                                        placeholder="Decimal value will appear here"
+                                    >
+                                    <button 
+                                        id="copy-dec-result" 
+                                        class="ml-2 px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                                        title="Copy to clipboard"
+                                    >
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                                <p id="copy-dec-message" class="text-green-500 text-sm mt-2 hidden">Copied to clipboard!</p>
+                            </div>
+                            
+                            <div class="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-100 dark:border-blue-800 text-sm text-gray-600 dark:text-gray-400">
+                                <div class="flex items-start">
+                                    <i class="fas fa-info-circle text-blue-500 mt-1 mr-3"></i>
+                                    <div>
+                                        <p class="font-medium text-gray-700 dark:text-gray-300 mb-1">How it works:</p>
+                                        <p>Binary numbers use only two digits (0 and 1) and are read from right to left. Each position represents a power of 2, starting from 2⁰ (1) on the rightmost digit.</p>
+                                        <p class="mt-2">For example, binary 101 equals:</p>
+                                        <p class="mt-1 font-medium">1 × 2² + 0 × 2¹ + 1 × 2⁰ = 4 + 0 + 1 = 5 in decimal</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Decimal to Binary Converter (initially hidden) -->
+                    <div id="dec-to-bin-converter" class="converter-panel hidden">
+                        <div class="bg-gradient-to-r from-green-50 to-teal-50 dark:from-green-900/20 dark:to-teal-900/20 px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+                            <h2 class="text-xl font-bold flex items-center">
+                                <i class="fas fa-exchange-alt text-green-600 dark:text-green-400 mr-3"></i>
+                                Decimal to Binary Converter
+                            </h2>
+                        </div>
+                        
+                        <div class="p-6">
+                            <!-- Decimal Input -->
+                            <div class="mb-6">
+                                <label for="decimal-input" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Enter Decimal Number (0-9 only)</label>
+                                <div class="relative">
+                                    <input 
+                                        type="text" 
+                                        id="decimal-input" 
+                                        placeholder="e.g. 42" 
+                                        class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors"
+                                    >
+                                    <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+                                        <i class="fas fa-calculator text-gray-400 dark:text-gray-500"></i>
+                                    </div>
+                                </div>
+                                <p id="decimal-error" class="text-red-500 text-sm mt-2 hidden">Please enter a valid decimal number.</p>
+                            </div>
+                            
+                            <!-- Convert Button -->
+                            <div class="mb-6 flex justify-center">
+                                <button 
+                                    id="dec-to-bin-btn"
+                                    class="px-6 py-3 bg-gradient-to-r from-green-500 to-teal-600 hover:from-green-600 hover:to-teal-700 text-white font-medium rounded-lg transition-all transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 shadow-md"
+                                >
+                                    <i class="fas fa-arrow-down mr-2"></i> Convert to Binary
+                                </button>
+                            </div>
+                            
+                            <!-- Result Box -->
+                            <div class="mb-6">
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Binary Result</label>
+                                <div class="flex">
+                                    <input 
+                                        type="text" 
+                                        id="binary-result" 
+                                        readonly 
+                                        class="w-full px-4 py-3 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-800 dark:text-white focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors"
+                                        placeholder="Binary value will appear here"
+                                    >
+                                    <button 
+                                        id="copy-bin-result" 
+                                        class="ml-2 px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-green-500 transition-all"
+                                        title="Copy to clipboard"
+                                    >
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                                <p id="copy-bin-message" class="text-green-500 text-sm mt-2 hidden">Copied to clipboard!</p>
+                            </div>
+                            
+                            <div class="mt-6 p-4 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-100 dark:border-green-800 text-sm text-gray-600 dark:text-gray-400">
+                                <div class="flex items-start">
+                                    <i class="fas fa-info-circle text-green-500 mt-1 mr-3"></i>
+                                    <div>
+                                        <p class="font-medium text-gray-700 dark:text-gray-300 mb-1">How it works:</p>
+                                        <p>To convert decimal to binary, we divide the decimal number by 2 repeatedly and record the remainders in reverse order.</p>
+                                        <p class="mt-2">For example, to convert decimal 10 to binary:</p>
+                                        <p class="mt-1 font-medium">10 ÷ 2 = 5 remainder 0<br>5 ÷ 2 = 2 remainder 1<br>2 ÷ 2 = 1 remainder 0<br>1 ÷ 2 = 0 remainder 1</p>
+                                        <p class="mt-1 font-medium">Reading remainders from bottom to top: 1010</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Additional Information Cards -->
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Examples Card -->
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-depth dark:shadow-depth-dark overflow-hidden">
+                        <div class="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+                            <h3 class="text-lg font-bold flex items-center">
+                                <i class="fas fa-list-ol text-green-600 dark:text-green-400 mr-3"></i>
+                                Examples
+                            </h3>
+                        </div>
+                        
+                        <div class="p-6">
+                            <div class="space-y-4">
+                                <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-2 border-b border-gray-200 dark:border-gray-700">
+                                    <div class="font-medium">Binary: <span class="text-blue-600 dark:text-blue-400">1010</span></div>
+                                    <div class="flex items-center mt-1 sm:mt-0">
+                                        <i class="fas fa-equals text-gray-500 mr-2"></i>
+                                        <span>Decimal: <span class="text-green-600 dark:text-green-400">10</span></span>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-2 border-b border-gray-200 dark:border-gray-700">
+                                    <div class="font-medium">Binary: <span class="text-blue-600 dark:text-blue-400">11111111</span></div>
+                                    <div class="flex items-center mt-1 sm:mt-0">
+                                        <i class="fas fa-equals text-gray-500 mr-2"></i>
+                                        <span>Decimal: <span class="text-green-600 dark:text-green-400">255</span></span>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-2 border-b border-gray-200 dark:border-gray-700">
+                                    <div class="font-medium">Binary: <span class="text-blue-600 dark:text-blue-400">10000000</span></div>
+                                    <div class="flex items-center mt-1 sm:mt-0">
+                                        <i class="fas fa-equals text-gray-500 mr-2"></i>
+                                        <span>Decimal: <span class="text-green-600 dark:text-green-400">128</span></span>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col sm:flex-row sm:items-center justify-between">
+                                    <div class="font-medium">Binary: <span class="text-blue-600 dark:text-blue-400">101010</span></div>
+                                    <div class="flex items-center mt-1 sm:mt-0">
+                                        <i class="fas fa-equals text-gray-500 mr-2"></i>
+                                        <span>Decimal: <span class="text-green-600 dark:text-green-400">42</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Common Uses Card -->
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-depth dark:shadow-depth-dark overflow-hidden">
+                        <div class="bg-gradient-to-r from-purple-50 to-fuchsia-50 dark:from-purple-900/20 dark:to-fuchsia-900/20 px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+                            <h3 class="text-lg font-bold flex items-center">
+                                <i class="fas fa-laptop-code text-purple-600 dark:text-purple-400 mr-3"></i>
+                                Common Uses
+                            </h3>
+                        </div>
+                        
+                        <div class="p-6">
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <i class="fas fa-microchip text-purple-600 dark:text-purple-400 mt-1 mr-3"></i>
+                                    <span>Computer hardware and low-level programming</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-network-wired text-purple-600 dark:text-purple-400 mt-1 mr-3"></i>
+                                    <span>Network IP addresses and subnet masks</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-lock text-purple-600 dark:text-purple-400 mt-1 mr-3"></i>
+                                    <span>Cryptography and security algorithms</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-file-code text-purple-600 dark:text-purple-400 mt-1 mr-3"></i>
+                                    <span>Digital logic circuits and boolean operations</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-code text-purple-600 dark:text-purple-400 mt-1 mr-3"></i>
+                                    <span>Debugging and understanding computer memory</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Related Tools Section -->
+    <section class="py-12 bg-gray-50 dark:bg-gray-800/50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl font-bold text-center mb-8 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">Related Tools</h2>
+            
+            <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                <!-- Decimal to Binary Tool -->
+                <a href="decimal-to-binary.html" class="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col h-full overflow-hidden group">
+                    <div class="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 px-4 py-3 border-b border-gray-200 dark:border-gray-700">
+                        <h3 class="font-bold flex items-center">
+                            <i class="fas fa-exchange-alt text-blue-600 dark:text-blue-400 mr-2 group-hover:rotate-12 transition-transform duration-300"></i>
+                            Decimal to Binary Converter
+                        </h3>
+                    </div>
+                    <div class="p-4 flex-grow">
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Convert decimal numbers (base-10) to binary (base-2) format.</p>
+                    </div>
+                </a>
+                
+                <!-- Hex Color Generator -->
+                <a href="hex-color-generator.html" class="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col h-full overflow-hidden group">
+                    <div class="bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 px-4 py-3 border-b border-gray-200 dark:border-gray-700">
+                        <h3 class="font-bold flex items-center">
+                            <i class="fas fa-palette text-purple-600 dark:text-purple-400 mr-2 group-hover:rotate-12 transition-transform duration-300"></i>
+                            Hex Color Generator
+                        </h3>
+                    </div>
+                    <div class="p-4 flex-grow">
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Generate and preview hex color codes for web design.</p>
+                    </div>
+                </a>
+                
+                <!-- Base64 Encoder/Decoder -->
+                <a href="base64-encoder-decoder.html" class="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col h-full overflow-hidden group">
+                    <div class="bg-gradient-to-r from-yellow-50 to-amber-50 dark:from-yellow-900/20 dark:to-amber-900/20 px-4 py-3 border-b border-gray-200 dark:border-gray-700">
+                        <h3 class="font-bold flex items-center">
+                            <i class="fas fa-lock text-yellow-600 dark:text-yellow-400 mr-2 group-hover:rotate-12 transition-transform duration-300"></i>
+                            Base64 Encoder/Decoder
+                        </h3>
+                    </div>
+                    <div class="p-4 flex-grow">
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Convert text to and from Base64 encoding format.</p>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="text-center mt-10">
+                <a href="../tools.html" class="inline-block px-6 py-3 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-medium rounded-lg hover:from-blue-600 hover:to-indigo-700 transition-all transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 shadow-md">
+                    <i class="fas fa-th-large mr-2"></i> View All Tools
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-indigo-900 to-purple-900 dark:from-indigo-950 dark:to-purple-950 text-gray-200 py-8 shadow-depth-dark border-t-4 border-indigo-500">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+                <div class="mb-4 md:mb-0">
+                    <h2 class="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">DevToolkit</h2>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="#" class="hover:text-white transition-colors text-xl"><i class="fab fa-github"></i></a>
+                    <a href="#" class="hover:text-white transition-colors text-xl"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="hover:text-white transition-colors text-xl"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="hover:text-white transition-colors text-xl"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="hover:text-white transition-colors text-xl"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            
+            <!-- Section Links -->
+            <div class="grid grid-cols-2 md:grid-cols-6 gap-4 pt-4 border-t border-gray-700">
+                <a href="../index.html#home" class="text-gray-400 hover:text-white transition-colors flex items-center">
+                    <i class="fas fa-home mr-2"></i>Home
+                </a>
+                <a href="../tools.html" class="text-gray-400 hover:text-white transition-colors flex items-center">
+                    <i class="fas fa-tools mr-2"></i>Tools
+                </a>
+                <a href="../index.html#about" class="text-gray-400 hover:text-white transition-colors flex items-center">
+                    <i class="fas fa-info-circle mr-2"></i>About
+                </a>
+                <a href="../index.html#testimonials" class="text-gray-400 hover:text-white transition-colors flex items-center">
+                    <i class="fas fa-quote-right mr-2"></i>Testimonials
+                </a>
+                <a href="../index.html#faq" class="text-gray-400 hover:text-white transition-colors flex items-center">
+                    <i class="fas fa-question-circle mr-2"></i>FAQ
+                </a>
+                <a href="../index.html#contact" class="text-gray-400 hover:text-white transition-colors flex items-center">
+                    <i class="fas fa-envelope mr-2"></i>Contact
+                </a>
+            </div>
+
+            <!-- Copyright Information -->
+            <div class="mt-8 pt-4 border-t border-gray-700 text-gray-400 text-sm text-center">
+                <p class="mb-2">© 2024-2025 DevToolkit. All rights reserved. All tools and utilities are provided "as is" without warranty of any kind.</p>
+                <div class="flex flex-wrap justify-center gap-4 mt-2">
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">Terms of Service</a>
+                    <span class="hidden md:inline">•</span>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
+                    <span class="hidden md:inline">•</span>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme toggling functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check for saved theme preference or respect OS preference
+            if (localStorage.getItem('theme') === 'dark' || 
+                (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+            
+            // Theme toggle buttons
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+            
+            function toggleTheme() {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                }
+            }
+            
+            themeToggle.addEventListener('click', toggleTheme);
+            themeToggleMobile.addEventListener('click', toggleTheme);
+            
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const hamburgerBars = document.querySelectorAll('.hamburger-bar');
+            
+            mobileMenuButton.addEventListener('click', function() {
+                // Toggle menu visibility
+                mobileMenu.classList.toggle('hidden');
+                
+                // Animate hamburger icon
+                if (mobileMenu.classList.contains('hidden')) {
+                    hamburgerBars[0].style.top = '25%';
+                    hamburgerBars[0].style.transform = 'rotate(0)';
+                    hamburgerBars[1].style.top = '50%';
+                    hamburgerBars[1].style.opacity = '1';
+                    hamburgerBars[2].style.top = '75%';
+                    hamburgerBars[2].style.transform = 'rotate(0)';
+                } else {
+                    hamburgerBars[0].style.top = '50%';
+                    hamburgerBars[0].style.transform = 'rotate(45deg)';
+                    hamburgerBars[1].style.opacity = '0';
+                    hamburgerBars[2].style.top = '50%';
+                    hamburgerBars[2].style.transform = 'rotate(-45deg)';
+                }
+            });
+            
+            // Tab switching functionality
+            const binToDecTab = document.getElementById('bin-to-dec-tab');
+            const decToBinTab = document.getElementById('dec-to-bin-tab');
+            const binToDecConverter = document.getElementById('bin-to-dec-converter');
+            const decToBinConverter = document.getElementById('dec-to-bin-converter');
+            
+            binToDecTab.addEventListener('click', function() {
+                // Activate this tab
+                binToDecTab.classList.add('active-tab', 'bg-gradient-to-r', 'from-blue-50', 'to-indigo-50', 'dark:from-blue-900/20', 'dark:to-indigo-900/20', 'text-blue-600', 'dark:text-blue-400');
+                decToBinTab.classList.remove('active-tab', 'bg-gradient-to-r', 'from-green-50', 'to-teal-50', 'dark:from-green-900/20', 'dark:to-teal-900/20', 'text-green-600', 'dark:text-green-400');
+                decToBinTab.classList.add('text-gray-600', 'dark:text-gray-400', 'hover:bg-gray-50', 'dark:hover:bg-gray-700/50');
+                
+                // Show binary to decimal converter
+                binToDecConverter.classList.remove('hidden');
+                decToBinConverter.classList.add('hidden');
+            });
+            
+            decToBinTab.addEventListener('click', function() {
+                // Activate this tab
+                decToBinTab.classList.add('active-tab', 'bg-gradient-to-r', 'from-green-50', 'to-teal-50', 'dark:from-green-900/20', 'dark:to-teal-900/20', 'text-green-600', 'dark:text-green-400');
+                binToDecTab.classList.remove('active-tab', 'bg-gradient-to-r', 'from-blue-50', 'to-indigo-50', 'dark:from-blue-900/20', 'dark:to-indigo-900/20', 'text-blue-600', 'dark:text-blue-400');
+                binToDecTab.classList.add('text-gray-600', 'dark:text-gray-400', 'hover:bg-gray-50', 'dark:hover:bg-gray-700/50');
+                
+                // Show decimal to binary converter
+                decToBinConverter.classList.remove('hidden');
+                binToDecConverter.classList.add('hidden');
+            });
+            
+            // Binary to Decimal Conversion Functionality
+            const binaryInput = document.getElementById('binary-input');
+            const decimalResult = document.getElementById('decimal-result');
+            const binToDecBtn = document.getElementById('bin-to-dec-btn');
+            const binaryError = document.getElementById('binary-error');
+            const copyDecResult = document.getElementById('copy-dec-result');
+            const copyDecMessage = document.getElementById('copy-dec-message');
+            
+            // Function to validate binary input (only 0s and 1s)
+            function validateBinary(input) {
+                return /^[01]+$/.test(input);
+            }
+            
+            // Function to convert binary to decimal
+            function binaryToDecimal(binary) {
+                return parseInt(binary, 2);
+            }
+            
+            // Handle bin to dec conversion button click
+            binToDecBtn.addEventListener('click', function() {
+                const inputValue = binaryInput.value.trim();
+                
+                // Validate input
+                if (!inputValue) {
+                    binaryError.textContent = "Please enter a binary number.";
+                    binaryError.classList.remove('hidden');
+                    decimalResult.value = '';
+                    return;
+                }
+                
+                if (!validateBinary(inputValue)) {
+                    binaryError.textContent = "Please enter a valid binary number (only 0s and 1s).";
+                    binaryError.classList.remove('hidden');
+                    decimalResult.value = '';
+                    return;
+                }
+                
+                // Hide error message if input is valid
+                binaryError.classList.add('hidden');
+                
+                // Convert and display result
+                const result = binaryToDecimal(inputValue);
+                decimalResult.value = result;
+                
+                // Add animation to result
+                decimalResult.classList.add('bg-green-50', 'dark:bg-green-900/20');
+                setTimeout(() => {
+                    decimalResult.classList.remove('bg-green-50', 'dark:bg-green-900/20');
+                }, 500);
+            });
+            
+            // Handle binary input validation as user types
+            binaryInput.addEventListener('input', function() {
+                const inputValue = this.value.trim();
+                
+                if (inputValue && !validateBinary(inputValue)) {
+                    binaryError.textContent = "Please enter a valid binary number (only 0s and 1s).";
+                    binaryError.classList.remove('hidden');
+                } else {
+                    binaryError.classList.add('hidden');
+                }
+            });
+            
+            // Handle Enter key press for binary input
+            binaryInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    binToDecBtn.click();
+                }
+            });
+            
+            // Copy decimal result to clipboard
+            copyDecResult.addEventListener('click', function() {
+                if (!decimalResult.value) return;
+                
+                // Copy the result to clipboard
+                decimalResult.select();
+                document.execCommand('copy');
+                
+                // Show copied message
+                copyDecMessage.classList.remove('hidden');
+                
+                // Hide message after 2 seconds
+                setTimeout(() => {
+                    copyDecMessage.classList.add('hidden');
+                }, 2000);
+            });
+            
+            // Decimal to Binary Conversion Functionality
+            const decimalInput = document.getElementById('decimal-input');
+            const binaryResult = document.getElementById('binary-result');
+            const decToBinBtn = document.getElementById('dec-to-bin-btn');
+            const decimalError = document.getElementById('decimal-error');
+            const copyBinResult = document.getElementById('copy-bin-result');
+            const copyBinMessage = document.getElementById('copy-bin-message');
+            
+            // Function to validate decimal input
+            function validateDecimal(input) {
+                return /^\d+$/.test(input);
+            }
+            
+            // Function to convert decimal to binary
+            function decimalToBinary(decimal) {
+                return parseInt(decimal, 10).toString(2);
+            }
+            
+            // Handle dec to bin conversion button click
+            decToBinBtn.addEventListener('click', function() {
+                const inputValue = decimalInput.value.trim();
+                
+                // Validate input
+                if (!inputValue) {
+                    decimalError.textContent = "Please enter a decimal number.";
+                    decimalError.classList.remove('hidden');
+                    binaryResult.value = '';
+                    return;
+                }
+                
+                if (!validateDecimal(inputValue)) {
+                    decimalError.textContent = "Please enter a valid decimal number (digits only).";
+                    decimalError.classList.remove('hidden');
+                    binaryResult.value = '';
+                    return;
+                }
+                
+                // Hide error message if input is valid
+                decimalError.classList.add('hidden');
+                
+                // Convert and display result
+                const result = decimalToBinary(inputValue);
+                binaryResult.value = result;
+                
+                // Add animation to result
+                binaryResult.classList.add('bg-green-50', 'dark:bg-green-900/20');
+                setTimeout(() => {
+                    binaryResult.classList.remove('bg-green-50', 'dark:bg-green-900/20');
+                }, 500);
+            });
+            
+            // Handle decimal input validation as user types
+            decimalInput.addEventListener('input', function() {
+                const inputValue = this.value.trim();
+                
+                if (inputValue && !validateDecimal(inputValue)) {
+                    decimalError.textContent = "Please enter a valid decimal number (digits only).";
+                    decimalError.classList.remove('hidden');
+                } else {
+                    decimalError.classList.add('hidden');
+                }
+            });
+            
+            // Handle Enter key press for decimal input
+            decimalInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    decToBinBtn.click();
+                }
+            });
+            
+            // Copy binary result to clipboard
+            copyBinResult.addEventListener('click', function() {
+                if (!binaryResult.value) return;
+                
+                // Copy the result to clipboard
+                binaryResult.select();
+                document.execCommand('copy');
+                
+                // Show copied message
+                copyBinMessage.classList.remove('hidden');
+                
+                // Hide message after 2 seconds
+                setTimeout(() => {
+                    copyBinMessage.classList.add('hidden');
+                }, 2000);
+            });
+        });
+    </script>
+</body>
+</html> 

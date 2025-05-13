@@ -29,7 +29,7 @@ searchInput.addEventListener('keypress', (e) => {
 
 // Initialize with a default city
 window.addEventListener('load', () => {
-  getWeatherData('London');
+  getWeatherData('Lahore');
 });
 
 // Function to handle search
