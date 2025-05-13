@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CalendarPro - Your Personal Schedule Planner</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- AOS Animation Library -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md fixed w-full z-10">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-indigo-600">
+                <i class="far fa-calendar-alt mr-2"></i>CalendarPro
+            </a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="text-gray-800 hover:text-indigo-600">Home</a>
+                <a href="#features" class="text-gray-800 hover:text-indigo-600">Features</a>
+                <a href="#calendar" class="text-gray-800 hover:text-indigo-600">Calendar</a>
+                <a href="#pricing" class="text-gray-800 hover:text-indigo-600">Pricing</a>
+                <a href="#testimonials" class="text-gray-800 hover:text-indigo-600">Testimonials</a>
+                <a href="#contact" class="text-gray-800 hover:text-indigo-600">Contact</a>
+            </div>
+            <button class="md:hidden focus:outline-none">
+                <i class="fas fa-bars text-gray-800"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden bg-white w-full pb-4">
+            <a href="#home" class="block py-2 px-6 text-gray-800 hover:text-indigo-600">Home</a>
+            <a href="#features" class="block py-2 px-6 text-gray-800 hover:text-indigo-600">Features</a>
+            <a href="#calendar" class="block py-2 px-6 text-gray-800 hover:text-indigo-600">Calendar</a>
+            <a href="#pricing" class="block py-2 px-6 text-gray-800 hover:text-indigo-600">Pricing</a>
+            <a href="#testimonials" class="block py-2 px-6 text-gray-800 hover:text-indigo-600">Testimonials</a>
+            <a href="#contact" class="block py-2 px-6 text-gray-800 hover:text-indigo-600">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-24 pb-16 md:pt-32 md:pb-24">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2" data-aos="fade-right" data-aos-duration="1000">
+                    <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Organize Your Life with CalendarPro</h1>
+                    <p class="text-lg text-gray-600 mb-8">The most intuitive calendar app to manage your schedule, set reminders, and boost productivity.</p>
+                    <div class="flex space-x-4">
+                        <a href="#calendar" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300">Try It Now</a>
+                        <a href="#features" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-6 rounded-lg transition duration-300">Learn More</a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 mt-12 md:mt-0" data-aos="fade-left" data-aos-duration="1000">
+                    <img src="https://images.unsplash.com/photo-1606327054629-64c8b0fd6e4f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" alt="Calendar App Preview" class="rounded-lg shadow-xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12" data-aos="fade-up">Powerful Features</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-lg shadow-md relative overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                    <div class="absolute top-0 right-0 w-20 h-20 opacity-10">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2693/2693507.png" alt="Smart Scheduling" class="w-full h-full">
+                    </div>
+                    <div class="text-indigo-600 text-4xl mb-4">
+                        <i class="far fa-calendar-check"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Smart Scheduling</h3>
+                    <p class="text-gray-600">Automatically organize your events and meetings in the most efficient way.</p>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-md relative overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                    <div class="absolute top-0 right-0 w-20 h-20 opacity-10">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3003/3003202.png" alt="Custom Reminders" class="w-full h-full">
+                    </div>
+                    <div class="text-indigo-600 text-4xl mb-4">
+                        <i class="far fa-bell"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Custom Reminders</h3>
+                    <p class="text-gray-600">Set personalized notifications to never miss important deadlines again.</p>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-md relative overflow-hidden" data-aos="fade-up" data-aos-delay="300">
+                    <div class="absolute top-0 right-0 w-20 h-20 opacity-10">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1356/1356479.png" alt="Team Collaboration" class="w-full h-full">
+                    </div>
+                    <div class="text-indigo-600 text-4xl mb-4">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Team Collaboration</h3>
+                    <p class="text-gray-600">Share calendars with colleagues and family for better coordination.</p>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-md relative overflow-hidden" data-aos="fade-up" data-aos-delay="400">
+                    <div class="absolute top-0 right-0 w-20 h-20 opacity-10">
+                        <img src="https://cdn-icons-png.flaticon.com/512/6747/6747196.png" alt="Analytics Dashboard" class="w-full h-full">
+                    </div>
+                    <div class="text-indigo-600 text-4xl mb-4">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Analytics Dashboard</h3>
+                    <p class="text-gray-600">Track how you spend your time with detailed insights and statistics.</p>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-md relative overflow-hidden" data-aos="fade-up" data-aos-delay="500">
+                    <div class="absolute top-0 right-0 w-20 h-20 opacity-10">
+                        <img src="https://cdn-icons-png.flaticon.com/512/5741/5741483.png" alt="Cross-Platform Sync" class="w-full h-full">
+                    </div>
+                    <div class="text-indigo-600 text-4xl mb-4">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Cross-Platform Sync</h3>
+                    <p class="text-gray-600">Access your calendar from any device with real-time synchronization.</p>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-md relative overflow-hidden" data-aos="fade-up" data-aos-delay="600">
+                    <div class="absolute top-0 right-0 w-20 h-20 opacity-10">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1250/1250615.png" alt="Customizable Themes" class="w-full h-full">
+                    </div>
+                    <div class="text-indigo-600 text-4xl mb-4">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Customizable Themes</h3>
+                    <p class="text-gray-600">Personalize your calendar with beautiful themes and color schemes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calendar Section -->
+    <section id="calendar" class="py-16 relative">
+        <div class="absolute inset-0 overflow-hidden opacity-5 pointer-events-none">
+            <img src="https://images.unsplash.com/photo-1506784365847-bbad939e9335?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2000&q=80" alt="Calendar Background" class="w-full h-full object-cover">
+        </div>
+        <div class="container mx-auto px-6 relative z-10">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12" data-aos="fade-up">Interactive Calendar</h2>
+            
+            <!-- Real-time date display -->
+            <div class="text-center mb-8" data-aos="fade-up">
+                <div class="real-time-container inline-block mx-auto">
+                    <div id="real-time-date" class="text-xl font-semibold text-indigo-600"></div>
+                    <div id="real-time-clock" class="text-2xl font-bold gradient-text"></div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-xl p-6" data-aos="zoom-in">
+                <!-- Calendar Header -->
+                <div class="flex justify-between items-center mb-6">
+                    <button class="text-indigo-600 hover:text-indigo-800">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="text-center">
+                        <h3 class="text-xl font-bold text-gray-800">April 2023</h3>
+                        <div id="calendar-today-date" class="text-sm text-indigo-600 mt-1"></div>
+                    </div>
+                    <button class="text-indigo-600 hover:text-indigo-800">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                
+                <!-- Days of Week -->
+                <div class="grid grid-cols-7 mb-2">
+                    <div class="text-center font-semibold text-gray-600">Sun</div>
+                    <div class="text-center font-semibold text-gray-600">Mon</div>
+                    <div class="text-center font-semibold text-gray-600">Tue</div>
+                    <div class="text-center font-semibold text-gray-600">Wed</div>
+                    <div class="text-center font-semibold text-gray-600">Thu</div>
+                    <div class="text-center font-semibold text-gray-600">Fri</div>
+                    <div class="text-center font-semibold text-gray-600">Sat</div>
+                </div>
+                
+                <!-- Calendar Grid -->
+                <div class="grid grid-cols-7 gap-1">
+                    <!-- Previous Month -->
+                    <div class="h-24 p-2 border border-gray-200 text-gray-400">26</div>
+                    <div class="h-24 p-2 border border-gray-200 text-gray-400">27</div>
+                    <div class="h-24 p-2 border border-gray-200 text-gray-400">28</div>
+                    <div class="h-24 p-2 border border-gray-200 text-gray-400">29</div>
+                    <div class="h-24 p-2 border border-gray-200 text-gray-400">30</div>
+                    <div class="h-24 p-2 border border-gray-200 text-gray-400">31</div>
+                    
+                    <!-- Current Month -->
+                    <div class="h-24 p-2 border border-gray-200">1</div>
+                    <div class="h-24 p-2 border border-gray-200">2</div>
+                    <div class="h-24 p-2 border border-gray-200">3</div>
+                    <div class="h-24 p-2 border border-gray-200">4</div>
+                    <div class="h-24 p-2 border border-gray-200">5</div>
+                    <div class="h-24 p-2 border border-gray-200">6</div>
+                    <div class="h-24 p-2 border border-gray-200">7</div>
+                    <div class="h-24 p-2 border border-gray-200">8</div>
+                    <div class="h-24 p-2 border border-gray-200">9</div>
+                    <div class="h-24 p-2 border border-gray-200">10</div>
+                    <div class="h-24 p-2 border border-gray-200">
+                        <div class="flex justify-between">
+                            <span>11</span>
+                            <span class="bg-indigo-100 text-xs text-indigo-800 rounded px-1">3 events</span>
+                        </div>
+                        <div class="mt-1 text-xs bg-indigo-500 text-white rounded px-1 truncate">Meeting with Team</div>
+                        <div class="mt-1 text-xs bg-green-500 text-white rounded px-1 truncate">Lunch with John</div>
+                    </div>
+                    <div class="h-24 p-2 border border-gray-200">12</div>
+                    <div class="h-24 p-2 border border-gray-200">13</div>
+                    <div class="h-24 p-2 border border-gray-200">14</div>
+                    <div class="h-24 p-2 border border-gray-200 bg-indigo-50">
+                        <div class="flex justify-between">
+                            <span class="font-bold text-indigo-600">15</span>
+                            <span class="bg-indigo-100 text-xs text-indigo-800 rounded px-1">1 event</span>
+                        </div>
+                        <div class="mt-1 text-xs bg-red-500 text-white rounded px-1 truncate">Project Deadline</div>
+                    </div>
+                    <div class="h-24 p-2 border border-gray-200">16</div>
+                    <div class="h-24 p-2 border border-gray-200">17</div>
+                    <div class="h-24 p-2 border border-gray-200">18</div>
+                    <div class="h-24 p-2 border border-gray-200">19</div>
+                    <div class="h-24 p-2 border border-gray-200">20</div>
+                    <div class="h-24 p-2 border border-gray-200">21</div>
+                    <div class="h-24 p-2 border border-gray-200">22</div>
+                    <div class="h-24 p-2 border border-gray-200">23</div>
+                    <div class="h-24 p-2 border border-gray-200">24</div>
+                    <div class="h-24 p-2 border border-gray-200">25</div>
+                    <div class="h-24 p-2 border border-gray-200">26</div>
+                    <div class="h-24 p-2 border border-gray-200">27</div>
+                    <div class="h-24 p-2 border border-gray-200">28</div>
+                    <div class="h-24 p-2 border border-gray-200">29</div>
+                    <div class="h-24 p-2 border border-gray-200">30</div>
+                    
+                    <!-- Next Month -->
+                    <div class="h-24 p-2 border border-gray-200 text-gray-400">1</div>
+                    <div class="h-24 p-2 border border-gray-200 text-gray-400">2</div>
+                    <div class="h-24 p-2 border border-gray-200 text-gray-400">3</div>
+                    <div class="h-24 p-2 border border-gray-200 text-gray-400">4</div>
+                    <div class="h-24 p-2 border border-gray-200 text-gray-400">5</div>
+                    <div class="h-24 p-2 border border-gray-200 text-gray-400">6</div>
+                </div>
+            </div>
+            
+            <!-- Event Form Preview -->
+            <div class="mt-12 bg-white rounded-lg shadow-xl p-6" data-aos="fade-up">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Add New Event</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-gray-700 mb-2" for="event-title">Event Title</label>
+                        <input type="text" id="event-title" class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-400" placeholder="Enter event title">
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 mb-2" for="event-date">Date</label>
+                        <input type="date" id="event-date" class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-400">
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 mb-2" for="event-start">Start Time</label>
+                        <input type="time" id="event-start" class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-400">
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 mb-2" for="event-end">End Time</label>
+                        <input type="time" id="event-end" class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-400">
+                    </div>
+                    <div class="md:col-span-2">
+                        <label class="block text-gray-700 mb-2" for="event-description">Description</label>
+                        <textarea id="event-description" class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-400" rows="3" placeholder="Enter event description"></textarea>
+                    </div>
+                    <div class="md:col-span-2 flex items-center justify-between">
+                        <button class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded transition duration-300">Add Event</button>
+                        <img src="https://cdn-icons-png.flaticon.com/512/9385/9385835.png" alt="Event Planning" class="h-16 w-16 opacity-60">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12" data-aos="fade-up">Choose Your Plan</h2>
+            <div class="flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-8 justify-center">
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden w-full md:w-1/3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="p-8 text-center relative">
+                        <div class="absolute top-2 right-2 w-16 h-16 opacity-10">
+                            <img src="https://cdn-icons-png.flaticon.com/512/2972/2972531.png" alt="Basic Plan" class="w-full h-full">
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Basic</h3>
+                        <p class="text-gray-600 mb-6">Perfect for individuals</p>
+                        <div class="text-4xl font-bold text-indigo-600 mb-6">$0<span class="text-lg text-gray-600">/month</span></div>
+                        <ul class="text-left space-y-4 mb-8">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Basic calendar features</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Up to 100 events</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Email notifications</span>
+                            </li>
+                            <li class="flex items-center opacity-50">
+                                <i class="fas fa-times text-red-500 mr-2"></i>
+                                <span>Team sharing</span>
+                            </li>
+                            <li class="flex items-center opacity-50">
+                                <i class="fas fa-times text-red-500 mr-2"></i>
+                                <span>Advanced analytics</span>
+                            </li>
+                        </ul>
+                        <button class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg w-full transition duration-300">Get Started</button>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden w-full md:w-1/3 border-2 border-indigo-600" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-indigo-600 text-white text-center py-2">
+                        <span class="font-bold">Most Popular</span>
+                    </div>
+                    <div class="p-8 text-center relative">
+                        <div class="absolute top-2 right-2 w-16 h-16 opacity-10">
+                            <img src="https://cdn-icons-png.flaticon.com/512/4966/4966321.png" alt="Premium Plan" class="w-full h-full">
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Premium</h3>
+                        <p class="text-gray-600 mb-6">For professionals</p>
+                        <div class="text-4xl font-bold text-indigo-600 mb-6">$9.99<span class="text-lg text-gray-600">/month</span></div>
+                        <ul class="text-left space-y-4 mb-8">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>All Basic features</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Unlimited events</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>SMS notifications</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Team sharing (up to 5)</span>
+                            </li>
+                            <li class="flex items-center opacity-50">
+                                <i class="fas fa-times text-red-500 mr-2"></i>
+                                <span>Advanced analytics</span>
+                            </li>
+                        </ul>
+                        <button class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg w-full transition duration-300">Try Premium</button>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden w-full md:w-1/3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="p-8 text-center relative">
+                        <div class="absolute top-2 right-2 w-16 h-16 opacity-10">
+                            <img src="https://cdn-icons-png.flaticon.com/512/3176/3176274.png" alt="Business Plan" class="w-full h-full">
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Business</h3>
+                        <p class="text-gray-600 mb-6">For teams and businesses</p>
+                        <div class="text-4xl font-bold text-indigo-600 mb-6">$24.99<span class="text-lg text-gray-600">/month</span></div>
+                        <ul class="text-left space-y-4 mb-8">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>All Premium features</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Unlimited events</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Priority support</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Team sharing (unlimited)</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Advanced analytics</span>
+                            </li>
+                        </ul>
+                        <button class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg w-full transition duration-300">Contact Sales</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-16">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12" data-aos="fade-up">What Our Users Say</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/women/23.jpg" alt="User" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold text-gray-800">Sarah Johnson</h4>
+                            <p class="text-gray-600">Marketing Manager</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic">"CalendarPro has completely transformed how I manage my team's schedule. The collaborative features are fantastic, and the interface is so intuitive!"</p>
+                    <div class="mt-4 text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/men/54.jpg" alt="User" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold text-gray-800">David Chen</h4>
+                            <p class="text-gray-600">Freelance Designer</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic">"As a freelancer, keeping track of client meetings was always a challenge. With CalendarPro, I never miss a deadline and can focus on my creative work."</p>
+                    <div class="mt-4 text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/women/67.jpg" alt="User" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold text-gray-800">Emily Rodriguez</h4>
+                            <p class="text-gray-600">Student</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic">"The free version has everything I need to manage my classes, study sessions, and part-time job. The reminders have saved me from missing so many assignments!"</p>
+                    <div class="mt-4 text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-gray-100 relative">
+        <div class="absolute inset-0 opacity-5 pointer-events-none overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1596524430615-b46475ddff6e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2000&q=80" alt="Contact Background" class="w-full h-full object-cover">
+        </div>
+        <div class="container mx-auto px-6 relative z-10">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12" data-aos="fade-up">Get In Touch</h2>
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8" data-aos="fade-right">
+                    <form>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 mb-2" for="name">Your Name</label>
+                            <input type="text" id="name" class="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-400" placeholder="Enter your name">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 mb-2" for="email">Email Address</label>
+                            <input type="email" id="email" class="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-400" placeholder="Enter your email">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 mb-2" for="subject">Subject</label>
+                            <input type="text" id="subject" class="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-400" placeholder="Enter subject">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 mb-2" for="message">Message</label>
+                            <textarea id="message" class="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-400" rows="5" placeholder="Enter your message"></textarea>
+                        </div>
+                        <button class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300">Send Message</button>
+                    </form>
+                </div>
+                <div class="md:w-1/2 md:pl-8" data-aos="fade-left">
+                    <div class="bg-white p-8 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Contact Information</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="text-indigo-600 mr-4">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Address</h4>
+                                    <p class="text-gray-600">123 Calendar Street, Suite 456<br>Tech City, TC 98765</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="text-indigo-600 mr-4">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Email</h4>
+                                    <p class="text-gray-600">support@calendarpro.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="text-indigo-600 mr-4">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Phone</h4>
+                                    <p class="text-gray-600">+1 (555) 123-4567</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-8">
+                            <h4 class="font-bold text-gray-800 mb-4">Follow Us</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" class="text-indigo-600 hover:text-indigo-800 text-2xl">
+                                    <i class="fab fa-facebook"></i>
+                                </a>
+                                <a href="#" class="text-indigo-600 hover:text-indigo-800 text-2xl">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="text-indigo-600 hover:text-indigo-800 text-2xl">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" class="text-indigo-600 hover:text-indigo-800 text-2xl">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">CalendarPro</h3>
+                    <p class="text-gray-400">The most intuitive calendar app to manage your schedule, set reminders, and boost productivity.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li><a href="#features" class="text-gray-400 hover:text-white">Features</a></li>
+                        <li><a href="#calendar" class="text-gray-400 hover:text-white">Calendar</a></li>
+                        <li><a href="#pricing" class="text-gray-400 hover:text-white">Pricing</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Resources</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Blog</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Help Center</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Tutorials</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">API Documentation</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Newsletter</h4>
+                    <p class="text-gray-400 mb-4">Subscribe to our newsletter for tips and updates.</p>
+                    <div class="flex">
+                        <input type="email" class="p-2 rounded-l w-full focus:outline-none text-gray-800" placeholder="Enter your email">
+                        <button class="bg-indigo-600 hover:bg-indigo-700 px-4 rounded-r transition duration-300">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 pt-8 border-t border-gray-700 text-center text-gray-400">
+                <p>&copy; 2025 CalendarPro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AOS Animation JS -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+</body>
+</html> 

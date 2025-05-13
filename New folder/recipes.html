@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipes | Culinary Canvas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF6B6B',
+                        secondary: '#4ECDC4',
+                        dark: '#292F36',
+                        light: '#F7F7F7'
+                    },
+                    fontFamily: {
+                        display: ['Playfair Display', 'serif'],
+                        sans: ['Poppins', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .recipe-card-hover {
+            transition: all 0.3s ease;
+        }
+        .recipe-card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .image-zoom img {
+            transition: transform 0.5s ease;
+        }
+        .image-zoom:hover img {
+            transform: scale(1.05);
+        }
+        .range-slider {
+            -webkit-appearance: none;
+            height: 6px;
+            border-radius: 5px;
+            background: #e2e8f0;
+            outline: none;
+        }
+        .range-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #FF6B6B;
+            cursor: pointer;
+        }
+        .range-slider::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #FF6B6B;
+            cursor: pointer;
+            border: none;
+        }
+    </style>
+</head>
+<body class="bg-light font-sans">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="index.html" class="flex items-center">
+                <span class="text-2xl md:text-3xl font-display font-bold text-dark">Culinary<span class="text-primary">Canvas</span></span>
+            </a>
+            
+            <div class="hidden md:flex items-center space-x-6">
+                <nav class="flex items-center space-x-6">
+                    <a href="index.html" class="text-dark hover:text-primary transition-colors font-medium">Home</a>
+                    <a href="recipes.html" class="text-primary transition-colors font-medium">Recipes</a>
+                    <a href="categories.html" class="text-dark hover:text-primary transition-colors font-medium">Categories</a>
+                    <a href="about.html" class="text-dark hover:text-primary transition-colors font-medium">About</a>
+                </nav>
+                
+                <div class="flex items-center space-x-4">
+                    <button class="text-dark hover:text-primary transition-colors">
+                        <i class="fas fa-search text-lg"></i>
+                    </button>
+                    <button class="text-dark hover:text-primary transition-colors">
+                        <i class="fas fa-bookmark text-lg"></i>
+                    </button>
+                    <a href="login.html" class="bg-primary text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition-colors">Sign In</a>
+                </div>
+            </div>
+            
+            <button class="md:hidden text-dark" id="mobile-menu-button">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div class="md:hidden hidden bg-white" id="mobile-menu">
+            <nav class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+                <a href="index.html" class="text-dark hover:text-primary transition-colors font-medium">Home</a>
+                <a href="recipes.html" class="text-primary transition-colors font-medium">Recipes</a>
+                <a href="categories.html" class="text-dark hover:text-primary transition-colors font-medium">Categories</a>
+                <a href="about.html" class="text-dark hover:text-primary transition-colors font-medium">About</a>
+                <div class="flex items-center space-x-4 pt-2">
+                    <button class="text-dark hover:text-primary transition-colors">
+                        <i class="fas fa-search text-lg"></i>
+                    </button>
+                    <button class="text-dark hover:text-primary transition-colors">
+                        <i class="fas fa-bookmark text-lg"></i>
+                    </button>
+                    <a href="login.html" class="bg-primary text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition-colors">Sign In</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <h1 class="text-4xl md:text-5xl font-display font-bold text-dark mb-4 text-center">Explore Our Recipes</h1>
+            <p class="text-gray-600 text-center max-w-3xl mx-auto">Discover delicious recipes for every occasion, from quick weekday meals to special celebrations.</p>
+            
+            <!-- Search Control -->
+            <div class="mt-10 bg-light rounded-xl p-6 shadow-sm">
+                <div class="flex flex-col md:flex-row gap-4">
+                    <div class="flex-grow relative">
+                        <input type="text" placeholder="Search recipes..." class="w-full px-6 py-3 rounded-full text-dark focus:outline-none focus:ring-2 focus:ring-primary">
+                        <button class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-primary text-white p-2 rounded-full hover:bg-opacity-90 transition-colors">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- View Toggle & Active Filters -->
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mt-6 gap-4">
+                    <div class="flex items-center space-x-2">
+                        <button id="grid-view-btn" class="p-2 bg-primary text-white rounded">
+                            <i class="fas fa-th-large"></i>
+                        </button>
+                        <button id="list-view-btn" class="p-2 bg-white text-gray-600 rounded">
+                            <i class="fas fa-list"></i>
+                        </button>
+                        <span class="text-sm text-gray-500 ml-2">98 recipes found</span>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-2">
+                        <div class="bg-white px-3 py-1 rounded-full text-sm flex items-center gap-1">
+                            <span>Vegetarian</span>
+                            <button class="text-primary"><i class="fas fa-times-circle"></i></button>
+                        </div>
+                        <div class="bg-white px-3 py-1 rounded-full text-sm flex items-center gap-1">
+                            <span>Under 30 min</span>
+                            <button class="text-primary"><i class="fas fa-times-circle"></i></button>
+                        </div>
+                        <button class="text-primary text-sm font-medium">Clear all</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recipe Listing with Sidebar -->
+    <section class="py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row gap-8">
+                <!-- Sidebar: Filters -->
+                <div class="lg:w-1/4">
+                    <div class="bg-white p-6 rounded-xl shadow-sm sticky top-24">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="font-bold text-lg">Filters</h3>
+                            <button class="text-primary text-sm font-medium">Reset</button>
+                        </div>
+                        
+                        <!-- Category Filter -->
+                        <div class="mb-6">
+                            <h4 class="font-medium text-dark mb-3">Category</h4>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="form-checkbox h-4 w-4 text-primary rounded">
+                                    <span class="ml-2 text-gray-700">Breakfast (24)</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="form-checkbox h-4 w-4 text-primary rounded">
+                                    <span class="ml-2 text-gray-700">Lunch (36)</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="form-checkbox h-4 w-4 text-primary rounded">
+                                    <span class="ml-2 text-gray-700">Dinner (48)</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="form-checkbox h-4 w-4 text-primary rounded">
+                                    <span class="ml-2 text-gray-700">Desserts (30)</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="form-checkbox h-4 w-4 text-primary rounded">
+                                    <span class="ml-2 text-gray-700">Drinks (18)</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <!-- Dietary Restrictions -->
+                        <div class="mb-6">
+                            <h4 class="font-medium text-dark mb-3">Dietary</h4>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="form-checkbox h-4 w-4 text-primary rounded">
+                                    <span class="ml-2 text-gray-700">Vegetarian (42)</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="form-checkbox h-4 w-4 text-primary rounded">
+                                    <span class="ml-2 text-gray-700">Vegan (28)</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="form-checkbox h-4 w-4 text-primary rounded">
+                                    <span class="ml-2 text-gray-700">Gluten Free (32)</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="form-checkbox h-4 w-4 text-primary rounded">
+                                    <span class="ml-2 text-gray-700">Dairy Free (26)</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="form-checkbox h-4 w-4 text-primary rounded">
+                                    <span class="ml-2 text-gray-700">Nut Free (38)</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <!-- Cooking Time Range -->
+                        <div class="mb-6">
+                            <h4 class="font-medium text-dark mb-3">Cooking Time</h4>
+                            <div class="mb-2">
+                                <input type="range" min="5" max="120" value="60" class="range-slider w-full" id="time-range">
+                                <div class="flex justify-between text-xs text-gray-500 mt-1">
+                                    <span>5 min</span>
+                                    <span id="time-value">60 min or less</span>
+                                    <span>120 min</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Difficulty Level -->
+                        <div class="mb-6">
+                            <h4 class="font-medium text-dark mb-3">Difficulty</h4>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="form-checkbox h-4 w-4 text-primary rounded">
+                                    <span class="ml-2 text-gray-700">Easy (45)</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="form-checkbox h-4 w-4 text-primary rounded">
+                                    <span class="ml-2 text-gray-700">Medium (32)</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="form-checkbox h-4 w-4 text-primary rounded">
+                                    <span class="ml-2 text-gray-700">Hard (17)</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <!-- Sorting -->
+                        <div class="mb-6">
+                            <h4 class="font-medium text-dark mb-3">Sort By</h4>
+                            <select class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                                <option value="popular">Most Popular</option>
+                                <option value="recent">Most Recent</option>
+                                <option value="rating">Highest Rated</option>
+                                <option value="time-asc">Cooking Time (Low to High)</option>
+                                <option value="time-desc">Cooking Time (High to Low)</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Apply Filters Button -->
+                        <button class="w-full py-3 bg-primary text-white rounded-lg hover:bg-opacity-90 transition-colors">
+                            Apply Filters
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Recipe Grid -->
+                <div class="lg:w-3/4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                        <!-- Recipe Card 1 -->
+                        <div class="bg-white rounded-xl shadow-sm overflow-hidden group recipe-card-hover">
+                            <a href="recipe-detail.html" class="block relative overflow-hidden image-zoom">
+                                <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1332&q=80" 
+                                    alt="Lemon Herb Roasted Chicken" 
+                                    class="w-full h-64 object-cover">
+                                <span class="absolute top-4 left-4 bg-primary text-white text-xs uppercase font-bold rounded-full px-3 py-1.5">Popular</span>
+                            </a>
+                            <div class="p-6">
+                                <div class="flex items-center mb-3">
+                                    <span class="bg-secondary bg-opacity-10 text-secondary text-xs font-medium px-2.5 py-0.5 rounded">Dinner</span>
+                                    <div class="ml-auto flex items-center text-amber-400">
+                                        <i class="fas fa-star text-sm"></i>
+                                        <i class="fas fa-star text-sm"></i>
+                                        <i class="fas fa-star text-sm"></i>
+                                        <i class="fas fa-star text-sm"></i>
+                                        <i class="fas fa-star-half-alt text-sm"></i>
+                                        <span class="text-xs text-gray-600 ml-1">(4.5)</span>
+                                    </div>
+                                </div>
+                                <h3 class="font-display text-xl font-bold text-dark mb-2">
+                                    <a href="recipe-detail.html" class="hover:text-primary transition-colors">Lemon Herb Roasted Chicken</a>
+                                </h3>
+                                <p class="text-gray-600 text-sm mb-4">Tender roasted chicken with a crispy skin and bright lemon herb flavor. Perfect for family dinners.</p>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-4">
+                                        <div class="flex items-center text-gray-600">
+                                            <i class="far fa-clock mr-1 text-gray-400"></i>
+                                            <span class="text-xs">45 min</span>
+                                        </div>
+                                        <div class="flex items-center text-gray-600">
+                                            <i class="fas fa-utensils mr-1 text-gray-400"></i>
+                                            <span class="text-xs">4 servings</span>
+                                        </div>
+                                    </div>
+                                    <button class="text-gray-400 hover:text-primary transition-colors">
+                                        <i class="far fa-bookmark"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Recipe Card 2 -->
+                        <div class="bg-white rounded-xl shadow-sm overflow-hidden group recipe-card-hover">
+                            <a href="recipe-detail.html" class="block relative overflow-hidden image-zoom">
+                                <img src="https://images.unsplash.com/photo-1559748920-cec70d6db3b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" 
+                                    alt="Creamy Garlic Parmesan Pasta" 
+                                    class="w-full h-64 object-cover">
+                                <span class="absolute top-4 left-4 bg-secondary text-white text-xs uppercase font-bold rounded-full px-3 py-1.5">New</span>
+                            </a>
+                            <div class="p-6">
+                                <div class="flex items-center mb-3">
+                                    <span class="bg-secondary bg-opacity-10 text-secondary text-xs font-medium px-2.5 py-0.5 rounded">Pasta</span>
+                                    <div class="ml-auto flex items-center text-amber-400">
+                                        <i class="fas fa-star text-sm"></i>
+                                        <i class="fas fa-star text-sm"></i>
+                                        <i class="fas fa-star text-sm"></i>
+                                        <i class="fas fa-star text-sm"></i>
+                                        <i class="fas fa-star text-sm"></i>
+                                        <span class="text-xs text-gray-600 ml-1">(5.0)</span>
+                                    </div>
+                                </div>
+                                <h3 class="font-display text-xl font-bold text-dark mb-2">
+                                    <a href="recipe-detail.html" class="hover:text-primary transition-colors">Creamy Garlic Parmesan Pasta</a>
+                                </h3>
+                                <p class="text-gray-600 text-sm mb-4">Rich and creamy pasta tossed with Parmesan cheese and garlic. A comforting dish ready in just minutes.</p>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-4">
+                                        <div class="flex items-center text-gray-600">
+                                            <i class="far fa-clock mr-1 text-gray-400"></i>
+                                            <span class="text-xs">20 min</span>
+                                        </div>
+                                        <div class="flex items-center text-gray-600">
+                                            <i class="fas fa-utensils mr-1 text-gray-400"></i>
+                                            <span class="text-xs">3 servings</span>
+                                        </div>
+                                    </div>
+                                    <button class="text-gray-400 hover:text-primary transition-colors">
+                                        <i class="far fa-bookmark"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="flex justify-center mt-12">
+                        <nav class="inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+                            <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                                <span class="sr-only">Previous</span>
+                                <i class="fas fa-chevron-left"></i>
+                            </a>
+                            <a href="#" aria-current="page" class="relative inline-flex items-center px-4 py-2 border border-primary bg-primary text-sm font-medium text-white">
+                                1
+                            </a>
+                            <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
+                                2
+                            </a>
+                            <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
+                                3
+                            </a>
+                            <span class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700">
+                                ...
+                            </span>
+                            <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
+                                8
+                            </a>
+                            <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                                <span class="sr-only">Next</span>
+                                <i class="fas fa-chevron-right"></i>
+                            </a>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-16 pb-6">
+        <div class="container mx-auto px-4">
+            <!-- Primary Footer -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <!-- About Column -->
+                <div>
+                    <a href="index.html" class="inline-block mb-4">
+                        <span class="text-2xl font-display font-bold text-white">Culinary<span class="text-primary">Canvas</span></span>
+                    </a>
+                    <p class="text-gray-400 mb-6">Your ultimate destination for culinary inspiration. Discover, create, and share delicious recipes from around the world.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-primary hover:text-white transform hover:scale-110 transition-all duration-300">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-primary hover:text-white transform hover:scale-110 transition-all duration-300">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-primary hover:text-white transform hover:scale-110 transition-all duration-300">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-primary hover:text-white transform hover:scale-110 transition-all duration-300">
+                            <i class="fab fa-pinterest"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Other footer columns would go here -->
+            </div>
+            
+            <hr class="border-gray-800 mb-6">
+            
+            <!-- Secondary Footer -->
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-500 text-sm">© 2025 Culinary Canvas. All rights reserved.</p>
+                
+                <div class="flex flex-wrap justify-center mt-4 md:mt-0">
+                    <a href="privacy.html" class="text-gray-500 text-sm hover:text-primary transition-colors px-3 py-1">Privacy Policy</a>
+                    <a href="terms.html" class="text-gray-500 text-sm hover:text-primary transition-colors px-3 py-1">Terms of Service</a>
+                    <a href="cookies.html" class="text-gray-500 text-sm hover:text-primary transition-colors px-3 py-1">Cookie Policy</a>
+                    <a href="sitemap.html" class="text-gray-500 text-sm hover:text-primary transition-colors px-3 py-1">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Grid/List View Toggle
+        const gridViewBtn = document.getElementById('grid-view-btn');
+        const listViewBtn = document.getElementById('list-view-btn');
+        
+        gridViewBtn.addEventListener('click', () => {
+            gridViewBtn.classList.add('bg-primary', 'text-white');
+            gridViewBtn.classList.remove('bg-white', 'text-gray-600');
+            listViewBtn.classList.add('bg-white', 'text-gray-600');
+            listViewBtn.classList.remove('bg-primary', 'text-white');
+            // Implementation for changing the view would go here
+        });
+        
+        listViewBtn.addEventListener('click', () => {
+            listViewBtn.classList.add('bg-primary', 'text-white');
+            listViewBtn.classList.remove('bg-white', 'text-gray-600');
+            gridViewBtn.classList.add('bg-white', 'text-gray-600');
+            gridViewBtn.classList.remove('bg-primary', 'text-white');
+            // Implementation for changing the view would go here
+        });
+        
+        // Time Range Slider
+        const timeRange = document.getElementById('time-range');
+        const timeValue = document.getElementById('time-value');
+        
+        timeRange.addEventListener('input', () => {
+            timeValue.textContent = `${timeRange.value} min or less`;
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lemon Herb Roasted Chicken | Culinary Canvas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF6B6B',
+                        secondary: '#4ECDC4',
+                        dark: '#292F36',
+                        light: '#F7F7F7'
+                    },
+                    fontFamily: {
+                        display: ['Playfair Display', 'serif'],
+                        sans: ['Poppins', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-light font-sans">
+    <!-- Header (simplified version) -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="index.html" class="flex items-center">
+                <span class="text-2xl md:text-3xl font-display font-bold text-dark">Culinary<span class="text-primary">Canvas</span></span>
+            </a>
+            
+            <div class="hidden md:flex items-center space-x-6">
+                <nav class="flex items-center space-x-6">
+                    <a href="index.html" class="text-dark hover:text-primary transition-colors font-medium">Home</a>
+                    <a href="recipes.html" class="text-dark hover:text-primary transition-colors font-medium">Recipes</a>
+                    <a href="categories.html" class="text-dark hover:text-primary transition-colors font-medium">Categories</a>
+                    <a href="about.html" class="text-dark hover:text-primary transition-colors font-medium">About</a>
+                </nav>
+                
+                <div class="flex items-center space-x-4">
+                    <button class="text-dark hover:text-primary transition-colors">
+                        <i class="fas fa-search text-lg"></i>
+                    </button>
+                    <button class="text-dark hover:text-primary transition-colors">
+                        <i class="fas fa-bookmark text-lg"></i>
+                    </button>
+                    <a href="login.html" class="bg-primary text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition-colors">Sign In</a>
+                </div>
+            </div>
+            
+            <button class="md:hidden text-dark" id="mobile-menu-button">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div class="md:hidden hidden bg-white" id="mobile-menu">
+            <nav class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+                <a href="index.html" class="text-dark hover:text-primary transition-colors font-medium">Home</a>
+                <a href="recipes.html" class="text-dark hover:text-primary transition-colors font-medium">Recipes</a>
+                <a href="categories.html" class="text-dark hover:text-primary transition-colors font-medium">Categories</a>
+                <a href="about.html" class="text-dark hover:text-primary transition-colors font-medium">About</a>
+                <div class="flex items-center space-x-4 pt-2">
+                    <button class="text-dark hover:text-primary transition-colors">
+                        <i class="fas fa-search text-lg"></i>
+                    </button>
+                    <button class="text-dark hover:text-primary transition-colors">
+                        <i class="fas fa-bookmark text-lg"></i>
+                    </button>
+                    <a href="login.html" class="bg-primary text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition-colors">Sign In</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Breadcrumbs -->
+    <div class="bg-white border-b">
+        <div class="container mx-auto px-4 py-3">
+            <nav class="flex" aria-label="Breadcrumb">
+                <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                    <li class="inline-flex items-center">
+                        <a href="index.html" class="inline-flex items-center text-sm text-gray-500 hover:text-primary">
+                            <i class="fas fa-home mr-2"></i>
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <div class="flex items-center">
+                            <i class="fas fa-chevron-right text-gray-400 text-xs mx-1"></i>
+                            <a href="recipes.html" class="text-sm text-gray-500 hover:text-primary ml-1">Recipes</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="flex items-center">
+                            <i class="fas fa-chevron-right text-gray-400 text-xs mx-1"></i>
+                            <a href="categories.html#dinner" class="text-sm text-gray-500 hover:text-primary ml-1">Dinner</a>
+                        </div>
+                    </li>
+                    <li aria-current="page">
+                        <div class="flex items-center">
+                            <i class="fas fa-chevron-right text-gray-400 text-xs mx-1"></i>
+                            <span class="text-sm text-primary ml-1">Lemon Herb Roasted Chicken</span>
+                        </div>
+                    </li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Recipe Content -->
+    <div class="container mx-auto px-4 py-8">
+        <div class="lg:flex gap-8">
+            <!-- Left column: Recipe details -->
+            <div class="lg:w-2/3">
+                <!-- Recipe Header -->
+                <div class="mb-6">
+                    <h1 class="text-3xl md:text-4xl font-display font-bold text-dark mb-3">Lemon Herb Roasted Chicken</h1>
+                    <p class="text-gray-600 text-lg mb-4">Tender roasted chicken with a crispy skin and bright lemon herb flavor. Perfect for family dinners and special occasions.</p>
+                    
+                    <div class="flex flex-wrap items-center gap-4 mb-4">
+                        <div class="flex items-center text-amber-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span class="text-gray-600 ml-1">(4.5 - 128 ratings)</span>
+                        </div>
+                        
+                        <span class="bg-secondary bg-opacity-10 text-secondary text-xs font-medium px-2.5 py-0.5 rounded">Dinner</span>
+                        <span class="bg-secondary bg-opacity-10 text-secondary text-xs font-medium px-2.5 py-0.5 rounded">Poultry</span>
+                    </div>
+                    
+                    <div class="flex flex-wrap items-center gap-6 text-gray-600">
+                        <div class="flex items-center">
+                            <i class="far fa-clock mr-2"></i>
+                            <div>
+                                <p class="font-medium">Total Time</p>
+                                <p class="text-sm">45 minutes</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-utensils mr-2"></i>
+                            <div>
+                                <p class="font-medium">Servings</p>
+                                <p class="text-sm">4 people</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-fire-alt mr-2"></i>
+                            <div>
+                                <p class="font-medium">Calories</p>
+                                <p class="text-sm">350 per serving</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-chart-pie mr-2"></i>
+                            <div>
+                                <p class="font-medium">Difficulty</p>
+                                <p class="text-sm">Easy</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Recipe Image -->
+                <div class="mb-8">
+                    <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1332&q=80" 
+                        alt="Lemon Herb Roasted Chicken" 
+                        class="w-full h-auto rounded-xl">
+                </div>
+                
+                <!-- Action buttons -->
+                <div class="flex flex-wrap gap-3 mb-8">
+                    <button class="flex items-center px-4 py-2 rounded-full bg-primary text-white hover:bg-opacity-90 transition-colors">
+                        <i class="far fa-bookmark mr-2"></i>
+                        Save Recipe
+                    </button>
+                    <button class="flex items-center px-4 py-2 rounded-full bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors">
+                        <i class="fas fa-print mr-2"></i>
+                        Print
+                    </button>
+                    <button class="flex items-center px-4 py-2 rounded-full bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors">
+                        <i class="fas fa-share-alt mr-2"></i>
+                        Share
+                    </button>
+                </div>
+                
+                <!-- Ingredients -->
+                <div class="bg-white rounded-xl p-6 mb-8 shadow-sm">
+                    <h2 class="text-2xl font-display font-bold text-dark mb-4">Ingredients</h2>
+                    
+                    <div class="flex justify-between items-center mb-4">
+                        <div class="flex items-center">
+                            <span class="text-gray-600 font-medium">Adjust Servings:</span>
+                            <div class="flex items-center ml-3">
+                                <button class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-gray-200 transition-colors">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <span class="mx-3 font-medium">4</span>
+                                <button class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-gray-200 transition-colors">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="flex gap-2">
+                            <button class="text-sm text-primary hover:underline">US Units</button>
+                            <span class="text-gray-400">|</span>
+                            <button class="text-sm text-gray-500 hover:text-primary hover:underline">Metric</button>
+                        </div>
+                    </div>
+                    
+                    <ul class="space-y-3">
+                        <li class="flex items-center">
+                            <input type="checkbox" class="w-5 h-5 rounded border-gray-300 text-primary focus:ring-primary mr-3">
+                            <span class="text-gray-700">1 whole chicken (about 4-5 pounds)</span>
+                        </li>
+                        <li class="flex items-center">
+                            <input type="checkbox" class="w-5 h-5 rounded border-gray-300 text-primary focus:ring-primary mr-3">
+                            <span class="text-gray-700">2 lemons, 1 sliced and 1 juiced</span>
+                        </li>
+                        <li class="flex items-center">
+                            <input type="checkbox" class="w-5 h-5 rounded border-gray-300 text-primary focus:ring-primary mr-3">
+                            <span class="text-gray-700">3 tablespoons olive oil</span>
+                        </li>
+                        <li class="flex items-center">
+                            <input type="checkbox" class="w-5 h-5 rounded border-gray-300 text-primary focus:ring-primary mr-3">
+                            <span class="text-gray-700">4 garlic cloves, minced</span>
+                        </li>
+                        <li class="flex items-center">
+                            <input type="checkbox" class="w-5 h-5 rounded border-gray-300 text-primary focus:ring-primary mr-3">
+                            <span class="text-gray-700">2 tablespoons fresh rosemary, chopped</span>
+                        </li>
+                        <li class="flex items-center">
+                            <input type="checkbox" class="w-5 h-5 rounded border-gray-300 text-primary focus:ring-primary mr-3">
+                            <span class="text-gray-700">2 tablespoons fresh thyme, chopped</span>
+                        </li>
+                        <li class="flex items-center">
+                            <input type="checkbox" class="w-5 h-5 rounded border-gray-300 text-primary focus:ring-primary mr-3">
+                            <span class="text-gray-700">1 tablespoon fresh parsley, chopped</span>
+                        </li>
+                        <li class="flex items-center">
+                            <input type="checkbox" class="w-5 h-5 rounded border-gray-300 text-primary focus:ring-primary mr-3">
+                            <span class="text-gray-700">1 teaspoon salt</span>
+                        </li>
+                        <li class="flex items-center">
+                            <input type="checkbox" class="w-5 h-5 rounded border-gray-300 text-primary focus:ring-primary mr-3">
+                            <span class="text-gray-700">1/2 teaspoon black pepper</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Instructions -->
+                <div class="bg-white rounded-xl p-6 mb-8 shadow-sm">
+                    <h2 class="text-2xl font-display font-bold text-dark mb-4">Instructions</h2>
+                    
+                    <ol class="space-y-6">
+                        <li class="relative pl-9">
+                            <span class="absolute left-0 top-0 flex items-center justify-center w-6 h-6 rounded-full bg-primary text-white font-medium">1</span>
+                            <p class="text-gray-700">Preheat your oven to 425°F (220°C).</p>
+                        </li>
+                        <li class="relative pl-9">
+                            <span class="absolute left-0 top-0 flex items-center justify-center w-6 h-6 rounded-full bg-primary text-white font-medium">2</span>
+                            <p class="text-gray-700">Rinse the chicken inside and out, then pat dry with paper towels. Place the chicken in a roasting pan or on a rimmed baking sheet.</p>
+                        </li>
+                        <li class="relative pl-9">
+                            <span class="absolute left-0 top-0 flex items-center justify-center w-6 h-6 rounded-full bg-primary text-white font-medium">3</span>
+                            <p class="text-gray-700">In a small bowl, combine the lemon juice, olive oil, minced garlic, chopped herbs, salt, and pepper.</p>
+                        </li>
+                        <li class="relative pl-9">
+                            <span class="absolute left-0 top-0 flex items-center justify-center w-6 h-6 rounded-full bg-primary text-white font-medium">4</span>
+                            <p class="text-gray-700">Gently loosen the skin of the chicken breast and rub about 1/3 of the herb mixture directly onto the meat under the skin.</p>
+                        </li>
+                        <li class="relative pl-9">
+                            <span class="absolute left-0 top-0 flex items-center justify-center w-6 h-6 rounded-full bg-primary text-white font-medium">5</span>
+                            <p class="text-gray-700">Rub another 1/3 of the mixture all over the outside of the chicken. Pour the remaining mixture inside the cavity.</p>
+                        </li>
+                        <li class="relative pl-9">
+                            <span class="absolute left-0 top-0 flex items-center justify-center w-6 h-6 rounded-full bg-primary text-white font-medium">6</span>
+                            <p class="text-gray-700">Place the lemon slices inside the cavity of the chicken along with a few extra sprigs of herbs if desired.</p>
+                        </li>
+                        <li class="relative pl-9">
+                            <span class="absolute left-0 top-0 flex items-center justify-center w-6 h-6 rounded-full bg-primary text-white font-medium">7</span>
+                            <p class="text-gray-700">Tie the legs together with kitchen twine and tuck the wing tips under the body.</p>
+                        </li>
+                        <li class="relative pl-9">
+                            <span class="absolute left-0 top-0 flex items-center justify-center w-6 h-6 rounded-full bg-primary text-white font-medium">8</span>
+                            <p class="text-gray-700">Roast the chicken for 45-60 minutes, or until the juices run clear when you cut between the leg and thigh, and an instant-read thermometer inserted into the thickest part of the thigh reads 165°F (74°C).</p>
+                        </li>
+                        <li class="relative pl-9">
+                            <span class="absolute left-0 top-0 flex items-center justify-center w-6 h-6 rounded-full bg-primary text-white font-medium">9</span>
+                            <p class="text-gray-700">Remove from the oven and let rest for 10-15 minutes before carving.</p>
+                        </li>
+                        <li class="relative pl-9">
+                            <span class="absolute left-0 top-0 flex items-center justify-center w-6 h-6 rounded-full bg-primary text-white font-medium">10</span>
+                            <p class="text-gray-700">Garnish with additional fresh herbs and lemon slices before serving.</p>
+                        </li>
+                    </ol>
+                </div>
+                
+                <!-- Notes -->
+                <div class="bg-white rounded-xl p-6 mb-8 shadow-sm">
+                    <h2 class="text-2xl font-display font-bold text-dark mb-4">Chef's Notes</h2>
+                    
+                    <div class="text-gray-700 space-y-3">
+                        <p>For extra crispy skin, pat the chicken completely dry before seasoning and don't cover the chicken while roasting.</p>
+                        <p>You can substitute dried herbs if fresh aren't available. Use 1 teaspoon dried herbs for each tablespoon of fresh.</p>
+                        <p>This chicken pairs wonderfully with roasted potatoes and a simple green salad.</p>
+                    </div>
+                </div>
+                
+                <!-- Nutrition -->
+                <div class="bg-white rounded-xl p-6 mb-8 shadow-sm">
+                    <h2 class="text-2xl font-display font-bold text-dark mb-4">Nutrition Information</h2>
+                    
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                        <div class="bg-light p-4 rounded-lg text-center">
+                            <p class="text-primary text-xl font-bold">350</p>
+                            <p class="text-gray-600 text-sm">Calories</p>
+                        </div>
+                        <div class="bg-light p-4 rounded-lg text-center">
+                            <p class="text-primary text-xl font-bold">18g</p>
+                            <p class="text-gray-600 text-sm">Fat</p>
+                        </div>
+                        <div class="bg-light p-4 rounded-lg text-center">
+                            <p class="text-primary text-xl font-bold">2g</p>
+                            <p class="text-gray-600 text-sm">Carbs</p>
+                        </div>
+                        <div class="bg-light p-4 rounded-lg text-center">
+                            <p class="text-primary text-xl font-bold">45g</p>
+                            <p class="text-gray-600 text-sm">Protein</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Reviews -->
+                <div class="bg-white rounded-xl p-6 mb-8 shadow-sm">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-2xl font-display font-bold text-dark">Reviews</h2>
+                        <span class="text-gray-600">(128 reviews)</span>
+                    </div>
+                    
+                    <!-- Review Item -->
+                    <div class="border-b border-gray-200 pb-6 mb-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <div class="flex items-center">
+                                <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="User" class="w-10 h-10 rounded-full mr-3">
+                                <div>
+                                    <p class="font-medium text-dark">Sarah Johnson</p>
+                                    <p class="text-gray-500 text-sm">April 15, 2023</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center text-amber-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <p class="text-gray-700">This chicken recipe is absolutely delicious! The herbs and lemon give it so much flavor, and it came out perfectly juicy. My family loved it, and I'll definitely be making it again.</p>
+                    </div>
+                    
+                    <!-- Review Item -->
+                    <div class="border-b border-gray-200 pb-6 mb-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <div class="flex items-center">
+                                <img src="https://randomuser.me/api/portraits/men/46.jpg" alt="User" class="w-10 h-10 rounded-full mr-3">
+                                <div>
+                                    <p class="font-medium text-dark">Michael Thomas</p>
+                                    <p class="text-gray-500 text-sm">March 28, 2023</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center text-amber-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                        <p class="text-gray-700">Great recipe! I added a bit more garlic than called for because we love garlic in our house. The skin turned out nice and crispy. Would recommend!</p>
+                    </div>
+                    
+                    <button class="text-primary font-medium hover:underline">View all 128 reviews</button>
+                </div>
+            </div>
+            
+            <!-- Right column: Sidebar -->
+            <div class="lg:w-1/3 mt-8 lg:mt-0">
+                <!-- Author card -->
+                <div class="bg-white rounded-xl p-6 shadow-sm mb-6">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Chef Emily" class="w-12 h-12 rounded-full mr-3">
+                        <div>
+                            <p class="font-medium text-dark">Chef Emily</p>
+                            <p class="text-gray-500 text-sm">Published April 2, 2023</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 text-sm mb-4">Emily is a professional chef with over 10 years of experience. She specializes in simple, flavorful dishes that anyone can make at home.</p>
+                    <a href="#" class="text-primary font-medium text-sm hover:underline">View all recipes by Chef Emily</a>
+                </div>
+                
+                <!-- Recipe video -->
+                <div class="bg-white rounded-xl p-6 shadow-sm mb-6">
+                    <h3 class="text-xl font-display font-bold text-dark mb-4">Recipe Video</h3>
+                    <div class="relative rounded-lg overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1332&q=80" alt="Recipe Video Thumbnail" class="w-full h-auto">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <button class="w-16 h-16 bg-primary bg-opacity-90 rounded-full flex items-center justify-center hover:bg-opacity-100 transition-colors">
+                                <i class="fas fa-play text-white text-xl"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Similar recipes -->
+                <div class="bg-white rounded-xl p-6 shadow-sm mb-6">
+                    <h3 class="text-xl font-display font-bold text-dark mb-4">You May Also Like</h3>
+                    
+                    <div class="space-y-4">
+                        <a href="#" class="flex group">
+                            <img src="https://images.unsplash.com/photo-1518492104633-130d0cc84637?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Garlic Butter Roast Turkey" class="w-20 h-20 object-cover rounded-lg mr-3">
+                            <div>
+                                <h4 class="font-medium text-dark group-hover:text-primary transition-colors">Garlic Butter Roast Turkey</h4>
+                                <div class="flex items-center text-amber-400 text-xs">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <span class="text-gray-500 ml-1">(4.9)</span>
+                                </div>
+                            </div>
+                        </a>
+                        
+                        <a href="#" class="flex group">
+                            <img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1013&q=80" alt="Herb Crusted Rack of Lamb" class="w-20 h-20 object-cover rounded-lg mr-3">
+                            <div>
+                                <h4 class="font-medium text-dark group-hover:text-primary transition-colors">Herb Crusted Rack of Lamb</h4>
+                                <div class="flex items-center text-amber-400 text-xs">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                    <span class="text-gray-500 ml-1">(4.7)</span>
+                                </div>
+                            </div>
+                        </a>
+                        
+                        <a href="#" class="flex group">
+                            <img src="https://images.unsplash.com/photo-1662487701778-ef0339211de3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Garlic Parmesan Roasted Vegetables" class="w-20 h-20 object-cover rounded-lg mr-3">
+                            <div>
+                                <h4 class="font-medium text-dark group-hover:text-primary transition-colors">Garlic Parmesan Roasted Vegetables</h4>
+                                <div class="flex items-center text-amber-400 text-xs">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span class="text-gray-500 ml-1">(4.2)</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Tags -->
+                <div class="bg-white rounded-xl p-6 shadow-sm">
+                    <h3 class="text-xl font-display font-bold text-dark mb-4">Tags</h3>
+                    
+                    <div class="flex flex-wrap gap-2">
+                        <a href="#" class="px-3 py-1 bg-light rounded-full text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors">#chicken</a>
+                        <a href="#" class="px-3 py-1 bg-light rounded-full text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors">#dinner</a>
+                        <a href="#" class="px-3 py-1 bg-light rounded-full text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors">#roasted</a>
+                        <a href="#" class="px-3 py-1 bg-light rounded-full text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors">#lemon</a>
+                        <a href="#" class="px-3 py-1 bg-light rounded-full text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors">#herbs</a>
+                        <a href="#" class="px-3 py-1 bg-light rounded-full text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors">#familydinner</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer (simplified) -->
+    <footer class="bg-dark text-white pt-12 pb-6">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <a href="index.html" class="inline-block mb-4">
+                        <span class="text-2xl font-display font-bold text-white">Culinary<span class="text-primary">Canvas</span></span>
+                    </a>
+                    <p class="text-gray-400 mb-4">Discover, save, and share delicious recipes from around the world.</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-primary transition-colors">Home</a></li>
+                        <li><a href="recipes.html" class="text-gray-400 hover:text-primary transition-colors">Recipes</a></li>
+                        <li><a href="categories.html" class="text-gray-400 hover:text-primary transition-colors">Categories</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-primary transition-colors">About</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Categories</h4>
+                    <ul class="space-y-2">
+                        <li><a href="categories.html#breakfast" class="text-gray-400 hover:text-primary transition-colors">Breakfast</a></li>
+                        <li><a href="categories.html#lunch" class="text-gray-400 hover:text-primary transition-colors">Lunch</a></li>
+                        <li><a href="categories.html#dinner" class="text-gray-400 hover:text-primary transition-colors">Dinner</a></li>
+                        <li><a href="categories.html#desserts" class="text-gray-400 hover:text-primary transition-colors">Desserts</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Contact Us</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-2 text-primary"></i>
+                            <a href="mailto:info@culinarycanvas.com" class="text-gray-400 hover:text-primary transition-colors">info@culinarycanvas.com</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <hr class="border-gray-800 mb-6">
+            
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-500 text-sm">© 2023 Culinary Canvas. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Menu Script -->
+    <script>
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html> 

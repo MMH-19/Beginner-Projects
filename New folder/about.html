@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Culinary Canvas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF6B6B',
+                        secondary: '#4ECDC4',
+                        dark: '#292F36',
+                        light: '#F7F7F7'
+                    },
+                    fontFamily: {
+                        display: ['Playfair Display', 'serif'],
+                        sans: ['Poppins', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-light font-sans">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="index.html" class="flex items-center">
+                <span class="text-2xl md:text-3xl font-display font-bold text-dark">Culinary<span class="text-primary">Canvas</span></span>
+            </a>
+            
+            <div class="hidden md:flex items-center space-x-6">
+                <nav class="flex items-center space-x-6">
+                    <a href="index.html" class="text-dark hover:text-primary transition-colors font-medium">Home</a>
+                    <a href="recipes.html" class="text-dark hover:text-primary transition-colors font-medium">Recipes</a>
+                    <a href="categories.html" class="text-dark hover:text-primary transition-colors font-medium">Categories</a>
+                    <a href="about.html" class="text-primary transition-colors font-medium">About</a>
+                </nav>
+                
+                <div class="flex items-center space-x-4">
+                    <button class="text-dark hover:text-primary transition-colors">
+                        <i class="fas fa-search text-lg"></i>
+                    </button>
+                    <button class="text-dark hover:text-primary transition-colors">
+                        <i class="fas fa-bookmark text-lg"></i>
+                    </button>
+                    <a href="login.html" class="bg-primary text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition-colors">Sign In</a>
+                </div>
+            </div>
+            
+            <button class="md:hidden text-dark" id="mobile-menu-button">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div class="md:hidden hidden bg-white" id="mobile-menu">
+            <nav class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+                <a href="index.html" class="text-dark hover:text-primary transition-colors font-medium">Home</a>
+                <a href="recipes.html" class="text-dark hover:text-primary transition-colors font-medium">Recipes</a>
+                <a href="categories.html" class="text-dark hover:text-primary transition-colors font-medium">Categories</a>
+                <a href="about.html" class="text-primary transition-colors font-medium">About</a>
+                <div class="flex items-center space-x-4 pt-2">
+                    <button class="text-dark hover:text-primary transition-colors">
+                        <i class="fas fa-search text-lg"></i>
+                    </button>
+                    <button class="text-dark hover:text-primary transition-colors">
+                        <i class="fas fa-bookmark text-lg"></i>
+                    </button>
+                    <a href="login.html" class="bg-primary text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition-colors">Sign In</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="md:flex md:items-center md:justify-between">
+                <div class="md:w-1/2 mb-8 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl font-display font-bold text-dark mb-4">About Culinary Canvas</h1>
+                    <p class="text-gray-600 mb-6 text-lg">Welcome to Culinary Canvas, a place where cooking becomes an art form and every recipe tells a story.</p>
+                    <p class="text-gray-600 mb-6">Our mission is to inspire home cooks of all skill levels to explore the world of flavors, techniques, and cuisines. We believe that cooking is not just about nourishment, but about creativity, connection, and joy.</p>
+                    <p class="text-gray-600">Founded in 2023, Culinary Canvas has grown from a small passion project to a community of food enthusiasts sharing and discovering delicious recipes from around the world.</p>
+                </div>
+                <div class="md:w-5/12">
+                    <img src="https://images.unsplash.com/photo-1507048331197-7d4ac70811cf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" 
+                        alt="Cooking with passion" 
+                        class="rounded-xl shadow-lg w-full h-auto">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Story -->
+    <section class="py-16 bg-light">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center mb-12">
+                <h2 class="text-3xl font-display font-bold text-dark mb-4">Our Story</h2>
+                <div class="w-16 h-1 bg-primary mx-auto mb-6"></div>
+                <p class="text-gray-600">The journey of Culinary Canvas began when our founder, Emma Parker, realized that many people wanted to cook more at home but felt intimidated by complicated recipes or weren't sure where to start.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div class="bg-white rounded-xl p-6 shadow-sm text-center">
+                    <div class="w-16 h-16 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-lightbulb text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-display font-bold text-dark mb-3">The Idea</h3>
+                    <p class="text-gray-600">What started as a personal blog sharing family recipes quickly grew as readers connected with Emma's straightforward approach and encouraging style.</p>
+                </div>
+                
+                <div class="bg-white rounded-xl p-6 shadow-sm text-center">
+                    <div class="w-16 h-16 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-users text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-display font-bold text-dark mb-3">Growing Community</h3>
+                    <p class="text-gray-600">As the community grew, professional chefs, food photographers, and passionate home cooks joined to share their expertise and favorite recipes.</p>
+                </div>
+                
+                <div class="bg-white rounded-xl p-6 shadow-sm text-center">
+                    <div class="w-16 h-16 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-heart text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-display font-bold text-dark mb-3">Today's Vision</h3>
+                    <p class="text-gray-600">Today, Culinary Canvas is dedicated to making cooking accessible, enjoyable, and inspiring for everyone, regardless of their culinary background.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Team -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-display font-bold text-dark mb-4">Meet Our Team</h2>
+                <div class="w-16 h-1 bg-primary mx-auto mb-6"></div>
+                <p class="text-gray-600 max-w-3xl mx-auto">The heart and soul of Culinary Canvas is our diverse team of food lovers, each bringing their unique expertise and perspective to our community.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Team Member 1 -->
+                <div class="bg-light rounded-xl p-6 text-center">
+                    <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Emma Parker" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-white shadow">
+                    <h3 class="text-xl font-display font-bold text-dark mb-1">Emma Parker</h3>
+                    <p class="text-primary font-medium mb-3">Founder & Head Chef</p>
+                    <p class="text-gray-600 text-sm mb-4">With over 15 years of culinary experience, Emma brings her passion for approachable gourmet cooking to every recipe she develops.</p>
+                    <div class="flex justify-center space-x-3">
+                        <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Team Member 2 -->
+                <div class="bg-light rounded-xl p-6 text-center">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="James Wilson" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-white shadow">
+                    <h3 class="text-xl font-display font-bold text-dark mb-1">James Wilson</h3>
+                    <p class="text-primary font-medium mb-3">Executive Chef</p>
+                    <p class="text-gray-600 text-sm mb-4">A graduate from Le Cordon Bleu, James specializes in international cuisines with a focus on authentic techniques and flavors.</p>
+                    <div class="flex justify-center space-x-3">
+                        <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Team Member 3 -->
+                <div class="bg-light rounded-xl p-6 text-center">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sophia Chen" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-white shadow">
+                    <h3 class="text-xl font-display font-bold text-dark mb-1">Sophia Chen</h3>
+                    <p class="text-primary font-medium mb-3">Recipe Developer</p>
+                    <p class="text-gray-600 text-sm mb-4">Sophia brings a modern twist to traditional Asian recipes, making them accessible and exciting for home cooks.</p>
+                    <div class="flex justify-center space-x-3">
+                        <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Team Member 4 -->
+                <div class="bg-light rounded-xl p-6 text-center">
+                    <img src="https://randomuser.me/api/portraits/men/68.jpg" alt="Marcus Johnson" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-white shadow">
+                    <h3 class="text-xl font-display font-bold text-dark mb-1">Marcus Johnson</h3>
+                    <p class="text-primary font-medium mb-3">Food Photographer</p>
+                    <p class="text-gray-600 text-sm mb-4">With an eye for composition and light, Marcus captures the beauty of each dish, making our recipes visually inspiring.</p>
+                    <div class="flex justify-center space-x-3">
+                        <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Values -->
+    <section class="py-16 bg-primary bg-opacity-5">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-display font-bold text-dark mb-4">Our Values</h2>
+                <div class="w-16 h-1 bg-primary mx-auto mb-6"></div>
+                <p class="text-gray-600 max-w-3xl mx-auto">At Culinary Canvas, these core principles guide everything we do, from recipe development to community engagement.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div class="bg-white rounded-xl p-6 shadow-sm">
+                    <div class="w-12 h-12 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-check text-primary text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-display font-bold text-dark mb-3">Accessibility</h3>
+                    <p class="text-gray-600">We believe good food should be for everyone. We create recipes that use readily available ingredients and explain techniques clearly for all skill levels.</p>
+                </div>
+                
+                <div class="bg-white rounded-xl p-6 shadow-sm">
+                    <div class="w-12 h-12 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-check text-primary text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-display font-bold text-dark mb-3">Authenticity</h3>
+                    <p class="text-gray-600">We respect culinary traditions while embracing innovation. Our recipes honor their cultural origins while adapting to modern kitchens and tastes.</p>
+                </div>
+                
+                <div class="bg-white rounded-xl p-6 shadow-sm">
+                    <div class="w-12 h-12 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-check text-primary text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-display font-bold text-dark mb-3">Community</h3>
+                    <p class="text-gray-600">Cooking is about bringing people together. We foster a supportive community where food enthusiasts can connect, share, and learn from each other.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-display font-bold text-dark mb-4">What Our Community Says</h2>
+                <div class="w-16 h-1 bg-primary mx-auto mb-6"></div>
+                <p class="text-gray-600 max-w-3xl mx-auto">Hear from members of our community who have discovered the joy of cooking with Culinary Canvas.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <!-- Testimonial 1 -->
+                <div class="bg-light rounded-xl p-6">
+                    <div class="flex items-center text-amber-400 mb-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-4">"Culinary Canvas has transformed how I cook for my family. The recipes are clear, delicious, and always a hit with even my pickiest eaters!"</p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/women/12.jpg" alt="Sarah M." class="w-10 h-10 rounded-full mr-3">
+                        <div>
+                            <p class="font-medium text-dark">Sarah M.</p>
+                            <p class="text-gray-500 text-sm">Home Cook</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-light rounded-xl p-6">
+                    <div class="flex items-center text-amber-400 mb-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-4">"As someone who never thought I could cook, this website has given me confidence in the kitchen. The step-by-step instructions are foolproof!"</p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="David L." class="w-10 h-10 rounded-full mr-3">
+                        <div>
+                            <p class="font-medium text-dark">David L.</p>
+                            <p class="text-gray-500 text-sm">Cooking Enthusiast</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-light rounded-xl p-6">
+                    <div class="flex items-center text-amber-400 mb-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-4">"I've tried recipes from many sites, but Culinary Canvas stands out for its authenticity and the community feeling. It's like cooking with friends!"</p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/women/28.jpg" alt="Priya K." class="w-10 h-10 rounded-full mr-3">
+                        <div>
+                            <p class="font-medium text-dark">Priya K.</p>
+                            <p class="text-gray-500 text-sm">Food Blogger</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-16 bg-dark">
+        <div class="container mx-auto px-4">
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                <div class="md:flex">
+                    <div class="md:w-1/2 p-8 md:p-12">
+                        <h2 class="text-3xl font-display font-bold text-dark mb-4">Get in Touch</h2>
+                        <p class="text-gray-600 mb-6">Have questions, suggestions, or want to collaborate? We'd love to hear from you!</p>
+                        
+                        <form>
+                            <div class="mb-4">
+                                <label for="name" class="block text-gray-700 font-medium mb-2">Your Name</label>
+                                <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="email" class="block text-gray-700 font-medium mb-2">Email Address</label>
+                                <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="subject" class="block text-gray-700 font-medium mb-2">Subject</label>
+                                <input type="text" id="subject" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label for="message" class="block text-gray-700 font-medium mb-2">Your Message</label>
+                                <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"></textarea>
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-primary text-white py-2 px-4 rounded-lg hover:bg-opacity-90 transition-colors">Send Message</button>
+                        </form>
+                    </div>
+                    
+                    <div class="md:w-1/2 bg-primary bg-opacity-10 p-8 md:p-12 flex flex-col justify-center">
+                        <h3 class="text-2xl font-display font-bold text-dark mb-6">Contact Information</h3>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 rounded-full bg-primary bg-opacity-20 flex items-center justify-center mr-4 mt-1">
+                                    <i class="fas fa-map-marker-alt text-primary"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-dark">Location</p>
+                                    <p class="text-gray-600">123 Recipe Street, Foodville, FC 12345</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 rounded-full bg-primary bg-opacity-20 flex items-center justify-center mr-4 mt-1">
+                                    <i class="fas fa-envelope text-primary"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-dark">Email</p>
+                                    <a href="mailto:info@culinarycanvas.com" class="text-gray-600 hover:text-primary transition-colors">info@culinarycanvas.com</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 rounded-full bg-primary bg-opacity-20 flex items-center justify-center mr-4 mt-1">
+                                    <i class="fas fa-phone text-primary"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-dark">Phone</p>
+                                    <a href="tel:+11234567890" class="text-gray-600 hover:text-primary transition-colors">(123) 456-7890</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <h4 class="font-medium text-dark mb-3">Follow Us</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" class="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm hover:bg-primary hover:text-white transition-all">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm hover:bg-primary hover:text-white transition-all">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm hover:bg-primary hover:text-white transition-all">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm hover:bg-primary hover:text-white transition-all">
+                                    <i class="fab fa-pinterest"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-12 pb-6">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <a href="index.html" class="inline-block mb-4">
+                        <span class="text-2xl font-display font-bold text-white">Culinary<span class="text-primary">Canvas</span></span>
+                    </a>
+                    <p class="text-gray-400 mb-4">Discover, save, and share delicious recipes from around the world.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                            <i class="fab fa-pinterest"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-primary transition-colors">Home</a></li>
+                        <li><a href="recipes.html" class="text-gray-400 hover:text-primary transition-colors">Recipes</a></li>
+                        <li><a href="categories.html" class="text-gray-400 hover:text-primary transition-colors">Categories</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-primary transition-colors">About</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-primary transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Categories</h4>
+                    <ul class="space-y-2">
+                        <li><a href="categories.html#breakfast" class="text-gray-400 hover:text-primary transition-colors">Breakfast</a></li>
+                        <li><a href="categories.html#lunch" class="text-gray-400 hover:text-primary transition-colors">Lunch</a></li>
+                        <li><a href="categories.html#dinner" class="text-gray-400 hover:text-primary transition-colors">Dinner</a></li>
+                        <li><a href="categories.html#desserts" class="text-gray-400 hover:text-primary transition-colors">Desserts</a></li>
+                        <li><a href="categories.html#vegetarian" class="text-gray-400 hover:text-primary transition-colors">Vegetarian</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Contact Us</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-2 text-primary"></i>
+                            <span class="text-gray-400">123 Recipe Street, Foodville, FC 12345</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-2 text-primary"></i>
+                            <a href="mailto:info@culinarycanvas.com" class="text-gray-400 hover:text-primary transition-colors">info@culinarycanvas.com</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone mr-2 text-primary"></i>
+                            <a href="tel:+11234567890" class="text-gray-400 hover:text-primary transition-colors">(123) 456-7890</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <hr class="border-gray-800 mb-6">
+            
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-500 text-sm">© 2023 Culinary Canvas. All rights reserved.</p>
+                <div class="flex space-x-4 mt-4 md:mt-0">
+                    <a href="privacy.html" class="text-gray-500 text-sm hover:text-primary transition-colors">Privacy Policy</a>
+                    <a href="terms.html" class="text-gray-500 text-sm hover:text-primary transition-colors">Terms of Service</a>
+                    <a href="sitemap.html" class="text-gray-500 text-sm hover:text-primary transition-colors">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Menu Script -->
+    <script>
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html> 

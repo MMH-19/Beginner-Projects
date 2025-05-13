@@ -1,50 +1,89 @@
-# Modern Calculator
+# Advanced Scientific Calculator
 
-A beautiful, modern calculator with animations built using HTML, CSS, JavaScript, Tailwind CSS, and GSAP.
+A modern, feature-rich scientific calculator built with HTML, Tailwind CSS, and JavaScript.
 
 ## Features
 
-- Clean, modern UI with glassmorphism design
-- Smooth animations using GSAP
-- Full keyboard support
-- Handles basic arithmetic operations
-- Error handling for division by zero and large numbers
-- Decimal support with up to 3 decimal places
-- Responsive design that works on all devices
-- Dark mode friendly
+- **Modern UI** with glass morphism design, animations, and color effects
+- **Basic Calculator** operations: addition, subtraction, multiplication, division
+- **Scientific Functions**:
+  - Trigonometric functions (sin, cos, tan, and their inverses)
+  - Logarithmic functions (log, ln)
+  - Powers and roots
+  - Constants (π, e)
+  - Parentheses for complex expressions
+  - Factorial and absolute value
+- **Memory Functions**: Memory clear, recall, add, and subtract
+- **Angle Mode**: Toggle between radians and degrees
+- **Visual Feedback**: Button press animations, calculation history display
+- **Responsive Design**: Works on desktop and mobile devices
+- **Keyboard Support**: Use your keyboard for faster calculations
 
-## Technologies Used
+## Usage
 
-- HTML5
-- CSS3
-- JavaScript (ES6+)
-- [Tailwind CSS](https://tailwindcss.com/) for styling
-- [GSAP](https://greensock.com/gsap/) for animations
+1. **Basic Mode**:
+   - Use the digit buttons (0-9) to enter numbers
+   - Press operation buttons (+, -, ×, ÷) to perform calculations
+   - Use "=" to compute the result
+   - "AC" clears the calculator
+   - "±" toggles between positive and negative
+   - "%" converts the current number to a percentage
 
-## User Stories Implemented
+2. **Scientific Mode**:
+   - Click the "Scientific" tab to access advanced functions
+   - Use trigonometric functions, logarithms, and constants
+   - Toggle between radians and degrees using the switch
+   - Use parentheses for complex expressions
+   - Memory functions allow you to store and recall values
 
-- Display showing current number or operation result
-- Entry pad with digits 0-9 and operations (+, -, /, *)
-- Support for numbers up to 8 digits
-- Operation buttons to perform calculations
-- 'C' button to clear the last entry
-- 'AC' button to clear all entries
-- Error display when operations exceed maximum digits
-- Toggle sign (+/-) button
-- Decimal point support with up to 3 decimal places
+## Keyboard Shortcuts
 
-## How to Run
+### Basic Operations (Available in Both Modes)
+- **0-9**: Input numbers
+- **+, -, *, /**: Basic operations
+- **=, Enter**: Calculate result
+- **., ,**: Decimal point
+- **Escape**: Clear all (AC)
+- **Backspace**: Delete last digit
+- **%**: Percent
+- **Tab**: Switch between Basic and Scientific modes
 
-1. Clone this repository
-2. Open `index.html` in your browser
+### Scientific Functions (Only in Scientific Mode)
+- **s**: Sine (sin)
+- **c**: Cosine (cos)
+- **t**: Tangent (tan)
+- **l**: Logarithm base 10 (log)
+- **n**: Natural logarithm (ln)
+- **r**: Square root (√)
+- **!**: Factorial (x!)
+- **a**: Absolute value (|x|)
+- **p**: Pi (π)
+- **e**: Euler's number (e)
+- **(, )**: Parentheses
+- **^**: Power
+- **d**: Toggle between Degrees and Radians
 
-## Project Structure
+### Memory Operations (Only in Scientific Mode)
+- **q**: Memory Clear (MC)
+- **w**: Memory Recall (MR)
+- **m**: Memory Add (M+)
+- **Shift+m**: Memory Subtract (M-)
 
-- `index.html` - Main HTML file
-- `style.css` - Custom CSS styles
-- `script.js` - Calculator logic and animations
-- `tailwind.config.js` - Tailwind CSS configuration
+## Technical Implementation
 
-## License
+- **HTML** for structure
+- **Tailwind CSS** for styling and responsiveness
+- **Vanilla JavaScript** for calculator functionality
+- Custom animations for improved user experience
 
-MIT 
+## Getting Started
+
+Simply open the `index.html` file in your web browser to use the calculator.
+
+## Future Enhancements
+
+- Equation solving capabilities
+- Graphing functions
+- Unit conversions
+- Matrix operations
+- Complex number support 

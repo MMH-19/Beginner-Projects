@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Categories | Culinary Canvas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF6B6B',
+                        secondary: '#4ECDC4',
+                        dark: '#292F36',
+                        light: '#F7F7F7'
+                    },
+                    fontFamily: {
+                        display: ['Playfair Display', 'serif'],
+                        sans: ['Poppins', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-light font-sans">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="index.html" class="flex items-center">
+                <span class="text-2xl md:text-3xl font-display font-bold text-dark">Culinary<span class="text-primary">Canvas</span></span>
+            </a>
+            
+            <div class="hidden md:flex items-center space-x-6">
+                <nav class="flex items-center space-x-6">
+                    <a href="index.html" class="text-dark hover:text-primary transition-colors font-medium">Home</a>
+                    <a href="recipes.html" class="text-dark hover:text-primary transition-colors font-medium">Recipes</a>
+                    <a href="categories.html" class="text-primary transition-colors font-medium">Categories</a>
+                    <a href="about.html" class="text-dark hover:text-primary transition-colors font-medium">About</a>
+                </nav>
+                
+                <div class="flex items-center space-x-4">
+                    <button class="text-dark hover:text-primary transition-colors">
+                        <i class="fas fa-search text-lg"></i>
+                    </button>
+                    <button class="text-dark hover:text-primary transition-colors">
+                        <i class="fas fa-bookmark text-lg"></i>
+                    </button>
+                    <a href="login.html" class="bg-primary text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition-colors">Sign In</a>
+                </div>
+            </div>
+            
+            <button class="md:hidden text-dark" id="mobile-menu-button">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div class="md:hidden hidden bg-white" id="mobile-menu">
+            <nav class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+                <a href="index.html" class="text-dark hover:text-primary transition-colors font-medium">Home</a>
+                <a href="recipes.html" class="text-dark hover:text-primary transition-colors font-medium">Recipes</a>
+                <a href="categories.html" class="text-primary transition-colors font-medium">Categories</a>
+                <a href="about.html" class="text-dark hover:text-primary transition-colors font-medium">About</a>
+                <div class="flex items-center space-x-4 pt-2">
+                    <button class="text-dark hover:text-primary transition-colors">
+                        <i class="fas fa-search text-lg"></i>
+                    </button>
+                    <button class="text-dark hover:text-primary transition-colors">
+                        <i class="fas fa-bookmark text-lg"></i>
+                    </button>
+                    <a href="login.html" class="bg-primary text-white px-4 py-2 rounded-full hover:bg-opacity-90 transition-colors">Sign In</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <h1 class="text-4xl md:text-5xl font-display font-bold text-dark mb-4 text-center">Recipe Categories</h1>
+            <p class="text-gray-600 text-center max-w-3xl mx-auto">Browse our diverse collection of recipes by category to find exactly what you're looking for.</p>
+        </div>
+    </section>
+
+    <!-- All Categories -->
+    <section class="py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Breakfast Category -->
+                <div id="breakfast" class="bg-white rounded-xl shadow-sm overflow-hidden group">
+                    <a href="recipes.html?category=breakfast" class="block relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                            alt="Breakfast recipes" 
+                            class="w-full h-56 object-cover transition-transform duration-300 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-dark bg-opacity-40 flex items-center justify-center">
+                            <div class="text-center">
+                                <div class="w-16 h-16 mx-auto bg-primary bg-opacity-90 rounded-full flex items-center justify-center mb-2">
+                                    <i class="fas fa-coffee text-white text-2xl"></i>
+                                </div>
+                                <h3 class="text-white text-2xl font-display font-bold">Breakfast</h3>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4">Start your day right with our delicious breakfast recipes, from quick smoothies to indulgent brunches.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-dark font-medium">42 Recipes</span>
+                            <a href="recipes.html?category=breakfast" class="text-primary font-medium hover:underline">View All</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lunch Category -->
+                <div id="lunch" class="bg-white rounded-xl shadow-sm overflow-hidden group">
+                    <a href="recipes.html?category=lunch" class="block relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1547496502-affa22d38842?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1477&q=80" 
+                            alt="Lunch recipes" 
+                            class="w-full h-56 object-cover transition-transform duration-300 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-dark bg-opacity-40 flex items-center justify-center">
+                            <div class="text-center">
+                                <div class="w-16 h-16 mx-auto bg-primary bg-opacity-90 rounded-full flex items-center justify-center mb-2">
+                                    <i class="fas fa-hamburger text-white text-2xl"></i>
+                                </div>
+                                <h3 class="text-white text-2xl font-display font-bold">Lunch</h3>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4">Discover quick and satisfying lunch ideas, from hearty sandwiches to fresh salads and soups.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-dark font-medium">56 Recipes</span>
+                            <a href="recipes.html?category=lunch" class="text-primary font-medium hover:underline">View All</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dinner Category -->
+                <div id="dinner" class="bg-white rounded-xl shadow-sm overflow-hidden group">
+                    <a href="recipes.html?category=dinner" class="block relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1332&q=80" 
+                            alt="Dinner recipes" 
+                            class="w-full h-56 object-cover transition-transform duration-300 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-dark bg-opacity-40 flex items-center justify-center">
+                            <div class="text-center">
+                                <div class="w-16 h-16 mx-auto bg-primary bg-opacity-90 rounded-full flex items-center justify-center mb-2">
+                                    <i class="fas fa-utensils text-white text-2xl"></i>
+                                </div>
+                                <h3 class="text-white text-2xl font-display font-bold">Dinner</h3>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4">End your day with our flavorful dinner recipes, from weeknight staples to special occasion meals.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-dark font-medium">78 Recipes</span>
+                            <a href="recipes.html?category=dinner" class="text-primary font-medium hover:underline">View All</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Desserts Category -->
+                <div id="desserts" class="bg-white rounded-xl shadow-sm overflow-hidden group">
+                    <a href="recipes.html?category=desserts" class="block relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1565299507177-b0ac66763828?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1422&q=80" 
+                            alt="Dessert recipes" 
+                            class="w-full h-56 object-cover transition-transform duration-300 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-dark bg-opacity-40 flex items-center justify-center">
+                            <div class="text-center">
+                                <div class="w-16 h-16 mx-auto bg-primary bg-opacity-90 rounded-full flex items-center justify-center mb-2">
+                                    <i class="fas fa-ice-cream text-white text-2xl"></i>
+                                </div>
+                                <h3 class="text-white text-2xl font-display font-bold">Desserts</h3>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4">Indulge in our sweet treats, from simple cookies to showstopping cakes and everything in between.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-dark font-medium">64 Recipes</span>
+                            <a href="recipes.html?category=desserts" class="text-primary font-medium hover:underline">View All</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vegetarian Category -->
+                <div id="vegetarian" class="bg-white rounded-xl shadow-sm overflow-hidden group">
+                    <a href="recipes.html?category=vegetarian" class="block relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1547592180-85f173990554?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                            alt="Vegetarian recipes" 
+                            class="w-full h-56 object-cover transition-transform duration-300 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-dark bg-opacity-40 flex items-center justify-center">
+                            <div class="text-center">
+                                <div class="w-16 h-16 mx-auto bg-primary bg-opacity-90 rounded-full flex items-center justify-center mb-2">
+                                    <i class="fas fa-seedling text-white text-2xl"></i>
+                                </div>
+                                <h3 class="text-white text-2xl font-display font-bold">Vegetarian</h3>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4">Explore our collection of delicious meat-free dishes that make vegetables the star of the plate.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-dark font-medium">53 Recipes</span>
+                            <a href="recipes.html?category=vegetarian" class="text-primary font-medium hover:underline">View All</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Drinks Category -->
+                <div id="drinks" class="bg-white rounded-xl shadow-sm overflow-hidden group">
+                    <a href="recipes.html?category=drinks" class="block relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                            alt="Drink recipes" 
+                            class="w-full h-56 object-cover transition-transform duration-300 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-dark bg-opacity-40 flex items-center justify-center">
+                            <div class="text-center">
+                                <div class="w-16 h-16 mx-auto bg-primary bg-opacity-90 rounded-full flex items-center justify-center mb-2">
+                                    <i class="fas fa-cocktail text-white text-2xl"></i>
+                                </div>
+                                <h3 class="text-white text-2xl font-display font-bold">Drinks</h3>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4">Quench your thirst with our refreshing beverage recipes, from cocktails to smoothies and hot drinks.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-dark font-medium">37 Recipes</span>
+                            <a href="recipes.html?category=drinks" class="text-primary font-medium hover:underline">View All</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cuisines Section -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-display font-bold text-dark mb-8 text-center">Explore World Cuisines</h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                <a href="recipes.html?cuisine=italian" class="block text-center group">
+                    <div class="bg-light rounded-xl p-6 transition-transform group-hover:transform group-hover:scale-105">
+                        <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1332&q=80" 
+                            alt="Italian Cuisine" 
+                            class="w-16 h-16 mx-auto rounded-full object-cover mb-4">
+                        <h3 class="font-medium text-dark">Italian</h3>
+                    </div>
+                </a>
+                
+                <a href="recipes.html?cuisine=mexican" class="block text-center group">
+                    <div class="bg-light rounded-xl p-6 transition-transform group-hover:transform group-hover:scale-105">
+                        <img src="https://images.unsplash.com/photo-1546241072-48010ad2862c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" 
+                            alt="Mexican Cuisine" 
+                            class="w-16 h-16 mx-auto rounded-full object-cover mb-4">
+                        <h3 class="font-medium text-dark">Mexican</h3>
+                    </div>
+                </a>
+                
+                <a href="recipes.html?cuisine=asian" class="block text-center group">
+                    <div class="bg-light rounded-xl p-6 transition-transform group-hover:transform group-hover:scale-105">
+                        <img src="https://images.unsplash.com/photo-1677278116736-3e743386a715?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" 
+                            alt="Asian Cuisine" 
+                            class="w-16 h-16 mx-auto rounded-full object-cover mb-4">
+                        <h3 class="font-medium text-dark">Asian</h3>
+                    </div>
+                </a>
+                
+                <a href="recipes.html?cuisine=mediterranean" class="block text-center group">
+                    <div class="bg-light rounded-xl p-6 transition-transform group-hover:transform group-hover:scale-105">
+                        <img src="https://images.unsplash.com/photo-1594998893017-46a886d1de35?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" 
+                            alt="Mediterranean Cuisine" 
+                            class="w-16 h-16 mx-auto rounded-full object-cover mb-4">
+                        <h3 class="font-medium text-dark">Mediterranean</h3>
+                    </div>
+                </a>
+                
+                <a href="recipes.html?cuisine=indian" class="block text-center group">
+                    <div class="bg-light rounded-xl p-6 transition-transform group-hover:transform group-hover:scale-105">
+                        <img src="https://images.unsplash.com/photo-1596797038530-2c107aa4a186?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" 
+                            alt="Indian Cuisine" 
+                            class="w-16 h-16 mx-auto rounded-full object-cover mb-4">
+                        <h3 class="font-medium text-dark">Indian</h3>
+                    </div>
+                </a>
+                
+                <a href="recipes.html?cuisine=american" class="block text-center group">
+                    <div class="bg-light rounded-xl p-6 transition-transform group-hover:transform group-hover:scale-105">
+                        <img src="https://images.unsplash.com/photo-1551615593-ef5fe247e8f7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1376&q=80" 
+                            alt="American Cuisine" 
+                            class="w-16 h-16 mx-auto rounded-full object-cover mb-4">
+                        <h3 class="font-medium text-dark">American</h3>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Diets -->
+    <section class="py-12">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-display font-bold text-dark mb-8 text-center">Special Diets</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <a href="recipes.html?diet=vegan" class="bg-white rounded-xl shadow-sm overflow-hidden group">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                            alt="Vegan Recipes" 
+                            class="w-full h-40 object-cover transition-transform duration-300 group-hover:scale-105">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-display text-xl font-bold text-dark mb-2 group-hover:text-primary transition-colors">Vegan</h3>
+                        <p class="text-gray-600 text-sm">Plant-based recipes with no animal products.</p>
+                    </div>
+                </a>
+                
+                <a href="recipes.html?diet=gluten-free" class="bg-white rounded-xl shadow-sm overflow-hidden group">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1495147466023-ac5c588e2e94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" 
+                            alt="Gluten-Free Recipes" 
+                            class="w-full h-40 object-cover transition-transform duration-300 group-hover:scale-105">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-display text-xl font-bold text-dark mb-2 group-hover:text-primary transition-colors">Gluten-Free</h3>
+                        <p class="text-gray-600 text-sm">Recipes without wheat, barley, or rye.</p>
+                    </div>
+                </a>
+                
+                <a href="recipes.html?diet=keto" class="bg-white rounded-xl shadow-sm overflow-hidden group">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1574484284002-952d92456975?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" 
+                            alt="Keto Recipes" 
+                            class="w-full h-40 object-cover transition-transform duration-300 group-hover:scale-105">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-display text-xl font-bold text-dark mb-2 group-hover:text-primary transition-colors">Keto</h3>
+                        <p class="text-gray-600 text-sm">Low-carb, high-fat recipes for the ketogenic diet.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="py-16 bg-dark text-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-3xl font-display font-bold mb-4">Subscribe to Our Newsletter</h2>
+                <p class="text-gray-300 mb-8">Get weekly recipe inspiration, cooking tips, and exclusive content straight to your inbox.</p>
+                <form class="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
+                    <input type="email" placeholder="Your email address" class="flex-grow px-6 py-3 rounded-full text-dark focus:outline-none focus:ring-2 focus:ring-primary">
+                    <button type="submit" class="px-6 py-3 bg-primary text-white rounded-full hover:bg-opacity-90 transition-colors">Subscribe</button>
+                </form>
+                <p class="text-gray-400 text-sm mt-4">We respect your privacy. Unsubscribe at any time.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-12 pb-6">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <a href="index.html" class="inline-block mb-4">
+                        <span class="text-2xl font-display font-bold text-white">Culinary<span class="text-primary">Canvas</span></span>
+                    </a>
+                    <p class="text-gray-400 mb-4">Discover, save, and share delicious recipes from around the world.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                            <i class="fab fa-pinterest"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-primary transition-colors">Home</a></li>
+                        <li><a href="recipes.html" class="text-gray-400 hover:text-primary transition-colors">Recipes</a></li>
+                        <li><a href="categories.html" class="text-gray-400 hover:text-primary transition-colors">Categories</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-primary transition-colors">About</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-primary transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Categories</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#breakfast" class="text-gray-400 hover:text-primary transition-colors">Breakfast</a></li>
+                        <li><a href="#lunch" class="text-gray-400 hover:text-primary transition-colors">Lunch</a></li>
+                        <li><a href="#dinner" class="text-gray-400 hover:text-primary transition-colors">Dinner</a></li>
+                        <li><a href="#desserts" class="text-gray-400 hover:text-primary transition-colors">Desserts</a></li>
+                        <li><a href="#vegetarian" class="text-gray-400 hover:text-primary transition-colors">Vegetarian</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Contact Us</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-2 text-primary"></i>
+                            <span class="text-gray-400">123 Recipe Street, Foodville, FC 12345</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-2 text-primary"></i>
+                            <a href="mailto:info@culinarycanvas.com" class="text-gray-400 hover:text-primary transition-colors">info@culinarycanvas.com</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone mr-2 text-primary"></i>
+                            <a href="tel:+11234567890" class="text-gray-400 hover:text-primary transition-colors">(123) 456-7890</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <hr class="border-gray-800 mb-6">
+            
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-500 text-sm">© 2023 Culinary Canvas. All rights reserved.</p>
+                <div class="flex space-x-4 mt-4 md:mt-0">
+                    <a href="privacy.html" class="text-gray-500 text-sm hover:text-primary transition-colors">Privacy Policy</a>
+                    <a href="terms.html" class="text-gray-500 text-sm hover:text-primary transition-colors">Terms of Service</a>
+                    <a href="sitemap.html" class="text-gray-500 text-sm hover:text-primary transition-colors">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Menu Script -->
+    <script>
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html> 
