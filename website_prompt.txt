@@ -1,0 +1,131 @@
+# FULL-STACK WEBSITE DEVELOPMENT PROMPT
+
+## Overview
+Create a modern, responsive full-stack website that includes multiple utility tools and sections. The site should feature a clean, professional design with a Binary to Decimal converter as one of many utility tools. Use either Tailwind CSS or Bootstrap for styling (Tailwind preferred). The website should be fully responsive and follow modern design principles.
+
+## Technology Stack
+- HTML5
+- CSS3 with either Tailwind CSS or Bootstrap
+- JavaScript for client-side functionality
+- Optional backend with Node.js/Express for any server functionality
+
+## Website Sections (Build in this order)
+
+### 1. Header
+- Create a sticky navigation bar that remains at the top when scrolling
+- Include a logo on the left side (use placeholder or generate one)
+- Add navigation links: Home, Tools, About, Contact
+- Implement a mobile-responsive hamburger menu
+- Add a dark/light mode toggle
+- Style with gradient background or subtle shadow for depth
+
+### 2. Hero Section
+- Create a full-width hero section with a compelling headline
+- Include a brief (1-2 sentence) value proposition
+- Add a prominent CTA button directing to tools section
+- Incorporate a relevant illustration or animation
+- Use a gradient or pattern background that complements the color scheme
+- Add subtle animation for visual interest
+
+### 3. Tools Overview Section
+- Create a section showcasing the different tools available
+- Display each tool as a card with icon, name, and brief description
+- Include at least 4 tools (including the Binary to Decimal converter)
+- Make cards interactive with hover effects
+- Ensure proper spacing and alignment between cards
+- Add "Use Tool" buttons that smooth-scroll to the respective tool sections
+
+### 4. Binary to Decimal Converter Tool
+- Implement the complete converter functionality
+- Include an input field for binary numbers with validation
+- Add a "Convert" button and display the result prominently
+- Include error handling for invalid inputs
+- Add a brief explanation of how binary conversion works
+- Style with a distinct container and clear visual hierarchy
+
+### 5. Additional Tool Sections (include at least 3 more)
+- Decimal to Binary Converter
+- Temperature Converter (Celsius/Fahrenheit)
+- Length/Distance Converter
+- Simple Calculator
+- Password Generator
+- Color Picker/Converter
+- (Choose which tools to implement based on your preference)
+
+### 6. About Section
+- Include a section title with decorative elements
+- Add a brief history/purpose of the website
+- Include information about the technologies used
+- Add team information (use placeholder content)
+- Consider including testimonials or user feedback section
+- Style with alternating background colors or patterns
+
+### 7. FAQ Section
+- Create a collapsible accordion-style FAQ section
+- Include at least 5 relevant questions and answers
+- Ensure smooth open/close animations
+- Style consistently with the rest of the site
+
+### 8. Contact Section
+- Create a contact form with fields for name, email, subject, and message
+- Add form validation for all fields
+- Include alternative contact methods (email, social media)
+- Add a map showing a location (use any placeholder location)
+- Style the form with proper spacing and consistent design
+
+### 9. Footer
+- Include links to all main sections
+- Add social media icons
+- Include copyright information
+- Add privacy policy and terms of service links
+- Consider adding a newsletter subscription option
+- Style with contrasting background color
+
+## Design Requirements
+
+### Color Scheme
+- Choose a primary color, secondary color, and neutral colors
+- Ensure sufficient contrast for accessibility
+- Use colors consistently throughout the site
+- Consider color psychology in your choices
+
+### Typography
+- Select a primary font for headings and a secondary font for body text
+- Ensure readability at all screen sizes
+- Use consistent font sizing and weight throughout the site
+- Follow a clear typographic hierarchy
+
+### Spacing and Layout
+- Use consistent padding and margins throughout
+- Implement proper vertical rhythm between sections
+- Ensure adequate whitespace around elements
+- Follow a 12-column grid system for layout
+
+### Responsive Design
+- Ensure the site works on all devices (mobile, tablet, desktop)
+- Implement appropriate breakpoints for different screen sizes
+- Test navigation and interactive elements on mobile
+- Optimize images for different screen sizes
+
+## Interactive Requirements
+- Add subtle animations for scrolling and hover effects
+- Implement smooth scrolling for navigation links
+- Add loading states for any actions that require processing
+- Ensure all interactive elements have proper focus states for accessibility
+
+## Development Process
+1. Start with HTML structure for all sections
+2. Add base styling with your chosen CSS framework
+3. Implement responsive design elements
+4. Add JavaScript functionality for interactive elements
+5. Implement individual tools functionality
+6. Test across different devices and browsers
+7. Optimize for performance and accessibility
+
+## Additional Notes
+- Use semantic HTML tags throughout
+- Ensure the site passes basic accessibility checks
+- Optimize images and assets for performance
+- Add meta tags for SEO
+- Consider adding Open Graph tags for social sharing
+- Include proper commenting in your code 

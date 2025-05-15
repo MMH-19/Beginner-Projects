@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevToolkit - Utility Tools for Developers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    boxShadow: {
+                        'depth': '0 10px 30px -10px rgba(0, 0, 0, 0.1)',
+                        'depth-dark': '0 10px 30px -10px rgba(0, 0, 0, 0.3)'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 shadow-depth dark:shadow-depth-dark sticky top-0 z-50 transition-all">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="image.png" alt="DevToolkit Logo" class="h-8 w-8 mr-3">
+                <h1 class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">DevToolkit</h1>
+            </div>
+            
+            <!-- Mobile menu button -->
+            <button id="mobile-menu-button" class="md:hidden flex items-center justify-center p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <div class="hamburger-icon w-6 h-6 relative">
+                    <span class="hamburger-bar absolute h-0.5 w-full bg-gray-600 dark:bg-gray-300 rounded-sm transform transition duration-300"></span>
+                    <span class="hamburger-bar absolute h-0.5 w-full bg-gray-600 dark:bg-gray-300 rounded-sm transform transition duration-300"></span>
+                    <span class="hamburger-bar absolute h-0.5 w-full bg-gray-600 dark:bg-gray-300 rounded-sm transform transition duration-300"></span>
+                </div>
+            </button>
+            
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center space-x-6">
+                <a href="#home" class="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-home mr-2"></i>Home</a>
+                <a href="#tools" class="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-tools mr-2"></i>Tools</a>
+                <a href="#about" class="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-info-circle mr-2"></i>About</a>
+                <a href="#faq" class="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-question-circle mr-2"></i>FAQ</a>
+                <a href="#contact" class="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-envelope mr-2"></i>Contact</a>
+                <!-- Theme toggle button -->
+                <button id="theme-toggle" class="p-2 rounded-full bg-gradient-to-r from-gray-100 to-white dark:from-gray-800 dark:to-gray-700 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
+                    <i class="fas fa-sun text-yellow-500 dark:hidden"></i>
+                    <i class="fas fa-moon text-blue-300 hidden dark:block"></i>
+                </button>
+            </nav>
+        <!-- Mobile Navigation -->
+        <nav id="mobile-menu" class="hidden px-4 py-3 bg-white dark:bg-gray-800 border-t dark:border-gray-700 md:hidden shadow-lg transform transition-all duration-300">
+            <a href="#home" class="block py-3 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-home mr-2"></i>Home</a>
+            <a href="#tools" class="block py-3 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-tools mr-2"></i>Tools</a>
+            <a href="#about" class="block py-3 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-info-circle mr-2"></i>About</a>
+            <a href="#faq" class="block py-3 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-question-circle mr-2"></i>FAQ</a>
+            <a href="#contact" class="block py-3 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"><i class="fas fa-envelope mr-2"></i>Contact</a>
+            <!-- Theme toggle in mobile menu -->
+            <div class="flex items-center py-3">
+                <span class="flex-grow font-medium"><i class="fas fa-adjust mr-2"></i>Theme</span>
+                <button id="theme-toggle-mobile" class="p-2 rounded-full bg-gradient-to-r from-gray-100 to-white dark:from-gray-800 dark:to-gray-700 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
+                    <i class="fas fa-sun text-yellow-500 dark:hidden"></i>
+                    <i class="fas fa-moon text-blue-300 hidden dark:block"></i>
+                </button>
+            </div>
+        </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="w-full bg-gradient-to-br from-blue-600 via-indigo-700 to-purple-800 dark:from-blue-800 dark:via-indigo-900 dark:to-purple-900 text-white relative">
+        <!-- Background gradient overlay for enhanced depth -->
+        <div class="absolute inset-0 bg-gradient-radial opacity-80"></div>
+        
+        <div class="relative overflow-hidden w-full">
+            <!-- Enhanced background patterns -->
+            <div class="absolute inset-0 bg-grid-pattern opacity-10"></div>
+            <div class="absolute inset-0 bg-wave-pattern opacity-20"></div>
+            <div class="absolute inset-0 bg-dots-pattern opacity-5"></div>
+            
+            <!-- Floating orbs for depth -->
+            <div class="absolute h-40 w-40 rounded-full bg-gradient-to-r from-blue-400 to-indigo-500 opacity-20 blur-3xl top-20 -left-10 animate-float-slow"></div>
+            <div class="absolute h-32 w-32 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 opacity-20 blur-3xl bottom-20 right-10 animate-float-medium"></div>
+            <div class="absolute h-24 w-24 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 opacity-10 blur-2xl top-1/2 left-1/4 animate-float-fast"></div>
+            
+            <!-- Animated tech icons -->
+            <div class="absolute top-10 right-[10%] animate-spin-slow opacity-15">
+                <i class="fas fa-code text-4xl"></i>
+            </div>
+            <div class="absolute bottom-20 left-[15%] animate-bounce-slow opacity-15">
+                <i class="fas fa-database text-3xl"></i>
+            </div>
+            <div class="absolute top-1/3 right-[30%] animate-pulse-slow opacity-15">
+                <i class="fas fa-cogs text-3xl"></i>
+            </div>
+            
+            <!-- Shimmering line -->
+            <div class="absolute h-px w-full top-1/2 left-0 shimmer-line"></div>
+            
+            <div class="container mx-auto px-4 py-24 md:py-32 relative z-10">
+                <div class="max-w-5xl mx-auto">
+                    <div class="flex flex-col md:flex-row items-center">
+                        <!-- Content Column -->
+                        <div class="md:w-3/5 text-center md:text-left mb-12 md:mb-0">
+                            <h1 class="text-5xl md:text-6xl font-extrabold mb-6 leading-tight animate-title">
+                                <span class="bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-200 animating-gradient">Supercharge Your Development Workflow</span>
+                            </h1>
+                            <div class="mb-6 animate-fade-in-up" style="animation-delay: 0.2s;">
+                                <span class="inline-block px-4 py-2 bg-white/10 rounded-full text-blue-50 font-semibold backdrop-blur-sm border border-white/20">All the tools developers need, in one place, completely free.</span>
+                            </div>
+                            <p class="text-xl md:text-2xl text-blue-100 mb-10 max-w-3xl mx-auto md:mx-0 animate-fade-in-up" style="animation-delay: 0.4s;">Powerful utilities that simplify complex tasks, save time, and boost productivity for developers.</p>
+                            
+                            <!-- Primary CTA -->
+                            <div class="mb-8 animate-fade-in-up" style="animation-delay: 0.6s;">
+                                <a href="#tools" class="inline-block bg-gradient-to-r from-yellow-400 to-orange-500 text-white font-extrabold px-10 py-5 rounded-xl hover:from-yellow-300 hover:to-orange-400 transform hover:-translate-y-2 hover:shadow-xl transition-all duration-300 shadow-lg animate-pulse">
+                                    <span class="flex items-center justify-center text-xl">
+                                        <i class="fas fa-tools mr-2"></i> Explore Our Tools
+                                        <i class="fas fa-chevron-right ml-2"></i>
+                                    </span>
+                                </a>
+                            </div>
+                            
+                            <!-- Secondary CTA -->
+                            <div class="animate-fade-in-up" style="animation-delay: 0.8s;">
+                                <a href="#about" class="bg-transparent border-2 border-white text-white font-bold px-8 py-3 rounded-lg hover:bg-white/10 transform hover:-translate-y-1 transition-all duration-300">Learn More</a>
+                            </div>
+                        </div>
+                        
+                        <!-- Animation/Illustration Column -->
+                        <div class="md:w-2/5">
+                            <div class="dev-tools-animation">
+                                <!-- Code Window SVG Animation -->
+                                <svg width="100%" height="350" viewBox="0 0 400 350" xmlns="http://www.w3.org/2000/svg" class="floating parallax-element" data-parallax-depth="20">
+                                    <!-- Code editor window -->
+                                    <rect x="20" y="20" width="360" height="310" rx="8" fill="#1E293B" class="window-frame" />
+                                    <!-- Window header -->
+                                    <rect x="20" y="20" width="360" height="30" rx="8" fill="#374151" />
+                                    <circle cx="40" cy="35" r="5" fill="#EF4444" />
+                                    <circle cx="60" cy="35" r="5" fill="#F59E0B" />
+                                    <circle cx="80" cy="35" r="5" fill="#10B981" />
+                                    
+                                    <!-- Code lines -->
+                                    <g class="code-lines">
+                                        <!-- Line 1 -->
+                                        <rect x="40" y="70" width="120" height="10" rx="2" fill="#3B82F6" opacity="0.7" class="typing-animation" />
+                                        <rect x="170" y="70" width="80" height="10" rx="2" fill="#8B5CF6" opacity="0.6" class="typing-animation-delay-1" />
+                                        
+                                        <!-- Line 2 -->
+                                        <rect x="60" y="90" width="200" height="10" rx="2" fill="#EC4899" opacity="0.6" class="typing-animation-delay-2" />
+                                        
+                                        <!-- Line 3 -->
+                                        <rect x="60" y="110" width="80" height="10" rx="2" fill="#10B981" opacity="0.7" class="typing-animation-delay-3" />
+                                        <rect x="150" y="110" width="160" height="10" rx="2" fill="#6366F1" opacity="0.7" class="typing-animation-delay-3" />
+                                        
+                                        <!-- Line 4 -->
+                                        <rect x="80" y="130" width="120" height="10" rx="2" fill="#F59E0B" opacity="0.7" class="typing-animation-delay-4" />
+                                        
+                                        <!-- Line 5 -->
+                                        <rect x="40" y="160" width="100" height="10" rx="2" fill="#8B5CF6" opacity="0.7" class="typing-animation-delay-5" />
+                                        
+                                        <!-- Line 6 -->
+                                        <rect x="60" y="180" width="230" height="10" rx="2" fill="#3B82F6" opacity="0.6" class="typing-animation-delay-6" />
+                                        
+                                        <!-- Line 7 -->
+                                        <rect x="60" y="200" width="140" height="10" rx="2" fill="#EC4899" opacity="0.7" class="typing-animation-delay-7" />
+                                        
+                                        <!-- Line 8 -->
+                                        <rect x="80" y="220" width="190" height="10" rx="2" fill="#10B981" opacity="0.6" class="typing-animation-delay-8" />
+                                        
+                                        <!-- Line 9 -->
+                                        <rect x="40" y="250" width="160" height="10" rx="2" fill="#F59E0B" opacity="0.7" class="typing-animation-delay-9" />
+                                        
+                                        <!-- Line 10 -->
+                                        <rect x="40" y="270" width="200" height="10" rx="2" fill="#6366F1" opacity="0.6" class="typing-animation-delay-10" />
+                                    </g>
+                                    
+                                    <!-- Binary overlay with glow -->
+                                    <g class="binary-overlay" opacity="0.2">
+                                        <text x="310" y="90" fill="#10B981" font-family="monospace" font-size="16">01</text>
+                                        <text x="290" y="110" fill="#3B82F6" font-family="monospace" font-size="16">10</text>
+                                        <text x="330" y="130" fill="#8B5CF6" font-family="monospace" font-size="16">01</text>
+                                        <text x="310" y="150" fill="#EC4899" font-family="monospace" font-size="16">10</text>
+                                        <text x="290" y="170" fill="#F59E0B" font-family="monospace" font-size="16">01</text>
+                                        <text x="330" y="190" fill="#10B981" font-family="monospace" font-size="16">10</text>
+                                        <text x="310" y="210" fill="#3B82F6" font-family="monospace" font-size="16">01</text>
+                                        <text x="290" y="230" fill="#8B5CF6" font-family="monospace" font-size="16">10</text>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Decorative elements -->
+            <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-gray-50 dark:from-gray-900 opacity-20"></div>
+        </div>
+    </section>
+
+    <!-- Tools Section -->
+    <section id="tools" class="py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">Developer Toolkit</h2>
+            <p class="text-center text-gray-600 dark:text-gray-400 max-w-3xl mx-auto mb-12">A comprehensive collection of essential developer utilities designed to streamline your workflow and boost productivity.</p>
+            
+            <!-- Tools Categories Navigation -->
+            <div class="flex flex-wrap justify-center gap-4 mb-10">
+                <button class="tool-category-btn active px-4 py-2 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 font-medium hover:bg-blue-200 dark:hover:bg-blue-800 transition-all" data-category="all">All Tools</button>
+                <button class="tool-category-btn px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-medium hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-600 dark:hover:text-blue-300 transition-all" data-category="converters">Converters</button>
+                <button class="tool-category-btn px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-medium hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-600 dark:hover:text-blue-300 transition-all" data-category="formatters">Formatters</button>
+                <button class="tool-category-btn px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-medium hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-600 dark:hover:text-blue-300 transition-all" data-category="generators">Generators</button>
+                <button class="tool-category-btn px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-medium hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-600 dark:hover:text-blue-300 transition-all" data-category="encoders">Encoders & Decoders</button>
+            </div>
+            
+            <!-- Search Bar -->
+            <div class="max-w-md mx-auto mb-10">
+                <div class="relative">
+                    <input type="text" id="tools-search" placeholder="Search for tools..." class="w-full px-4 py-3 pl-10 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm">
+                    <div class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+                        <i class="fas fa-search"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Binary to Decimal Converter -->
+                <div class="tool-card bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-lg shadow-depth dark:shadow-depth-dark overflow-hidden transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group hover:ring-2 hover:ring-blue-300 dark:hover:ring-blue-700" data-category="converters">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-blue-100 dark:bg-blue-900 p-2 rounded-full mr-3 group-hover:bg-blue-200 dark:group-hover:bg-blue-800 transition-all duration-300 group-hover:scale-110">
+                                <i class="fas fa-exchange-alt text-blue-600 dark:text-blue-400 group-hover:rotate-12 transition-transform duration-300"></i>
+                            </div>
+                            <h3 class="text-xl font-bold group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">Binary to Decimal Converter</h3>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300">Convert binary numbers (base-2) to decimal (base-10) with ease.</p>
+                        <div class="mb-4">
+                            <label for="binary-input" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Enter binary number (0s and 1s only):</label>
+                            <input type="text" id="binary-input" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm" placeholder="Enter binary digits">
+                            <p id="error-message" class="text-red-600 dark:text-red-400 text-sm mt-1 h-5"></p>
+                        </div>
+                        <button id="convert-btn" class="w-full bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-600 dark:to-indigo-700 text-white py-2 rounded-md hover:shadow-lg shadow-md transition-all hover:from-blue-400 hover:to-indigo-500 dark:hover:from-blue-500 dark:hover:to-indigo-600 transform hover:scale-[1.02]">Convert</button>
+                        <div class="mt-4">
+                            <h4 class="font-medium text-gray-700 dark:text-gray-300">Decimal Result:</h4>
+                            <div id="decimal-result" class="bg-gradient-to-r from-gray-100 to-gray-50 dark:from-gray-700 dark:to-gray-800 p-3 rounded-md text-lg font-medium mt-1 shadow-inner">0</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hex Color Generator -->
+                <div class="tool-card bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-lg shadow-depth dark:shadow-depth-dark overflow-hidden transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group hover:ring-2 hover:ring-purple-300 dark:hover:ring-purple-700" data-category="generators">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-purple-100 dark:bg-purple-900 p-2 rounded-full mr-3 group-hover:bg-purple-200 dark:group-hover:bg-purple-800 transition-all duration-300 group-hover:scale-110">
+                                <i class="fas fa-palette text-purple-600 dark:text-purple-400 group-hover:rotate-12 transition-transform duration-300"></i>
+                            </div>
+                            <h3 class="text-xl font-bold group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300">Hex Color Generator</h3>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300">Generate and save random hex color codes for your projects.</p>
+                        <div id="color-preview" class="h-32 rounded-md mb-4 bg-gray-200 flex items-center justify-center shadow-inner group-hover:shadow-md transition-shadow duration-300">
+                            <span id="color-hex" class="font-medium">#RRGGBB</span>
+                        </div>
+                        <button id="generate-color-btn" class="w-full bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-600 dark:to-indigo-700 text-white py-2 rounded-md hover:shadow-lg shadow-md transition-all hover:from-blue-400 hover:to-indigo-500 dark:hover:from-blue-500 dark:hover:to-indigo-600 transform hover:scale-[1.02]">Generate Random Color</button>
+                        <div class="mt-4 grid grid-cols-2 gap-4">
+                            <button id="copy-hex-btn" class="bg-gradient-to-r from-gray-200 to-gray-100 dark:from-gray-700 dark:to-gray-800 py-2 rounded-md hover:shadow-md transition-all shadow-sm hover:from-gray-100 hover:to-white dark:hover:from-gray-600 dark:hover:to-gray-700 transform hover:scale-[1.02]">Copy Hex</button>
+                            <button id="save-color-btn" class="bg-gradient-to-r from-gray-200 to-gray-100 dark:from-gray-700 dark:to-gray-800 py-2 rounded-md hover:shadow-md transition-all shadow-sm hover:from-gray-100 hover:to-white dark:hover:from-gray-600 dark:hover:to-gray-700 transform hover:scale-[1.02]">Save Color</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- JSON Formatter -->
+                <div class="tool-card bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-lg shadow-depth dark:shadow-depth-dark overflow-hidden transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group hover:ring-2 hover:ring-green-300 dark:hover:ring-green-700" data-category="formatters">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-green-100 dark:bg-green-900 p-2 rounded-full mr-3 group-hover:bg-green-200 dark:group-hover:bg-green-800 transition-all duration-300 group-hover:scale-110">
+                                <i class="fas fa-code text-green-600 dark:text-green-400 group-hover:rotate-12 transition-transform duration-300"></i>
+                            </div>
+                            <h3 class="text-xl font-bold group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors duration-300">JSON Formatter</h3>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300">Format and minify JSON data with syntax highlighting.</p>
+                        <div class="mb-4">
+                            <label for="json-input" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Enter JSON:</label>
+                            <textarea id="json-input" rows="6" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm" placeholder='{"example": "Paste your JSON here"}'></textarea>
+                            <p id="json-error" class="text-red-600 dark:text-red-400 text-sm mt-1 h-5"></p>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <button id="format-json-btn" class="bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-600 dark:to-indigo-700 text-white py-2 rounded-md hover:shadow-lg shadow-md transition-all hover:from-blue-400 hover:to-indigo-500 dark:hover:from-blue-500 dark:hover:to-indigo-600 transform hover:scale-[1.02]">Format JSON</button>
+                            <button id="minify-json-btn" class="bg-gradient-to-r from-gray-200 to-gray-100 dark:from-gray-700 dark:to-gray-800 py-2 rounded-md hover:shadow-md transition-all shadow-sm hover:from-gray-100 hover:to-white dark:hover:from-gray-600 dark:hover:to-gray-700 transform hover:scale-[1.02]">Minify JSON</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Base64 Encoder/Decoder -->
+                <div class="tool-card bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-lg shadow-depth dark:shadow-depth-dark overflow-hidden transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group hover:ring-2 hover:ring-yellow-300 dark:hover:ring-yellow-700" data-category="encoders">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-yellow-100 dark:bg-yellow-900 p-2 rounded-full mr-3 group-hover:bg-yellow-200 dark:group-hover:bg-yellow-800 transition-all duration-300 group-hover:scale-110">
+                                <i class="fas fa-lock text-yellow-600 dark:text-yellow-400 group-hover:rotate-12 transition-transform duration-300"></i>
+                            </div>
+                            <h3 class="text-xl font-bold group-hover:text-yellow-600 dark:group-hover:text-yellow-400 transition-colors duration-300">Base64 Encoder/Decoder</h3>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300">Encode or decode text to and from Base64 format.</p>
+                        <div class="mb-4">
+                            <label for="base64-input" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Enter text:</label>
+                            <textarea id="base64-input" rows="3" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm" placeholder="Enter text to encode or Base64 to decode"></textarea>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 mb-4">
+                            <button id="encode-base64-btn" class="bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-600 dark:to-indigo-700 text-white py-2 rounded-md hover:shadow-lg shadow-md transition-all hover:from-blue-400 hover:to-indigo-500 dark:hover:from-blue-500 dark:hover:to-indigo-600 transform hover:scale-[1.02]">Encode</button>
+                            <button id="decode-base64-btn" class="bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-600 dark:to-indigo-700 text-white py-2 rounded-md hover:shadow-lg shadow-md transition-all hover:from-blue-400 hover:to-indigo-500 dark:hover:from-blue-500 dark:hover:to-indigo-600 transform hover:scale-[1.02]">Decode</button>
+                        </div>
+                        <div>
+                            <label for="base64-result" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Result:</label>
+                            <div id="base64-result" class="bg-gradient-to-r from-gray-100 to-gray-50 dark:from-gray-700 dark:to-gray-800 p-3 rounded-md text-sm font-medium break-all min-h-[50px] shadow-inner"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- URL Encoder/Decoder -->
+                <div class="tool-card bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-lg shadow-depth dark:shadow-depth-dark overflow-hidden transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group hover:ring-2 hover:ring-red-300 dark:hover:ring-red-700" data-category="encoders">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-red-100 dark:bg-red-900 p-2 rounded-full mr-3 group-hover:bg-red-200 dark:group-hover:bg-red-800 transition-all duration-300 group-hover:scale-110">
+                                <i class="fas fa-link text-red-600 dark:text-red-400 group-hover:rotate-12 transition-transform duration-300"></i>
+                            </div>
+                            <h3 class="text-xl font-bold group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors duration-300">URL Encoder/Decoder</h3>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300">Encode or decode URLs and query parameters.</p>
+                        <div class="mb-4">
+                            <label for="url-input" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Enter URL or text:</label>
+                            <textarea id="url-input" rows="3" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm" placeholder="Enter URL to encode or encoded URL to decode"></textarea>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 mb-4">
+                            <button id="encode-url-btn" class="bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-600 dark:to-indigo-700 text-white py-2 rounded-md hover:shadow-lg shadow-md transition-all hover:from-blue-400 hover:to-indigo-500 dark:hover:from-blue-500 dark:hover:to-indigo-600 transform hover:scale-[1.02]">Encode URL</button>
+                            <button id="decode-url-btn" class="bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-600 dark:to-indigo-700 text-white py-2 rounded-md hover:shadow-lg shadow-md transition-all hover:from-blue-400 hover:to-indigo-500 dark:hover:from-blue-500 dark:hover:to-indigo-600 transform hover:scale-[1.02]">Decode URL</button>
+                        </div>
+                        <div>
+                            <label for="url-result" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Result:</label>
+                            <div id="url-result" class="bg-gradient-to-r from-gray-100 to-gray-50 dark:from-gray-700 dark:to-gray-800 p-3 rounded-md text-sm font-medium break-all min-h-[50px] shadow-inner"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Decimal to Binary Converter -->
+                <div class="tool-card bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-lg shadow-depth dark:shadow-depth-dark overflow-hidden transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group hover:ring-2 hover:ring-blue-300 dark:hover:ring-blue-700" data-category="converters">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-blue-100 dark:bg-blue-900 p-2 rounded-full mr-3 group-hover:bg-blue-200 dark:group-hover:bg-blue-800 transition-all duration-300 group-hover:scale-110">
+                                <i class="fas fa-exchange-alt text-blue-600 dark:text-blue-400 group-hover:rotate-12 transition-transform duration-300"></i>
+                            </div>
+                            <h3 class="text-xl font-bold group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">Decimal to Binary Converter</h3>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300">Convert decimal numbers (base-10) to binary (base-2).</p>
+                        <div class="mb-4">
+                            <label for="decimal-input" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Enter decimal number:</label>
+                            <input type="number" id="decimal-input" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm" placeholder="Enter a decimal number">
+                            <p id="decimal-error" class="text-red-600 dark:text-red-400 text-sm mt-1 h-5"></p>
+                        </div>
+                        <button id="convert-to-binary-btn" class="w-full bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-600 dark:to-indigo-700 text-white py-2 rounded-md hover:shadow-lg shadow-md transition-all hover:from-blue-400 hover:to-indigo-500 dark:hover:from-blue-500 dark:hover:to-indigo-600 transform hover:scale-[1.02]">Convert</button>
+                        <div class="mt-4">
+                            <h4 class="font-medium text-gray-700 dark:text-gray-300">Binary Result:</h4>
+                            <div id="binary-result" class="bg-gradient-to-r from-gray-100 to-gray-50 dark:from-gray-700 dark:to-gray-800 p-3 rounded-md text-lg font-medium mt-1 shadow-inner">0</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Coming Soon Section -->
+            <div class="mt-16 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-lg shadow-depth dark:shadow-depth-dark p-8 text-center">
+                <h3 class="text-2xl font-bold mb-4">More Tools Coming Soon</h3>
+                <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-6">We're constantly adding new developer utilities to make your workflow even more efficient.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mt-8">
+                    <!-- Timestamp Converter -->
+                    <div class="tool-card bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-lg shadow-depth dark:shadow-depth-dark overflow-hidden transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-indigo-100 dark:bg-indigo-900 p-2 rounded-full mr-3">
+                                    <i class="fas fa-clock text-indigo-600 dark:text-indigo-400"></i>
+                                </div>
+                                <h3 class="text-xl font-bold">Timestamp Converter</h3>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Convert between Unix timestamps and human-readable dates. Useful for debugging and API development.</p>
+                            <div class="opacity-60 flex justify-center py-2 mt-2">
+                                <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-600 dark:text-indigo-400 text-xs font-medium rounded-full">Coming Soon</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- CSS Minifier -->
+                    <div class="tool-card bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-lg shadow-depth dark:shadow-depth-dark overflow-hidden transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-green-100 dark:bg-green-900 p-2 rounded-full mr-3">
+                                    <i class="fas fa-file-code text-green-600 dark:text-green-400"></i>
+                                </div>
+                                <h3 class="text-xl font-bold">CSS Minifier</h3>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Compress your CSS code to reduce file size and improve load times for your web applications.</p>
+                            <div class="opacity-60 flex justify-center py-2 mt-2">
+                                <span class="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-400 text-xs font-medium rounded-full">Coming Soon</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Password Generator -->
+                    <div class="tool-card bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-lg shadow-depth dark:shadow-depth-dark overflow-hidden transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-purple-100 dark:bg-purple-900 p-2 rounded-full mr-3">
+                                    <i class="fas fa-key text-purple-600 dark:text-purple-400"></i>
+                                </div>
+                                <h3 class="text-xl font-bold">Password Generator</h3>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Create strong, secure passwords with custom options for length, complexity, and character types.</p>
+                            <div class="opacity-60 flex justify-center py-2 mt-2">
+                                <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-400 text-xs font-medium rounded-full">Coming Soon</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- UUID Generator -->
+                    <div class="tool-card bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-lg shadow-depth dark:shadow-depth-dark overflow-hidden transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-blue-100 dark:bg-blue-900 p-2 rounded-full mr-3">
+                                    <i class="fas fa-fingerprint text-blue-600 dark:text-blue-400"></i>
+                                </div>
+                                <h3 class="text-xl font-bold">UUID Generator</h3>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Generate universally unique identifiers (UUIDs) for database records, API keys, and more.</p>
+                            <div class="opacity-60 flex justify-center py-2 mt-2">
+                                <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400 text-xs font-medium rounded-full">Coming Soon</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Text Diff Tool -->
+                    <div class="tool-card bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-lg shadow-depth dark:shadow-depth-dark overflow-hidden transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-yellow-100 dark:bg-yellow-900 p-2 rounded-full mr-3">
+                                    <i class="fas fa-code-compare text-yellow-600 dark:text-yellow-400"></i>
+                                </div>
+                                <h3 class="text-xl font-bold">Text Diff Tool</h3>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Compare two text fragments and highlight the differences. Perfect for code reviews and content editing.</p>
+                            <div class="opacity-60 flex justify-center py-2 mt-2">
+                                <span class="px-3 py-1 bg-yellow-100 dark:bg-yellow-900 text-yellow-600 dark:text-yellow-400 text-xs font-medium rounded-full">Coming Soon</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Regex Tester -->
+                    <div class="tool-card bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-lg shadow-depth dark:shadow-depth-dark overflow-hidden transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-red-100 dark:bg-red-900 p-2 rounded-full mr-3">
+                                    <i class="fas fa-magnifying-glass-dollar text-red-600 dark:text-red-400"></i>
+                                </div>
+                                <h3 class="text-xl font-bold">Regex Tester</h3>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Build, test, and debug regular expressions with a real-time visual pattern matching interface.</p>
+                            <div class="opacity-60 flex justify-center py-2 mt-2">
+                                <span class="px-3 py-1 bg-red-100 dark:bg-red-900 text-red-600 dark:text-red-400 text-xs font-medium rounded-full">Coming Soon</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-10">
+                    <a href="#contact" class="inline-block bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-bold px-6 py-3 rounded-lg hover:from-indigo-400 hover:to-purple-500 transform hover:-translate-y-1 transition-all duration-300 shadow-md">
+                        <span class="flex items-center">
+                            <i class="fas fa-lightbulb mr-2"></i> Suggest a Tool
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-gradient-to-br from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 shadow-depth dark:shadow-depth-dark">
+        <div class="container mx-auto px-4">
+            <div class="relative text-center mb-12">
+                <!-- Decorative elements -->
+                <div class="absolute top-1/2 left-1/4 transform -translate-y-1/2 w-24 h-24 rounded-full bg-blue-500 opacity-10 blur-xl animate-pulse-slow"></div>
+                <div class="absolute top-1/2 right-1/4 transform -translate-y-1/2 w-20 h-20 rounded-full bg-indigo-600 opacity-10 blur-xl animate-float-medium"></div>
+                
+                <!-- Title with decorative line -->
+                <div class="inline-block relative">
+                    <h2 class="text-3xl font-bold text-center mb-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 animate-title">About DevToolkit</h2>
+                    <div class="w-full h-1 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full opacity-80 shimmer-line"></div>
+                    <!-- Decorative icons -->
+                    <i class="fas fa-code absolute -left-8 top-1/2 transform -translate-y-1/2 text-blue-400 opacity-20 animate-float-fast"></i>
+                    <i class="fas fa-cogs absolute -right-8 top-1/2 transform -translate-y-1/2 text-indigo-400 opacity-20 animate-float-fast"></i>
+                </div>
+            </div>
+            <div class="max-w-3xl mx-auto">
+                <p class="text-lg mb-4">
+                    DevToolkit is a collection of essential utilities designed to make developers' lives easier. Our tools are free, fast, and accessible from anywhere.
+                </p>
+                <p class="text-lg mb-4">
+                    Whether you're converting between number systems, formatting code, or generating colors for your next project, we've got you covered with simple, efficient tools.
+                </p>
+                
+                <!-- History & Purpose Section -->
+                <div class="mt-10 pt-8 border-t border-gray-200 dark:border-gray-700">
+                    <h3 class="text-2xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-indigo-500 dark:from-blue-400 dark:to-indigo-400">Our Story</h3>
+                    <div class="bg-white/50 dark:bg-gray-800/50 p-6 rounded-lg shadow-sm">
+                        <p class="text-base mb-4">
+                            DevToolkit was founded in 2022 by a group of developers who were tired of switching between multiple websites and applications to access common development tools. 
+                        </p>
+                        <p class="text-base mb-4">
+                            Our mission is to create a single, comprehensive platform that provides all the essential utilities developers need in their daily workflow - eliminating the need to remember multiple websites or install various applications.
+                        </p>
+                        <p class="text-base">
+                            We're committed to keeping our tools completely free, continuously improving existing utilities, and regularly adding new ones based on community feedback. DevToolkit is built by developers, for developers.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Technologies Used Section -->
+                <div class="mt-10">
+                    <h3 class="text-2xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-indigo-500 dark:from-blue-400 dark:to-indigo-400">Built With</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <!-- HTML5 -->
+                        <div class="bg-white/50 dark:bg-gray-800/50 p-4 rounded-lg shadow-sm text-center hover:shadow-md transition-all group">
+                            <div class="bg-orange-100 dark:bg-orange-900/30 p-3 rounded-full inline-flex mb-3 group-hover:scale-110 transition-transform">
+                                <i class="fab fa-html5 text-orange-500 text-2xl"></i>
+                            </div>
+                            <h4 class="font-bold">HTML5</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Modern markup</p>
+                        </div>
+                        
+                        <!-- TailwindCSS -->
+                        <div class="bg-white/50 dark:bg-gray-800/50 p-4 rounded-lg shadow-sm text-center hover:shadow-md transition-all group">
+                            <div class="bg-sky-100 dark:bg-sky-900/30 p-3 rounded-full inline-flex mb-3 group-hover:scale-110 transition-transform">
+                                <i class="fab fa-css3-alt text-sky-500 text-2xl"></i>
+                            </div>
+                            <h4 class="font-bold">TailwindCSS</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Utility-first CSS</p>
+                        </div>
+                        
+                        <!-- JavaScript -->
+                        <div class="bg-white/50 dark:bg-gray-800/50 p-4 rounded-lg shadow-sm text-center hover:shadow-md transition-all group">
+                            <div class="bg-yellow-100 dark:bg-yellow-900/30 p-3 rounded-full inline-flex mb-3 group-hover:scale-110 transition-transform">
+                                <i class="fab fa-js text-yellow-500 text-2xl"></i>
+                            </div>
+                            <h4 class="font-bold">JavaScript</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Interactive features</p>
+                        </div>
+                        
+                        <!-- Font Awesome -->
+                        <div class="bg-white/50 dark:bg-gray-800/50 p-4 rounded-lg shadow-sm text-center hover:shadow-md transition-all group">
+                            <div class="bg-blue-100 dark:bg-blue-900/30 p-3 rounded-full inline-flex mb-3 group-hover:scale-110 transition-transform">
+                                <i class="fab fa-font-awesome text-blue-500 text-2xl"></i>
+                            </div>
+                            <h4 class="font-bold">Font Awesome</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Beautiful icons</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-center mt-6 text-sm text-gray-600 dark:text-gray-400">
+                        DevToolkit is designed to run entirely in the browser with no backend requirements,
+                        ensuring fast performance and complete privacy for your data.
+                    </p>
+                </div>
+                
+                <!-- Meet the Team Section -->
+                <div class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-700">
+                    <h3 class="text-2xl font-bold mb-8 text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-indigo-500 dark:from-blue-400 dark:to-indigo-400">Meet the Team</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <!-- Team Member 1 -->
+                        <div class="bg-white/50 dark:bg-gray-800/50 rounded-xl shadow-sm overflow-hidden group hover:shadow-md transition-all">
+                            <div class="h-48 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" 
+                                    alt="Alex Morgan" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="p-6">
+                                <h4 class="text-xl font-bold mb-1">Alex Morgan</h4>
+                                <p class="text-blue-600 dark:text-blue-400 font-medium text-sm mb-3">Founder & Lead Developer</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">
+                                    Full-stack developer with 8+ years of experience in building web applications. 
+                                    Alex founded DevToolkit after repeatedly building these tools for his own use.
+                                </p>
+                                <div class="flex space-x-3">
+                                    <a href="#" class="text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                    <a href="#" class="text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                                        <i class="fab fa-linkedin"></i>
+                                    </a>
+                                    <a href="#" class="text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Team Member 2 -->
+                        <div class="bg-white/50 dark:bg-gray-800/50 rounded-xl shadow-sm overflow-hidden group hover:shadow-md transition-all">
+                            <div class="h-48 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=776&q=80" 
+                                    alt="Sarah Chen" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="p-6">
+                                <h4 class="text-xl font-bold mb-1">Sarah Chen</h4>
+                                <p class="text-blue-600 dark:text-blue-400 font-medium text-sm mb-3">UI/UX Designer</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">
+                                    Award-winning designer specialized in creating intuitive user experiences.
+                                    Sarah ensures DevToolkit is not only functional but also beautiful and easy to use.
+                                </p>
+                                <div class="flex space-x-3">
+                                    <a href="#" class="text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                                        <i class="fab fa-dribbble"></i>
+                                    </a>
+                                    <a href="#" class="text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                    <a href="#" class="text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                                        <i class="fab fa-linkedin"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Team Member 3 -->
+                        <div class="bg-white/50 dark:bg-gray-800/50 rounded-xl shadow-sm overflow-hidden group hover:shadow-md transition-all">
+                            <div class="h-48 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" 
+                                    alt="David Wilson" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="p-6">
+                                <h4 class="text-xl font-bold mb-1">David Wilson</h4>
+                                <p class="text-blue-600 dark:text-blue-400 font-medium text-sm mb-3">Frontend Developer</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">
+                                    JavaScript expert with deep knowledge of modern frameworks. 
+                                    David implements the tools with clean, efficient code and ensures cross-browser compatibility.
+                                </p>
+                                <div class="flex space-x-3">
+                                    <a href="#" class="text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                    <a href="#" class="text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                                        <i class="fab fa-codepen"></i>
+                                    </a>
+                                    <a href="#" class="text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                                        <i class="fab fa-dev"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p class="text-center mt-10 text-gray-600 dark:text-gray-400">
+                        Our dedicated team is passionate about creating tools that make developers' lives easier.
+                        <br>We're always looking for feedback and suggestions to improve DevToolkit!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-16 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-gray-900 dark:to-indigo-950 shadow-depth dark:shadow-depth-dark">
+        <div class="container mx-auto px-4">
+            <div class="relative text-center mb-16">
+                <!-- Decorative elements -->
+                <div class="absolute top-1/2 left-1/4 transform -translate-y-1/2 w-24 h-24 rounded-full bg-blue-500 opacity-10 blur-xl animate-pulse-slow"></div>
+                <div class="absolute top-1/2 right-1/4 transform -translate-y-1/2 w-20 h-20 rounded-full bg-indigo-600 opacity-10 blur-xl animate-float-medium"></div>
+                
+                <!-- Title with decorative line -->
+                <div class="inline-block relative">
+                    <h2 class="text-3xl font-bold text-center mb-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 animate-title">What Developers Say</h2>
+                    <div class="w-full h-1 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full opacity-80 shimmer-line"></div>
+                    <!-- Decorative icons -->
+                    <i class="fas fa-quote-left absolute -left-8 top-1/2 transform -translate-y-1/2 text-blue-400 opacity-20 animate-float-fast"></i>
+                    <i class="fas fa-quote-right absolute -right-8 top-1/2 transform -translate-y-1/2 text-indigo-400 opacity-20 animate-float-fast"></i>
+                </div>
+                <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mt-4">Hear from the developers who use our tools every day</p>
+            </div>
+            
+            <!-- Testimonials -->
+            <div class="max-w-6xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Testimonial 1 -->
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 relative group hover:shadow-lg transition-all duration-300">
+                        <!-- Quote icon -->
+                        <div class="absolute -top-4 -left-4 bg-gradient-to-r from-blue-500 to-indigo-600 w-10 h-10 rounded-full flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
+                            <i class="fas fa-quote-left text-white"></i>
+                        </div>
+                        
+                        <!-- Stars -->
+                        <div class="flex mb-4 mt-2">
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                        </div>
+                        
+                        <!-- Quote -->
+                        <p class="text-gray-600 dark:text-gray-300 mb-6 italic">
+                            "DevToolkit saves me hours every week. The JSON formatter and Base64 tools are now essential parts of my development workflow. Incredibly useful and well-designed."
+                        </p>
+                        
+                        <!-- User info -->
+                        <div class="flex items-center">
+                            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
+                                alt="Emily Johnson" class="w-12 h-12 rounded-full object-cover mr-4 ring-2 ring-blue-300 dark:ring-blue-700">
+                            <div>
+                                <h4 class="font-bold">Emily Johnson</h4>
+                                <p class="text-gray-500 dark:text-gray-400 text-sm">Senior Frontend Developer @ Shopify</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial 2 -->
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 relative group hover:shadow-lg transition-all duration-300">
+                        <!-- Quote icon -->
+                        <div class="absolute -top-4 -left-4 bg-gradient-to-r from-blue-500 to-indigo-600 w-10 h-10 rounded-full flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
+                            <i class="fas fa-quote-left text-white"></i>
+                        </div>
+                        
+                        <!-- Stars -->
+                        <div class="flex mb-4 mt-2">
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                        </div>
+                        
+                        <!-- Quote -->
+                        <p class="text-gray-600 dark:text-gray-300 mb-6 italic">
+                            "The binary/decimal converters have been incredibly helpful for my embedded systems work. Clean UI, fast performance, and all in one place. A must-have resource for developers."
+                        </p>
+                        
+                        <!-- User info -->
+                        <div class="flex items-center">
+                            <img src="https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=634&q=80" 
+                                alt="Marcus Rivera" class="w-12 h-12 rounded-full object-cover mr-4 ring-2 ring-blue-300 dark:ring-blue-700">
+                            <div>
+                                <h4 class="font-bold">Marcus Rivera</h4>
+                                <p class="text-gray-500 dark:text-gray-400 text-sm">IoT Engineer @ Tesla</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial 3 -->
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 relative group hover:shadow-lg transition-all duration-300">
+                        <!-- Quote icon -->
+                        <div class="absolute -top-4 -left-4 bg-gradient-to-r from-blue-500 to-indigo-600 w-10 h-10 rounded-full flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
+                            <i class="fas fa-quote-left text-white"></i>
+                        </div>
+                        
+                        <!-- Stars -->
+                        <div class="flex mb-4 mt-2">
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star-half-alt text-yellow-400"></i>
+                        </div>
+                        
+                        <!-- Quote -->
+                        <p class="text-gray-600 dark:text-gray-300 mb-6 italic">
+                            "I teach web development, and I'm constantly recommending DevToolkit to my students. It's intuitive, educational, and has become an indispensable resource in my classroom."
+                        </p>
+                        
+                        <!-- User info -->
+                        <div class="flex items-center">
+                            <img src="https://images.unsplash.com/photo-1573497019418-b400bb3ab074?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" 
+                                alt="Dr. Priya Sharma" class="w-12 h-12 rounded-full object-cover mr-4 ring-2 ring-blue-300 dark:ring-blue-700">
+                            <div>
+                                <h4 class="font-bold">Dr. Priya Sharma</h4>
+                                <p class="text-gray-500 dark:text-gray-400 text-sm">CS Professor @ Stanford University</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Call to action -->
+                <div class="text-center mt-12">
+                    <a href="#contact" class="inline-block bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-bold px-6 py-3 rounded-lg hover:from-blue-400 hover:to-indigo-500 transform hover:-translate-y-1 transition-all duration-300 shadow-md">
+                        <span class="flex items-center">
+                            <i class="fas fa-comment-alt mr-2"></i> Share Your Experience
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-16 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 shadow-depth dark:shadow-depth-dark">
+        <div class="container mx-auto px-4">
+            <div class="relative text-center mb-16">
+                <!-- Decorative elements -->
+                <div class="absolute top-1/2 left-1/4 transform -translate-y-1/2 w-24 h-24 rounded-full bg-blue-500 opacity-10 blur-xl animate-pulse-slow"></div>
+                <div class="absolute top-1/2 right-1/4 transform -translate-y-1/2 w-20 h-20 rounded-full bg-indigo-600 opacity-10 blur-xl animate-float-medium"></div>
+                
+                <!-- Title with decorative line -->
+                <div class="inline-block relative">
+                    <h2 class="text-3xl font-bold text-center mb-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 animate-title">Frequently Asked Questions</h2>
+                    <div class="w-full h-1 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full opacity-80 shimmer-line"></div>
+                    <!-- Decorative icons -->
+                    <i class="fas fa-question-circle absolute -left-8 top-1/2 transform -translate-y-1/2 text-blue-400 opacity-20 animate-float-fast"></i>
+                    <i class="fas fa-question-circle absolute -right-8 top-1/2 transform -translate-y-1/2 text-indigo-400 opacity-20 animate-float-fast"></i>
+                    <!-- Floating orbs -->
+                    <div class="absolute -z-10 h-12 w-12 rounded-full bg-gradient-to-r from-blue-400 to-indigo-500 opacity-20 blur-xl -top-6 -left-12 animate-float-slow"></div>
+                    <div class="absolute -z-10 h-8 w-8 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 opacity-20 blur-xl -bottom-4 -right-10 animate-float-medium"></div>
+                </div>
+                <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mt-4">Find answers to the most common questions about DevToolkit</p>
+            </div>
+            
+            <!-- FAQ Items -->
+            <div class="max-w-3xl mx-auto">
+                <!-- FAQ Item 1 -->
+                <div class="faq-item mb-5 rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-all transform hover:-translate-y-1">
+                    <button class="faq-question w-full bg-white dark:bg-gray-800 px-6 py-4 text-left transition-all flex justify-between items-center">
+                        <span class="font-medium text-lg">Are all the tools really free to use?</span>
+                        <i class="fas fa-chevron-down transform transition-transform"></i>
+                    </button>
+                    <div class="faq-answer px-6 bg-gray-50 dark:bg-gray-700">
+                        <p class="text-gray-600 dark:text-gray-300">
+                            Yes, all tools on DevToolkit are completely free to use with no restrictions. We believe in providing useful utilities to the developer community without paywalls or premium tiers. The project is maintained by open-source contributors and supported through sponsorships.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 2 -->
+                <div class="faq-item mb-5 rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-all transform hover:-translate-y-1">
+                    <button class="faq-question w-full bg-white dark:bg-gray-800 px-6 py-4 text-left transition-all flex justify-between items-center">
+                        <span class="font-medium text-lg">Is my data secure when using these tools?</span>
+                        <i class="fas fa-chevron-down transform transition-transform"></i>
+                    </button>
+                    <div class="faq-answer px-6 bg-gray-50 dark:bg-gray-700">
+                        <p class="text-gray-600 dark:text-gray-300">
+                            Absolutely. All of our tools run entirely in your browser - your data never leaves your device. We don't store, transmit, or process any of the information you enter on our servers. For extra sensitive data, you can even use DevToolkit offline once the page has loaded.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 3 -->
+                <div class="faq-item mb-5 rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-all transform hover:-translate-y-1">
+                    <button class="faq-question w-full bg-white dark:bg-gray-800 px-6 py-4 text-left transition-all flex justify-between items-center">
+                        <span class="font-medium text-lg">How often are new tools added?</span>
+                        <i class="fas fa-chevron-down transform transition-transform"></i>
+                    </button>
+                    <div class="faq-answer px-6 bg-gray-50 dark:bg-gray-700">
+                        <p class="text-gray-600 dark:text-gray-300">
+                            We aim to add new tools to DevToolkit every month based on developer feedback and requests. Our roadmap is publicly available on GitHub, and we encourage community suggestions for new utilities. You can also subscribe to our newsletter to be notified when new tools are released.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 4 -->
+                <div class="faq-item mb-5 rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-all transform hover:-translate-y-1">
+                    <button class="faq-question w-full bg-white dark:bg-gray-800 px-6 py-4 text-left transition-all flex justify-between items-center">
+                        <span class="font-medium text-lg">Can I contribute to DevToolkit?</span>
+                        <i class="fas fa-chevron-down transform transition-transform"></i>
+                    </button>
+                    <div class="faq-answer px-6 bg-gray-50 dark:bg-gray-700">
+                        <p class="text-gray-600 dark:text-gray-300">
+                            We welcome contributions! DevToolkit is an open-source project, and you can contribute in multiple ways: by adding new tools, improving existing ones, fixing bugs, enhancing the UI, writing documentation, or even by simply reporting issues. Check out our GitHub repository for contribution guidelines.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 5 -->
+                <div class="faq-item mb-5 rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-all transform hover:-translate-y-1">
+                    <button class="faq-question w-full bg-white dark:bg-gray-800 px-6 py-4 text-left transition-all flex justify-between items-center">
+                        <span class="font-medium text-lg">Do you offer an API for these tools?</span>
+                        <i class="fas fa-chevron-down transform transition-transform"></i>
+                    </button>
+                    <div class="faq-answer px-6 bg-gray-50 dark:bg-gray-700">
+                        <p class="text-gray-600 dark:text-gray-300">
+                            Currently, we don't offer an API for direct integration. However, we're working on a developer API that will allow you to integrate our tools into your applications. Sign up for our newsletter to be notified when the API becomes available. In the meantime, the source code for all tools is available on GitHub.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 6 -->
+                <div class="faq-item mb-5 rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-all transform hover:-translate-y-1">
+                    <button class="faq-question w-full bg-white dark:bg-gray-800 px-6 py-4 text-left transition-all flex justify-between items-center">
+                        <span class="font-medium text-lg">Can I use DevToolkit offline?</span>
+                        <i class="fas fa-chevron-down transform transition-transform"></i>
+                    </button>
+                    <div class="faq-answer px-6 bg-gray-50 dark:bg-gray-700">
+                        <p class="text-gray-600 dark:text-gray-300">
+                            Yes! We've designed DevToolkit to work offline after the first load. Simply visit the site once while online, and it will be cached in your browser. You can then use most of the tools even without an internet connection. We're also working on a Progressive Web App (PWA) version for an even better offline experience.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Still have questions -->
+            <div class="text-center mt-12 py-8 px-6 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-xl shadow-sm">
+                <div class="relative">
+                    <!-- Decorative elements -->
+                    <div class="absolute -top-6 -left-6 w-12 h-12 rounded-full bg-blue-500 opacity-10 blur-xl animate-pulse-slow"></div>
+                    <div class="absolute -bottom-6 -right-6 w-12 h-12 rounded-full bg-indigo-600 opacity-10 blur-xl animate-float-medium"></div>
+                    
+                    <h3 class="text-xl font-bold mb-4 relative z-10">Still have questions?</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6 max-w-xl mx-auto">We're here to help! Reach out to us and we'll get back to you as soon as possible.</p>
+                    <a href="#contact" class="inline-block bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-bold px-6 py-3 rounded-lg hover:from-blue-400 hover:to-indigo-500 transform hover:-translate-y-1 transition-all duration-300 shadow-md">
+                        <span class="flex items-center">
+                            <i class="fas fa-envelope mr-2"></i> Contact Us
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">Contact Us</h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 max-w-6xl mx-auto">
+                <!-- Contact Form -->
+                <div class="bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-lg shadow-depth dark:shadow-depth-dark p-6">
+                    <h3 class="text-xl font-bold mb-4 flex items-center"><i class="fas fa-paper-plane mr-3 text-blue-500"></i>Send Us a Message</h3>
+                <form id="contact-form">
+                    <div class="mb-4">
+                        <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Name</label>
+                            <input type="text" id="name" name="name" required class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm">
+                            <p id="name-error" class="text-red-600 dark:text-red-400 text-sm mt-1 h-5 hidden"></p>
+                    </div>
+                    <div class="mb-4">
+                        <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email</label>
+                            <input type="email" id="email" name="email" required class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm">
+                            <p id="email-error" class="text-red-600 dark:text-red-400 text-sm mt-1 h-5 hidden"></p>
+                        </div>
+                        <div class="mb-4">
+                            <label for="subject" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Subject</label>
+                            <input type="text" id="subject" name="subject" required class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm">
+                            <p id="subject-error" class="text-red-600 dark:text-red-400 text-sm mt-1 h-5 hidden"></p>
+                    </div>
+                    <div class="mb-4">
+                        <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Message</label>
+                            <textarea id="message" name="message" rows="4" required class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm"></textarea>
+                            <p id="message-error" class="text-red-600 dark:text-red-400 text-sm mt-1 h-5 hidden"></p>
+                        </div>
+                        <div id="form-status" class="mb-4 text-center hidden">
+                            <p id="success-message" class="text-green-600 dark:text-green-400 hidden">Your message has been sent successfully!</p>
+                            <p id="error-message" class="text-red-600 dark:text-red-400 hidden">There was an error sending your message. Please try again.</p>
+                    </div>
+                    <button type="submit" class="w-full bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-600 dark:to-indigo-700 text-white py-2 rounded-md hover:shadow-lg shadow-md transition-all">Send Message</button>
+                </form>
+                </div>
+                
+                <!-- Alternative Contact Methods -->
+                <div class="bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-lg shadow-depth dark:shadow-depth-dark p-6">
+                    <h3 class="text-xl font-bold mb-6 flex items-center"><i class="fas fa-address-book mr-3 text-blue-500"></i>Other Ways to Reach Us</h3>
+                    
+                    <!-- Email Contact -->
+                    <div class="mb-8">
+                        <h4 class="text-lg font-semibold mb-3 text-gray-800 dark:text-gray-200">Email Us Directly</h4>
+                        <div class="flex items-center mb-2 group">
+                            <div class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center mr-3 group-hover:bg-blue-200 dark:group-hover:bg-blue-800 transition-colors">
+                                <i class="fas fa-envelope text-blue-600 dark:text-blue-400"></i>
+                            </div>
+                            <a href="mailto:contact@devtoolkit.com" class="text-blue-600 dark:text-blue-400 hover:underline group-hover:text-blue-700 dark:group-hover:text-blue-300 transition-colors">contact@devtoolkit.com</a>
+                        </div>
+                        <div class="flex items-center group">
+                            <div class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center mr-3 group-hover:bg-blue-200 dark:group-hover:bg-blue-800 transition-colors">
+                                <i class="fas fa-envelope-open-text text-blue-600 dark:text-blue-400"></i>
+                            </div>
+                            <a href="mailto:support@devtoolkit.com" class="text-blue-600 dark:text-blue-400 hover:underline group-hover:text-blue-700 dark:group-hover:text-blue-300 transition-colors">support@devtoolkit.com</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Social Media -->
+                    <div>
+                        <h4 class="text-lg font-semibold mb-3 text-gray-800 dark:text-gray-200">Connect With Us</h4>
+                        <div class="grid grid-cols-2 gap-4">
+                            <a href="#" class="flex items-center p-3 bg-gray-100 dark:bg-gray-700 rounded-lg group hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-colors">
+                                <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center mr-3">
+                                    <i class="fab fa-twitter text-white"></i>
+                                </div>
+                                <span class="font-medium group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Twitter</span>
+                            </a>
+                            <a href="#" class="flex items-center p-3 bg-gray-100 dark:bg-gray-700 rounded-lg group hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-colors">
+                                <div class="w-10 h-10 rounded-full bg-blue-800 flex items-center justify-center mr-3">
+                                    <i class="fab fa-linkedin-in text-white"></i>
+                                </div>
+                                <span class="font-medium group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">LinkedIn</span>
+                            </a>
+                            <a href="#" class="flex items-center p-3 bg-gray-100 dark:bg-gray-700 rounded-lg group hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-colors">
+                                <div class="w-10 h-10 rounded-full bg-gray-900 dark:bg-gray-600 flex items-center justify-center mr-3">
+                                    <i class="fab fa-github text-white"></i>
+                                </div>
+                                <span class="font-medium group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">GitHub</span>
+                            </a>
+                            <a href="#" class="flex items-center p-3 bg-gray-100 dark:bg-gray-700 rounded-lg group hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-colors">
+                                <div class="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center mr-3">
+                                    <i class="fab fa-youtube text-white"></i>
+                                </div>
+                                <span class="font-medium group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">YouTube</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Response Time -->
+                    <div class="mt-8 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-100 dark:border-blue-800">
+                        <div class="flex items-start">
+                            <i class="fas fa-info-circle text-blue-500 mt-1 mr-3"></i>
+                            <p class="text-sm text-gray-700 dark:text-gray-300">
+                                We typically respond to all inquiries within 24-48 hours during business days. For urgent matters, please contact us directly at <a href="tel:+11234567890" class="text-blue-600 dark:text-blue-400 hover:underline">+1 (123) 456-7890</a>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Location Section -->
+    <section class="py-12 bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl font-bold text-center mb-8 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">Visit Our Office</h2>
+            
+            <div class="max-w-6xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Map -->
+                    <div class="lg:col-span-2 rounded-xl overflow-hidden shadow-depth dark:shadow-depth-dark h-[400px]">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3402.2268950985277!2d74.3230694758669!3d31.495450948376976!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3919045a28398c89%3A0xaf09c8a12f30b8e8!2sLiberty%20Market%2C%20Lahore%2C%20Punjab%2C%20Pakistan!5e0!3m2!1sen!2s!4v1716499151062!5m2!1sen!2s" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade"
+                            class="w-full h-full">
+                        </iframe>
+                    </div>
+                    
+                    <!-- Address Information -->
+                    <div class="bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-xl shadow-depth dark:shadow-depth-dark p-6">
+                        <h3 class="text-xl font-bold mb-4 flex items-center">
+                            <i class="fas fa-map-marker-alt text-red-500 mr-3"></i>Our Pakistan Office
+                        </h3>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center mr-3 mt-1 flex-shrink-0">
+                                    <i class="fas fa-building text-blue-600 dark:text-blue-400"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 dark:text-gray-200">DevToolkit Headquarters</h4>
+                                    <p class="text-gray-600 dark:text-gray-400">
+                                        Office #304, 3rd Floor<br>
+                                        Liberty Plaza, Liberty Market<br>
+                                        Gulberg III, Lahore<br>
+                                        Pakistan
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 rounded-full bg-green-100 dark:bg-green-900 flex items-center justify-center mr-3 mt-1 flex-shrink-0">
+                                    <i class="fas fa-clock text-green-600 dark:text-green-400"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 dark:text-gray-200">Business Hours</h4>
+                                    <p class="text-gray-600 dark:text-gray-400">
+                                        Monday - Friday: 9:00 AM - 6:00 PM<br>
+                                        Saturday: 10:00 AM - 2:00 PM<br>
+                                        Sunday: Closed
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 rounded-full bg-purple-100 dark:bg-purple-900 flex items-center justify-center mr-3 mt-1 flex-shrink-0">
+                                    <i class="fas fa-phone-alt text-purple-600 dark:text-purple-400"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 dark:text-gray-200">Contact</h4>
+                                    <p class="text-gray-600 dark:text-gray-400">
+                                        <a href="tel:+924235880001" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">+92 42 3588 0001</a><br>
+                                        <a href="mailto:lahore@devtoolkit.com" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">lahore@devtoolkit.com</a>
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <a href="https://maps.google.com/?q=Liberty+Market+Lahore+Pakistan" target="_blank" class="mt-6 inline-block bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-bold px-6 py-3 rounded-lg hover:from-blue-400 hover:to-indigo-500 transform hover:-translate-y-1 transition-all duration-300 shadow-md w-full text-center">
+                                <span class="flex items-center justify-center">
+                                    <i class="fas fa-directions mr-2"></i> Get Directions
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Subscription -->
+    <section class="py-16 bg-gradient-to-br from-blue-600 to-indigo-700 dark:from-blue-800 dark:to-indigo-900 text-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl font-bold mb-4">Stay Updated with DevToolkit</h2>
+                <p class="text-lg text-blue-100 mb-8 max-w-2xl mx-auto">Subscribe to our newsletter and be the first to know about new tools, features, and updates.</p>
+                
+                <div class="max-w-md mx-auto">
+                    <form class="flex flex-col sm:flex-row gap-3">
+                        <input type="email" placeholder="Enter your email address" required class="flex-grow py-3 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 bg-white/10 backdrop-blur-sm border border-white/20 text-white">
+                        <button type="submit" class="bg-gradient-to-r from-yellow-400 to-orange-500 text-white font-bold py-3 px-6 rounded-lg hover:from-yellow-300 hover:to-orange-400 transform hover:-translate-y-1 hover:shadow-xl transition-all duration-300 shadow-lg">
+                            Subscribe
+                        </button>
+                    </form>
+                    
+                    <p class="text-xs text-blue-200 mt-4">We respect your privacy. Unsubscribe at any time. No spam, just relevant updates.</p>
+                    
+                    <!-- Benefits of Subscribing -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-12">
+                        <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
+                            <div class="bg-white/20 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <i class="fas fa-bell text-yellow-300"></i>
+                            </div>
+                            <h3 class="font-semibold mb-1">New Tool Alerts</h3>
+                            <p class="text-sm text-blue-100">Be first to try our newest developer tools</p>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
+                            <div class="bg-white/20 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <i class="fas fa-lightbulb text-yellow-300"></i>
+                            </div>
+                            <h3 class="font-semibold mb-1">Tips & Tricks</h3>
+                            <p class="text-sm text-blue-100">Exclusive developer productivity tips</p>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
+                            <div class="bg-white/20 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <i class="fas fa-gift text-yellow-300"></i>
+                            </div>
+                            <h3 class="font-semibold mb-1">Special Offers</h3>
+                            <p class="text-sm text-blue-100">Occasional discounts on premium features</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-indigo-900 to-purple-900 dark:from-indigo-950 dark:to-purple-950 text-gray-200 py-8 shadow-depth-dark border-t-4 border-indigo-500">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+                <div class="mb-4 md:mb-0">
+                    <h2 class="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">DevToolkit</h2>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="#" class="hover:text-white transition-colors text-xl"><i class="fab fa-github"></i></a>
+                    <a href="#" class="hover:text-white transition-colors text-xl"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="hover:text-white transition-colors text-xl"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="hover:text-white transition-colors text-xl"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="hover:text-white transition-colors text-xl"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="hover:text-white transition-colors text-xl"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="hover:text-white transition-colors text-xl"><i class="fab fa-discord"></i></a>
+                </div>
+            </div>
+            
+            <!-- Section Links -->
+            <div class="grid grid-cols-2 md:grid-cols-6 gap-4 pt-4 border-t border-gray-700">
+                <a href="#home" class="text-gray-400 hover:text-white transition-colors flex items-center">
+                    <i class="fas fa-home mr-2"></i>Home
+                </a>
+                <a href="#tools" class="text-gray-400 hover:text-white transition-colors flex items-center">
+                    <i class="fas fa-tools mr-2"></i>Tools
+                </a>
+                <a href="#about" class="text-gray-400 hover:text-white transition-colors flex items-center">
+                    <i class="fas fa-info-circle mr-2"></i>About
+                </a>
+                <a href="#testimonials" class="text-gray-400 hover:text-white transition-colors flex items-center">
+                    <i class="fas fa-quote-right mr-2"></i>Testimonials
+                </a>
+                <a href="#faq" class="text-gray-400 hover:text-white transition-colors flex items-center">
+                    <i class="fas fa-question-circle mr-2"></i>FAQ
+                </a>
+                <a href="#contact" class="text-gray-400 hover:text-white transition-colors flex items-center">
+                    <i class="fas fa-envelope mr-2"></i>Contact
+                </a>
+            </div>
+
+            <!-- Copyright Information -->
+            <div class="mt-8 pt-4 border-t border-gray-700 text-gray-400 text-sm text-center">
+                <p class="mb-2">© 2024-2025 DevToolkit. All rights reserved. All tools and utilities are provided "as is" without warranty of any kind.</p>
+                <div class="flex flex-wrap justify-center gap-4 mt-2">
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">Terms of Service</a>
+                    <span class="hidden md:inline">•</span>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
+                    <span class="hidden md:inline">•</span>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">Cookie Policy</a>
+                    <span class="hidden md:inline">•</span>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">License</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
